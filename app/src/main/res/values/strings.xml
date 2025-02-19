@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Ferronix</string>
+    <string name="ChoosingForm">Выбор формы</string>
+    <string name="history">История</string>
+    <string name="square">Квадрат</string>
+    <string name="circle">Круг</string>
+    <string name="density">Плотность</string>
+    <string name="length">Длина L</string>
+    <string name="squareA">Сторона квадрата А</string>
+    <string name="calculate">Расчет</string>
+    <string name="calculateWeight">Расчет веса</string>
+    <string name="calculateLeght">Расчет длины</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="kgm3">кг/м³</string>
+    <string name="gsm3">г/см³</string>
+    <string name="millimetre">мм</string>
+
+
+    <string name="material">Материал</string>
+    <string name="mark">Марка</string>
+    <string name="black_metal">Черный металл</string>
+    <string name="stainless_steel">Нержавейка</string>
+    <string name="aluminum">Алюминий</string>
+    <string name="steel_10">Сталь 10</string>
+    <string name="steel_45">Сталь 45</string>
+    <string name="grade_08Х17Т">08Х17Т</string>
+    <string name="grade_20Х13">20Х13</string>
+    <string name="mass">Масса</string>
+    <string name="kg">кг.</string>
+
+</resources>

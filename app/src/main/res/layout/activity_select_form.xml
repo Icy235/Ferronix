@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SelectForm">
+
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/unbounded"
+        android:gravity="center"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        android:text="@string/app_name"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButtonSquare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="55dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Square"
+        android:onClick="btnSquareCalculate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
+        app:srcCompat="@drawable/ic_main_square"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        style="@style/BaseText"
+        android:id="@+id/textViewSquare"
+        android:text="@string/square"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonSquare" />
+
+    <ImageButton
+        android:id="@+id/imageButtonCircle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:layout_marginTop="56dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Circle"
+        android:onClick="btnCircleCalculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonSquare"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
+        app:srcCompat="@drawable/ic_main_eclipse"
+        tools:ignore="HardcodedText" />
+
+
+
+    <TextView
+        style="@style/BaseText"
+        android:id="@+id/textViewCircle"
+        android:text="@string/circle"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

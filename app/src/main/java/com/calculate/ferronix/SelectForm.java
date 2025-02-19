@@ -17,15 +17,17 @@ public class SelectForm extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_select_form);
 
-        ImageButton imageButtonSquare = (ImageButton) findViewById(R.id.imageButtonSquare);
-        imageButtonSquare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SelectForm.this, SquareCalculateWeight.class);
-                startActivity(intent);
-            }
-        });
 
 
+    }
 
-    }}
+    public void btnSquareCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, SquareCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnCircleCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, CircleCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
+}

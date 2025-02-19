@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/btnCalculateSquare"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".SquareCalculateLength">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
     <ImageButton
@@ -31,7 +35,8 @@
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_download" />
+        app:srcCompat="@drawable/ic_download"
+        android:visibility="gone"/>
 
 
     <ImageView
@@ -59,14 +64,11 @@
         app:layout_constraintVertical_bias="0.504" />
 
 
-
-
-
     <Button
         android:id="@+id/btnMaterial"
         android:layout_width="335sp"
         android:layout_height="56sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@android:color/transparent"
         android:drawableEnd="@android:drawable/arrow_down_float"
         android:elevation="20sp"
@@ -172,10 +174,10 @@
     <com.google.android.material.chip.Chip
         android:id="@+id/chip"
         style="@style/BaseText"
-        android:onClick="btnGoMass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
+        android:onClick="btnGoMass"
         android:text="@string/calculateWeight"
         app:layout_constraintStart_toStartOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
@@ -183,12 +185,12 @@
     <com.google.android.material.chip.Chip
         android:id="@+id/chip2"
         style="@style/BaseText"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
+        android:backgroundTint="@color/white"
         android:text="@string/calculateLeght"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
@@ -196,7 +198,7 @@
         android:id="@+id/lineralLayoutLenght"
         android:layout_width="335sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/ic_element_primary"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/chip2"
@@ -216,9 +218,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
 
             <!-- Поле ввода массы -->
             <EditText
@@ -235,9 +237,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/kg"
+                android:layout_marginStart="10dp"
                 android:fontFamily="@font/unbounded"
-                android:layout_marginStart="10dp" />
+                android:text="@string/kg" />
         </LinearLayout>
     </LinearLayout>
 
@@ -313,3 +315,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>

@@ -150,25 +150,43 @@ public class SquareCalculateLength extends AppCompatActivity {
     private void calculateLength() {
         try {
             // Получаем значения из EditText
-            double density = Double.parseDouble(editTextDensity.getText().toString()); // кг/см³
-            double mass = Double.parseDouble(editTextMass.getText().toString()); // кг
-            double squareA = Double.parseDouble(editTextSquareA.getText().toString()); // мм
+            String densityText = editTextDensity.getText().toString();
+            String massText = editTextMass.getText().toString();
+            String squareAText = editTextSquareA.getText().toString();
+
+            // Проверяем, что все поля заполнены
+            if (densityText.isEmpty() || massText.isEmpty() || squareAText.isEmpty()) {
+                totalLength.setText("Ошибка: все поля должны быть заполнены");
+                return;
+            }
+
+            double density = Double.parseDouble(densityText); // кг/см³
+            double mass = Double.parseDouble(massText); // кг
+            double squareA = Double.parseDouble(squareAText); // мм
 
             // Переводим единицы измерения
             double squareA_cm = squareA * 0.1; // мм -> см
             double density_kg_per_cm3 = density * 0.001; // г/см³ -> кг/см³
 
+            // Проверка на корректность значений
+            if (density <= 0 || mass <= 0 || squareA <= 0) {
+                totalLength.setText("Ошибка: значения должны быть положительными");
+                return;
+            }
+
             // Выполняем расчет
             double S = squareA_cm * squareA_cm; // площадь в см²
             double length_sm = mass / (S * density_kg_per_cm3); // длина в см
             double length_m = length_sm / 100; // Длина в метрах
+
             // Выводим результат в TextView
             totalLength.setText(String.format("Длина: %.2f м.", length_m));
         } catch (NumberFormatException e) {
-            // Обработка ошибки, если пользователь ввел некорректные данные
+            // Обработка ошибки, если данные введены неправильно
             totalLength.setText("Ошибка: введите корректные числа");
         }
     }
+
 
     // Метод для возврата на предыдущую активность
     public void btnBack(View view) {

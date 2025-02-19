@@ -164,6 +164,11 @@ public class SquareCalculateWeight extends AppCompatActivity {
             double length_cm = length * 0.1; // мм -> см
             double density_kg_per_cm3 = density * 0.001; // г/см³ -> кг/см³
 
+            // Проверка на корректность значений
+            if (density <= 0 || length <= 0 || squareA <= 0) {
+                totalWeight.setText("Ошибка: значения должны быть положительными");
+                return;
+            }
             // Выполняем расчет
             double S = squareA_cm * squareA_cm; // площадь в см²
             double V = S * length_cm; // объем в см³

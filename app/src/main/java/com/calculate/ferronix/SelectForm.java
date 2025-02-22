@@ -4,7 +4,7 @@ package com.calculate.ferronix;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +22,7 @@ public class SelectForm extends AppCompatActivity {
     }
 
     public void btnSquareCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, SquareCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, CirclePipeCalculateWeight.class));
         finish(); // Закрываем текущую активность
     }
 
@@ -30,4 +30,16 @@ public class SelectForm extends AppCompatActivity {
         startActivity(new Intent(SelectForm.this, CircleCalculateWeight.class));
         finish(); // Закрываем текущую активность
     }
+
+    public void btnCirclePipeCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, CirclePipeCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnProfilePipeCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, ProfilePipeCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
+
+
 }

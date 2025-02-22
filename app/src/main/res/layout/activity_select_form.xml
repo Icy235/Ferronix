@@ -70,4 +70,54 @@
         app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle" />
 
 
+    <ImageButton
+        android:id="@+id/imageButtonCirclePipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="34dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Circle"
+        android:onClick="btnCirclePipeCalculate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCircle"
+        app:srcCompat="@drawable/ic_circlepipe"
+        tools:ignore="HardcodedText" />
+
+
+
+    <TextView
+        style="@style/BaseText"
+        android:id="@+id/textViewCirclePipe"
+        android:text="@string/circlePipe"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonCirclePipe" />
+
+    <ImageButton
+        android:id="@+id/imageButtonProfilePipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="Circle"
+
+        android:onClick="btnProfilePipeCalculate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
+        app:srcCompat="@drawable/ic_profilepipe"
+        tools:ignore="HardcodedText" />
+
+
+
+    <TextView
+        style="@style/BaseText"
+        android:layout_width="170sp"
+        android:id="@+id/textViewProfilePipe"
+        android:text="@string/profilePipe"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
+        app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonProfilePipe" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

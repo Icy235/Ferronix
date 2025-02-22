@@ -29,5 +29,12 @@
     <string name="mass">Масса</string>
     <string name="kg">кг.</string>
     <string name="Diametr">Диаметр</string>
+    <string name="wall">Толщина стенки</string>
+    <string name="sideB">Строна B</string>
+    <string name="sideA">Сторона A</string>
+    <string name="weight">Вес</string>
+    <string name="length">Длина</string>
+    <string name="circlePipe">Круглая труба</string>
+    <string name="profilePipe">Профильная труба</string>
 
 </resources>

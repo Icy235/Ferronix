@@ -16,7 +16,7 @@
             android:name=".MainMenu"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,21 +29,21 @@
             android:name=".SelectForm"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
         <activity
             android:name=".SquareCalculateWeight"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
         <activity
             android:name=".SquareCalculateLength"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
 
@@ -51,14 +51,43 @@
             android:name=".CircleCalculateWeight"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
         <activity
             android:name=".CircleCalculateLength"
             android:exported="true"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi">
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <activity
+            android:name=".CirclePipeCalculateLength"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <activity
+            android:name=".CirclePipeCalculateWeight"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
+        <activity
+            android:name=".ProfilePipeCalculateLength"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <activity
+            android:name=".ProfilePipeCalculateWeight"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
     </application>

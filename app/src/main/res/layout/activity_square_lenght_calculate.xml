@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,308 +11,281 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-    <ImageButton
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:onClick="btnBack"
-        android:backgroundTint="@color/orange"
-        android:contentDescription="@string/back"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
-    <!--@TODO: Изменить изображение-->
-    <ImageButton
-        android:id="@+id/imageButtonSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/orange"
-        android:contentDescription="@string/save"
-        android:padding="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_download"
-        android:visibility="gone"/>
-
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:contentDescription="@string/square"
-        app:layout_constraintStart_toStartOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_main_square" />
-
-    <TextView
-        android:id="@+id/textViewLengthTotal"
-        style="@style/BaseText"
-        android:layout_width="200sp"
-        android:layout_height="150sp"
-        android:text="Длина"
-        android:gravity="center"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2"
-        app:layout_constraintVertical_bias="0.504" />
-
-
-    <Button
-        android:id="@+id/btnMaterial"
-        android:layout_width="335sp"
-        android:layout_height="56sp"
-        android:layout_marginTop="10dp"
-        android:backgroundTint="@android:color/transparent"
-        android:drawableEnd="@android:drawable/arrow_down_float"
-        android:elevation="20sp"
-        android:fontFamily="@font/unbounded"
-        android:gravity="start"
-        android:text="@string/material"
-        android:textColor="@color/MainElementWhite"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnMaterial"
-        app:layout_constraintStart_toStartOf="@+id/btnMaterial"
-        app:layout_constraintTop_toBottomOf="@+id/btnMaterial"
-        app:srcCompat="@drawable/line_3" />
-
-    <Button
-        android:id="@+id/btnMark"
-        android:layout_width="335sp"
-        android:layout_height="56sp"
-        android:layout_marginTop="15dp"
-        android:backgroundTint="@android:color/transparent"
-        android:drawableEnd="@android:drawable/arrow_down_float"
-        android:elevation="20sp"
-        android:fontFamily="@font/unbounded"
-        android:gravity="start"
-        android:text="@string/mark"
-        android:textColor="@color/MainElementWhite"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="@+id/btnMaterial"
-        app:layout_constraintStart_toStartOf="@+id/btnMaterial"
-        app:layout_constraintTop_toBottomOf="@+id/btnMaterial" />
-
-    <ImageView
-        android:id="@+id/imageLineMark"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        app:layout_constraintEnd_toEndOf="@+id/btnMark"
-        app:layout_constraintStart_toStartOf="@+id/btnMark"
-        app:layout_constraintTop_toBottomOf="@+id/btnMark"
-        app:srcCompat="@drawable/line_3" />
-
-    <FrameLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="335sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/ic_element_primary"
-        app:layout_constraintStart_toStartOf="@+id/btnMark"
-        app:layout_constraintTop_toBottomOf="@+id/btnMark">
-
-        <!-- LinearLayout для вертикального расположения элементов -->
-        <LinearLayout
-            android:layout_width="match_parent"
+        <!-- Кнопка "Назад" -->
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="70dp"
+            android:backgroundTint="@color/orange"
+            android:contentDescription="@string/back"
+            android:onClick="btnBack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-            <!-- Текст "Плотность" -->
-            <TextView
-                android:id="@+id/textViewDensityLabel"
+        <!-- Кнопка "Сохранить" (скрыта) -->
+        <ImageButton
+            android:id="@+id/imageButtonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange"
+            android:contentDescription="@string/save"
+            android:padding="15sp"
+            android:visibility="gone"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_download" />
+
+        <!-- Заголовок -->
+        <TextView
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/square"
+            android:layout_marginStart="10sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <!-- Блок с результатом -->
+        <LinearLayout
+            android:id="@+id/infoCell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBack">
+
+            <ImageView
+                android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/density"
-                android:fontFamily="@font/unbounded"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp" />
+                android:contentDescription="@string/square"
+                app:srcCompat="@drawable/ic_main_square" />
 
-            <!-- Горизонтальный контейнер для EditText и текста "кг/м³" -->
+            <TextView
+                android:id="@+id/textViewLengthTotal"
+                style="@style/BaseText"
+                android:layout_width="200sp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/length" />
+        </LinearLayout>
+
+        <!-- Кнопка выбора материала -->
+        <Button
+            style="@style/btnMaterialMark"
+            android:id="@+id/btnMaterial"
+            android:text="@string/material"
+            app:layout_constraintStart_toStartOf="@id/infoCell"
+            app:layout_constraintTop_toBottomOf="@id/infoCell" />
+
+        <!-- Линия под кнопкой материала -->
+        <ImageView
+            android:id="@+id/UIline"
+            android:layout_width="167sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            app:layout_constraintEnd_toEndOf="@id/btnMaterial"
+            app:layout_constraintStart_toStartOf="@id/btnMaterial"
+            app:layout_constraintTop_toBottomOf="@id/btnMaterial"
+            app:srcCompat="@drawable/line_3" />
+
+        <!-- Кнопка выбора марки -->
+        <Button
+            style="@style/btnMaterialMark"
+            android:id="@+id/btnMark"
+            android:text="@string/mark"
+            app:layout_constraintEnd_toEndOf="@id/infoCell"
+            app:layout_constraintStart_toEndOf="@id/btnMaterial"
+            app:layout_constraintTop_toBottomOf="@id/infoCell" />
+
+        <!-- Линия под кнопкой марки -->
+        <ImageView
+            android:id="@+id/UIline2"
+            android:layout_width="167sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            app:layout_constraintEnd_toEndOf="@id/btnMark"
+            app:layout_constraintStart_toStartOf="@id/btnMark"
+            app:layout_constraintTop_toBottomOf="@id/btnMaterial"
+            app:srcCompat="@drawable/line_3" />
+
+        <!-- Блок с плотностью -->
+        <FrameLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="335sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_element_primary"
+            app:layout_constraintEnd_toEndOf="@id/btnMark"
+            app:layout_constraintStart_toStartOf="@id/btnMaterial"
+            app:layout_constraintTop_toBottomOf="@id/btnMark">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp">
-                <!-- Поле ввода плотности -->
-                <EditText
-                    android:id="@+id/editTextDensity"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="@string/density"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:fontFamily="@font/unbounded" />
+                android:orientation="vertical">
 
-                <!-- Текст "кг/м³" -->
                 <TextView
-                    android:id="@+id/textViewUnit"
+                    style="@style/Density" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/editTextDensity"
+                        style="@style/editTextDensity" />
+
+                    <TextView
+                        style="@style/Unit" />
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Кнопка "Рассчитать вес" -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:onClick="btnGoMass"
+            android:text="@string/calculateWeight"
+            app:layout_constraintStart_toStartOf="@id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <!-- Кнопка "Рассчитать длину" -->
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip2"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/calculateLeght"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
+
+        <!-- Блок с массой -->
+        <LinearLayout
+            android:id="@+id/lineralLayoutLenght"
+            android:layout_width="335sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/ic_element_primary"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/chip2"
+            app:layout_constraintStart_toStartOf="@id/chip"
+            app:layout_constraintTop_toBottomOf="@id/chip">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/unbounded"
+                android:text="@string/mass" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextLength"
+                    style="@style/editTextDensity"
+                    android:hint="@string/mass" />
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/gsm3"
+                    android:layout_marginStart="10dp"
                     android:fontFamily="@font/unbounded"
-                    android:layout_marginStart="10dp" />
+                    android:text="@string/kg" />
             </LinearLayout>
         </LinearLayout>
-    </FrameLayout>
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip"
-        style="@style/BaseText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:onClick="btnGoMass"
-        android:text="@string/calculateWeight"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip2"
-        style="@style/BaseText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/calculateLeght"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-    <LinearLayout
-        android:id="@+id/lineralLayoutLenght"
-        android:layout_width="335sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ic_element_primary"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/chip2"
-        app:layout_constraintStart_toStartOf="@+id/chip"
-        app:layout_constraintTop_toBottomOf="@+id/chip">
-
-        <!-- Текст "Масса" -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/unbounded"
-            android:text="@string/mass" />
-
-        <!-- Горизонтальный контейнер для EditText и текста "кг" -->
+        <!-- Блок с диаметром -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/lineralLayoutSquareA"
+            android:layout_width="335sp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_element_primary"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@id/lineralLayoutLenght"
+            app:layout_constraintStart_toStartOf="@id/lineralLayoutLenght"
+            app:layout_constraintTop_toBottomOf="@id/lineralLayoutLenght">
 
-            <!-- Поле ввода массы -->
-            <EditText
-                android:id="@+id/editTextMass"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:autofillHints="no"
-                android:fontFamily="@font/unbounded"
-                android:hint="@string/mass"
-                android:inputType="numberDecimal|numberSigned" />
-
-            <!-- Текст "кг" -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/unbounded"
-                android:text="@string/kg" />
+                android:text="@string/squareA" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editTextSquareA"
+                    style="@style/editTextDensity"
+                    android:hint="@string/squareA" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/unbounded"
+                    android:text="@string/millimetre" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lineralLayoutSquareA"
-        android:layout_width="335sp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/ic_element_primary"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/lineralLayoutLenght"
-        app:layout_constraintStart_toStartOf="@+id/lineralLayoutLenght"
-        app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenght">
-
-        <!-- Текст "Площадь" -->
-        <TextView
+        <!-- Кнопка "Рассчитать" -->
+        <Button
+            style="@style/BaseText"
+            android:id="@+id/btnCalculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/unbounded"
-            android:text="@string/squareA" />
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_element_primary"
+            android:elevation="15sp"
+            android:paddingStart="40sp"
+            android:paddingEnd="40sp"
+            android:text="@string/calculate"
+            app:icon="@drawable/ic_enter"
+            app:iconPadding="10sp"
+            app:iconTint="@color/MainElementWhite"
+            app:layout_constraintEnd_toEndOf="@id/lineralLayoutSquareA"
+            app:layout_constraintStart_toStartOf="@id/lineralLayoutSquareA"
+            app:layout_constraintTop_toBottomOf="@id/lineralLayoutSquareA" />
 
-        <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp">
-
-            <!-- Поле ввода площади -->
-            <EditText
-                android:id="@+id/editTextSquareA"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/unbounded"
-                android:hint="@string/squareA"
-                android:inputType="numberDecimal|numberSigned" />
-
-            <!-- Текст "мм²" -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/millimetre"
-                android:fontFamily="@font/unbounded"
-                android:layout_marginStart="10dp" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <Button
-        style="@style/BaseText"
-        android:id="@+id/btnCalculate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/ic_element_primary"
-        android:onClick="btnCalculateSquare"
-        android:elevation="15sp"
-        android:paddingStart="40sp"
-        android:paddingEnd="40sp"
-        android:text="@string/calculate"
-        app:icon="@drawable/ic_enter"
-        app:iconPadding="10sp"
-
-        app:iconTint="@color/MainElementWhite"
-        app:layout_constraintEnd_toEndOf="@+id/lineralLayoutSquareA"
-        app:layout_constraintStart_toStartOf="@+id/lineralLayoutSquareA"
-        app:layout_constraintTop_toBottomOf="@+id/lineralLayoutSquareA" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
+        <!-- Пустое пространство для прокрутки -->
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="500sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCalculateCircle" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

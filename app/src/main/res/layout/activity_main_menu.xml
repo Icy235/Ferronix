@@ -22,13 +22,13 @@
     <Button
         android:id="@+id/btnSelectForm"
         style="@style/MainMenuButton"
-        android:layout_marginTop="74dp"
+        android:layout_marginTop="10dp"
+        android:onClick="btnSelectForm"
         android:text="@string/ChoosingForm"
         app:iconTint="@color/black"
-        android:onClick="btnSelectForm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/btnHistory"
@@ -39,5 +39,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        style="@style/BaseText"
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="FERRONIX"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

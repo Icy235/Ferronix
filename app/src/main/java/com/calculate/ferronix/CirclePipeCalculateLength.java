@@ -1,6 +1,5 @@
 package com.calculate.ferronix;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,40 +14,40 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class CirclePipeCalculateLength extends AppCompatActivity {
 
     private EditText editTextDensity, editTextMass, editTextDiametr, editTextWall;
     private TextView totalLength;
-    private Button btnCalculate, btnMaterial, btnMark;
+    private Button btnMaterial, btnMark;
 
     private String[] materials;
     // Инициализация массивов для Алюминия
-    private String[] aluminumGrades = {
+    private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
-    private double[] aluminumDensities = {
+    private final double[] aluminumDensities = {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
     // Инициализация массивов для Нержавейки
-    private String[] stainlessSteelGrades = {
+    private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
-    private double[] stainlessSteelDensities = {
+    private final double[] stainlessSteelDensities = {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
     // Инициализация массивов для черного металла
-    private String[] blackMetalGrades = {
+    private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
     };
-    private double[] blackMetalDensities = {
+    private final double[] blackMetalDensities = {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85,
-            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
+            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
     };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,84 +56,73 @@ public class CirclePipeCalculateLength extends AppCompatActivity {
         setContentView(R.layout.activity_circle_pipe_lenght_calculate);
 
         // Инициализация массива materials
-        materials = new String[]{"Черный металл", "Нержавейка", "Алюминий"};
+        materials = new String[]{"Черный металл", "Нержавеющая сталь", "Алюминий"};
 
         // Инициализация элементов интерфейса
-        editTextDensity = findViewById(R.id.editTextDensityCirclePipeL);
+        editTextDensity = findViewById(R.id.editTextDensity);
         editTextMass = findViewById(R.id.editTextMassCirclePipeL);
         editTextDiametr = findViewById(R.id.editTextDiametrCirclePipeL);
         editTextWall = findViewById(R.id.editTextWallCirclePipeL);
-        totalLength = findViewById(R.id.textViewLengthTotalCirclePipeL);
-        btnCalculate = findViewById(R.id.btnCalculateCirclePipeL);
-        btnMaterial = findViewById(R.id.btnMaterialCirclePipeL);
-        btnMark = findViewById(R.id.btnMarkCirclePipeL);
+        totalLength = findViewById(R.id.textViewWeightTotal);
+        Button btnCalculate = findViewById(R.id.btnCalculateCirclePipeL);
+        btnMaterial = findViewById(R.id.btnMaterial);
+        btnMark = findViewById(R.id.btnMark);
 
+        // Проверка на null
         if (editTextDensity == null || editTextMass == null || editTextDiametr == null || editTextWall == null) {
-            Log.e("CirclePipeCalculateLength", "Некоторые EditText не были найдены. Проверьте ID в XML.");
-            throw new NullPointerException("Некоторые EditText не были найдены. Проверьте ID в XML.");
+            Log.e("InitError", "One or more EditText fields are null!");
+            finish();
         }
 
-        // Обработчик нажатия на кнопку расчета
-        btnCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculateLength(); // Изменено на расчет длины
-            }
-        });
-
-        // Обработчик для кнопки выбора материала
+        // Обработчики кликов
+        btnCalculate.setOnClickListener(v -> calculateLength());
         btnMaterial.setOnClickListener(v -> showMaterialMenu());
-
-        // Обработчик для кнопки выбора марки
-        btnMark.setOnClickListener(v -> {
-            String selectedMaterial = btnMaterial.getText().toString();
-            if (selectedMaterial.equals(getString(R.string.material))) {
-                // Если материал не выбран, показываем сообщение
-                Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
-            } else {
-                showGradeMenu(selectedMaterial);
-            }
-        });
+        btnMark.setOnClickListener(v -> handleMarkButtonClick());
     }
 
-    // Метод для отображения меню выбора материала
-    private void showMaterialMenu() {
-        if (materials == null) {
-            Toast.makeText(this, "Массив материалов не инициализирован", Toast.LENGTH_SHORT).show();
-            return;
+    private void handleMarkButtonClick() {
+        String material = btnMaterial.getText().toString();
+        if (material.equals(getString(R.string.material))) {
+            Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
+        } else {
+            showGradeMenu(material);
         }
+    }
 
+    private void showMaterialMenu() {
         PopupMenu popupMenu = new PopupMenu(this, btnMaterial);
         for (String material : materials) {
             popupMenu.getMenu().add(material);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedMaterial = item.getTitle().toString();
-            btnMaterial.setText(selectedMaterial);
-            // Сбрасываем текст марки при изменении материала
-            btnMark.setText(getString(R.string.mark));
+            btnMaterial.setText(item.getTitle());
+            btnMark.setText(R.string.mark);
+            editTextDensity.setText(""); // Сброс плотности при смене материала
             return true;
         });
         popupMenu.show();
     }
 
-    // Метод для отображения меню выбора марки
-    private void showGradeMenu(String selectedMaterial) {
+    private void showGradeMenu(String material) {
         PopupMenu popupMenu = new PopupMenu(this, btnMark);
         String[] grades;
         double[] densities;
 
-        if (selectedMaterial.equals(getString(R.string.black_metal))) {
-            grades = blackMetalGrades;
-            densities = blackMetalDensities;
-        } else if (selectedMaterial.equals(getString(R.string.stainless_steel))) {
-            grades = stainlessSteelGrades;
-            densities = stainlessSteelDensities;
-        } else if (selectedMaterial.equals(getString(R.string.aluminum))) {
-            grades = aluminumGrades;
-            densities = aluminumDensities;
-        } else {
-            return; // Для других материалов не показываем меню
+        switch (material) {
+            case "Черный металл":
+                grades = blackMetalGrades;
+                densities = blackMetalDensities;
+                break;
+            case "Нержавеющая сталь":
+                grades = stainlessSteelGrades;
+                densities = stainlessSteelDensities;
+                break;
+            case "Алюминий":
+                grades = aluminumGrades;
+                densities = aluminumDensities;
+                break;
+            default:
+                return;
         }
 
         for (String grade : grades) {
@@ -142,63 +130,80 @@ public class CirclePipeCalculateLength extends AppCompatActivity {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedGrade = item.getTitle().toString();
-            btnMark.setText(selectedGrade);
+            String grade = item.getTitle().toString();
+            btnMark.setText(grade);
 
-            // Обновляем плотность в зависимости от выбранной марки
-            int selectedIndex = Arrays.asList(grades).indexOf(selectedGrade);
-            double selectedDensity = densities[selectedIndex];
-            editTextDensity.setText(String.format("%.2f", selectedDensity)); // Обновляем плотность
-
+            int index = Arrays.asList(grades).indexOf(grade);
+            if (index != -1 && index < densities.length) {
+                String formattedDensity = String.format(Locale.US, "%.2f", densities[index]);
+                editTextDensity.setText(formattedDensity);
+            } else {
+                Log.e("DensityError", "Invalid index for density array");
+            }
             return true;
         });
         popupMenu.show();
     }
 
-    // Метод для расчета длины
     private void calculateLength() {
         try {
-            // Получаем данные из EditText
-            double density = Double.parseDouble(editTextDensity.getText().toString()); // г/см³
-            double weight = Double.parseDouble(editTextMass.getText().toString()); // кг
-            double diametr = Double.parseDouble(editTextDiametr.getText().toString()); // мм
-            double wall = Double.parseDouble(editTextWall.getText().toString()); // мм
+            // Получаем и проверяем значения
+            String densityStr = editTextDensity.getText().toString().trim();
+            String massStr = editTextMass.getText().toString().trim();
+            String diametrStr = editTextDiametr.getText().toString().trim();
+            String wallStr = editTextWall.getText().toString().trim();
 
-            // Переводим единицы измерения
-            double diametr_cm = diametr * 0.1; // мм -> см
-            double wall_cm = wall * 0.1; // мм -> см
-            double density_kg_per_cm3 = density * 0.001; // г/см³ -> кг/см³
-
-            // Проверка на корректность значений
-            if (density <= 0 || weight <= 0 || diametr <= 0 || wall <= 0) {
-                totalLength.setText("Ошибка: значения должны быть положительными");
+            if (densityStr.isEmpty() || massStr.isEmpty() || diametrStr.isEmpty() || wallStr.isEmpty()) {
+                totalLength.setText("Заполните все поля!");
                 return;
             }
 
-            // Выполняем расчет
-            double S = Math.PI * (diametr_cm * diametr_cm - (diametr_cm - wall_cm) * (diametr_cm - wall_cm)) / 4; // площадь в см²
-            double V = weight / density_kg_per_cm3; // объем в см³
-            double length = V / S; // длина в см
+            // Парсим значения
+            double density = Double.parseDouble(densityStr); // г/см³
+            double mass = Double.parseDouble(massStr); // кг
+            double diametr = Double.parseDouble(diametrStr); // мм
+            double wall = Double.parseDouble(wallStr); // мм
 
-            // Переводим длину в метры
+            // Проверка положительных значений
+            if (density <= 0 || mass <= 0 || diametr <= 0 || wall <= 0) {
+                totalLength.setText("Значения должны быть > 0");
+                return;
+            }
+
+            // Конвертация единиц
+            double diametrCm = diametr * 0.1; // мм -> см
+            double wallCm = wall * 0.1; // мм -> см
+            double densityKgPerCm3 = density * 0.001; // г/см³ -> кг/см³
+
+            // Рассчитываем внутренний диаметр
+            double innerDiametrCm = diametrCm - 2 * wallCm;
+
+            // Площадь поперечного сечения трубы
+            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4; // см²
+
+            // Объем трубы
+            double volume = mass / densityKgPerCm3; // см³
+
+            // Длина трубы
+            double length = volume / area; // см
             length = length / 100; // см -> м
 
-            // Выводим результат в TextView
-            totalLength.setText(String.format("Длина: %.4f м.", length));
+            // Выводим результат
+            totalLength.setText(String.format(Locale.US, "Длина: %.2f м", length));
+
         } catch (NumberFormatException e) {
-            // Обработка ошибки, если пользователь ввел некорректные данные
-            totalLength.setText("Ошибка: введите корректные числа");
-            Log.e("CirclePipeCalculateLength", "Ошибка ввода: " + e.getMessage());
+            totalLength.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
         }
     }
-    // Метод для возврата на предыдущую активность
+
     public void btnBack(View view) {
-        startActivity(new Intent(CirclePipeCalculateLength.this, SelectForm.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, SelectForm.class));
+        finish();
     }
 
     public void btnGoMass(View view) {
-        startActivity(new Intent(CirclePipeCalculateLength.this, CircleCalculateWeight.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, CircleCalculateWeight.class));
+        finish();
     }
 }

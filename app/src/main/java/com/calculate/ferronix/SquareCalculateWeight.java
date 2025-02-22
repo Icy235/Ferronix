@@ -2,6 +2,7 @@ package com.calculate.ferronix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,48 +14,50 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class SquareCalculateWeight extends AppCompatActivity {
 
     private EditText editTextDensity, editTextLength, editTextSquareA;
-    private TextView totalWeight, debug;
+    private TextView totalWeight;
     private Button btnCalculate, btnMaterial, btnMark;
 
     private String[] materials;
-    //Инициализация массивов для Алюминия
-
-    private String[] aluminumGrades = {
+    // Инициализация массивов для Алюминия
+    private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
-    private double[] aluminumDensities = {
+    private final double[] aluminumDensities = {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
-
-    //Инициализация массивов для Нержавейки
-    private String[] stainlessSteelGrades = {
+    // Инициализация массивов для Нержавейки
+    private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
-    private double[] stainlessSteelDensities = {
+    private final double[] stainlessSteelDensities = {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
     // Инициализация массивов для черного металла
-    private String[] blackMetalGrades = {
+    private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
     };
-
-    private double[] blackMetalDensities = {
+    private final double[] blackMetalDensities = {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85,
-            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
+            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
     };
+
+    // Константы для преобразования единиц
+    private static final double MM_TO_CM = 0.1;
+    private static final double G_PER_CM3_TO_KG_PER_CM3 = 0.001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_square_wight_calculate);
+        setContentView(R.layout.activity_square_weight_calculate);
 
         // Инициализация массива materials
         materials = new String[]{"Черный металл", "Нержавейка", "Алюминий"};
@@ -65,71 +68,64 @@ public class SquareCalculateWeight extends AppCompatActivity {
         editTextSquareA = findViewById(R.id.editTextSquareA);
         totalWeight = findViewById(R.id.textViewWeightTotal);
         btnCalculate = findViewById(R.id.btnCalculate);
-
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
-        // Обработчик нажатия на кнопку расчета
-        btnCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculateWeight();
-            }
-        });
-
-        // Обработчик для кнопки выбора материала
-        btnMaterial.setOnClickListener(v -> showMaterialMenu());
-
-        // Обработчик для кнопки выбора марки
-        btnMark.setOnClickListener(v -> {
-            String selectedMaterial = btnMaterial.getText().toString();
-            if (selectedMaterial.equals(getString(R.string.material))) {
-                // Если материал не выбран, показываем сообщение
-                Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
-            } else {
-                showGradeMenu(selectedMaterial);
-            }
-        });
-    }
-
-    // Метод для отображения меню выбора материала
-    private void showMaterialMenu() {
-        if (materials == null) {
-            Toast.makeText(this, "Массив материалов не инициализирован", Toast.LENGTH_SHORT).show();
-            return;
+        // Проверка на null
+        if (editTextDensity == null || editTextLength == null || editTextSquareA == null) {
+            Log.e("InitError", "One or more EditText fields are null!");
+            finish();
         }
 
+        // Обработчики кликов
+        btnCalculate.setOnClickListener(v -> calculateWeight());
+        btnMaterial.setOnClickListener(v -> showMaterialMenu());
+        btnMark.setOnClickListener(v -> handleMarkButtonClick());
+    }
+
+    private void handleMarkButtonClick() {
+        String material = btnMaterial.getText().toString();
+        if (material.equals(getString(R.string.material))) {
+            Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
+        } else {
+            showGradeMenu(material);
+        }
+    }
+
+    private void showMaterialMenu() {
         PopupMenu popupMenu = new PopupMenu(this, btnMaterial);
         for (String material : materials) {
             popupMenu.getMenu().add(material);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedMaterial = item.getTitle().toString();
-            btnMaterial.setText(selectedMaterial);
-            // Сбрасываем текст марки при изменении материала
-            btnMark.setText(getString(R.string.mark));
+            btnMaterial.setText(item.getTitle());
+            btnMark.setText(R.string.mark);
+            editTextDensity.setText(""); // Сброс плотности при смене материала
             return true;
         });
         popupMenu.show();
     }
 
-    // Метод для отображения меню выбора марки
-    private void showGradeMenu(String selectedMaterial) {
+    private void showGradeMenu(String material) {
         PopupMenu popupMenu = new PopupMenu(this, btnMark);
         String[] grades;
         double[] densities;
 
-        if (selectedMaterial.equals(getString(R.string.black_metal))) {
-            grades = blackMetalGrades;
-            densities = blackMetalDensities;
-        } else if (selectedMaterial.equals(getString(R.string.stainless_steel))) {
-            grades = stainlessSteelGrades;
-            densities = stainlessSteelDensities;
-        } else if (selectedMaterial.equals(getString(R.string.aluminum))) {
-            grades = aluminumGrades;
-            densities = aluminumDensities;
-        } else {
-            return; // Для других материалов не показываем меню
+        switch (material) {
+            case "Черный металл":
+                grades = blackMetalGrades;
+                densities = blackMetalDensities;
+                break;
+            case "Нержавейка":
+                grades = stainlessSteelGrades;
+                densities = stainlessSteelDensities;
+                break;
+            case "Алюминий":
+                grades = aluminumGrades;
+                densities = aluminumDensities;
+                break;
+            default:
+                return;
         }
 
         for (String grade : grades) {
@@ -137,58 +133,74 @@ public class SquareCalculateWeight extends AppCompatActivity {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedGrade = item.getTitle().toString();
-            btnMark.setText(selectedGrade);
+            String grade = item.getTitle().toString();
+            btnMark.setText(grade);
 
-            // Обновляем плотность в зависимости от выбранной марки
-            int selectedIndex = Arrays.asList(grades).indexOf(selectedGrade);
-            double selectedDensity = densities[selectedIndex];
-            editTextDensity.setText(String.format("%.2f", selectedDensity)); // Обновляем плотность
-
+            int index = Arrays.asList(grades).indexOf(grade);
+            if (index != -1 && index < densities.length) {
+                String formattedDensity = String.format(Locale.US, "%.2f", densities[index]);
+                editTextDensity.setText(formattedDensity);
+            } else {
+                Log.e("DensityError", "Invalid index for density array");
+            }
             return true;
         });
         popupMenu.show();
     }
 
-
-    // Метод для расчета веса
     private void calculateWeight() {
         try {
-            // Получаем значения из EditText
-            double density = Double.parseDouble(editTextDensity.getText().toString()); // г/см³
-            double length = Double.parseDouble(editTextLength.getText().toString()); // мм
-            double squareA = Double.parseDouble(editTextSquareA.getText().toString()); // мм
+            // Получаем и проверяем значения
+            String densityStr = editTextDensity.getText().toString().trim();
+            String lengthStr = editTextLength.getText().toString().trim();
+            String squareAStr = editTextSquareA.getText().toString().trim();
 
-            // Переводим единицы измерения
-            double squareA_cm = squareA * 0.1; // мм -> см
-            double length_cm = length * 0.1; // мм -> см
-            double density_kg_per_cm3 = density * 0.001; // г/см³ -> кг/см³
-
-            // Проверка на корректность значений
-            if (density <= 0 || length <= 0 || squareA <= 0) {
-                totalWeight.setText("Ошибка: значения должны быть положительными");
+            if (densityStr.isEmpty() || lengthStr.isEmpty() || squareAStr.isEmpty()) {
+                totalWeight.setText("Заполните все поля!");
                 return;
             }
-            // Выполняем расчет
-            double S = squareA_cm * squareA_cm; // площадь в см²
-            double V = S * length_cm; // объем в см³
-            double weight = V * density_kg_per_cm3; // вес в кг
 
-            // Выводим результат в TextView
-            totalWeight.setText(String.format("Вес: %.4f кг.", weight));
+            // Парсим значения
+            double density = Double.parseDouble(densityStr); // г/см³
+            double length = Double.parseDouble(lengthStr); // мм
+            double squareA = Double.parseDouble(squareAStr); // мм
+
+            // Проверка положительных значений
+            if (density <= 0 || length <= 0 || squareA <= 0) {
+                totalWeight.setText("Значения должны быть > 0");
+                return;
+            }
+
+            // Конвертация единиц
+            double squareACm = squareA * MM_TO_CM; // мм -> см
+            double lengthCm = length * MM_TO_CM; // мм -> см
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+
+            // Площадь поперечного сечения
+            double area = squareACm * squareACm; // площадь в см²
+
+            // Объем материала
+            double volume = area * lengthCm; // объем в см³
+
+            // Вес профиля
+            double weight = volume * densityKgPerCm3; // вес в кг
+
+            // Выводим результат
+            totalWeight.setText(String.format(Locale.US, "Вес: %.2f кг", weight));
+
         } catch (NumberFormatException e) {
-            // Обработка ошибки, если пользователь ввел некорректные данные
-            totalWeight.setText("Ошибка: введите корректные числа");
+            totalWeight.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
         }
     }
 
-    // Метод для возврата на предыдущую активность
     public void btnBack(View view) {
-        startActivity(new Intent(SquareCalculateWeight.this, SelectForm.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, SelectForm.class));
+        finish();
     }
+
     public void btnGoLength(View view) {
-        startActivity(new Intent(SquareCalculateWeight.this, SquareCalculateLength.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, SquareCalculateLength.class));
+        finish();
     }
 }

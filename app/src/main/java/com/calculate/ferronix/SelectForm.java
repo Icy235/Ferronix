@@ -22,7 +22,7 @@ public class SelectForm extends AppCompatActivity {
     }
 
     public void btnSquareCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, CirclePipeCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, SquareCalculateWeight.class));
         finish(); // Закрываем текущую активность
     }
 

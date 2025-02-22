@@ -5,7 +5,7 @@
     <string name="square">Квадрат</string>
     <string name="circle">Круг</string>
     <string name="density">Плотность</string>
-    <string name="length">Длина L</string>
+    <string name="lengthL">Длина L</string>
     <string name="squareA">Сторона квадрата А</string>
     <string name="calculate">Расчет</string>
     <string name="calculateWeight">Расчет веса</string>
@@ -20,7 +20,7 @@
     <string name="material">Материал</string>
     <string name="mark">Марка</string>
     <string name="black_metal">Черный металл</string>
-    <string name="stainless_steel">Нержавейка</string>
+    <string name="stainless_steel">Нержавеющая сталь</string>
     <string name="aluminum">Алюминий</string>
     <string name="steel_10">Сталь 10</string>
     <string name="steel_45">Сталь 45</string>
@@ -36,5 +36,7 @@
     <string name="length">Длина</string>
     <string name="circlePipe">Круглая труба</string>
     <string name="profilePipe">Профильная труба</string>
+    <string name="pipe">Труба</string>
+    <string name="site">Сторона</string>
 
 </resources>

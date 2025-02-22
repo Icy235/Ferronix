@@ -2,6 +2,7 @@ package com.calculate.ferronix;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 public class ProfilePipeCalculateLength extends AppCompatActivity {
 
@@ -22,30 +24,34 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
 
     private String[] materials;
     // Инициализация массивов для Алюминия
-    private String[] aluminumGrades = {
+    private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
-    private double[] aluminumDensities = {
+    private final double[] aluminumDensities = {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
     // Инициализация массивов для Нержавейки
-    private String[] stainlessSteelGrades = {
+    private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
-    private double[] stainlessSteelDensities = {
+    private final double[] stainlessSteelDensities = {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
     // Инициализация массивов для черного металла
-    private String[] blackMetalGrades = {
+    private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
     };
-    private double[] blackMetalDensities = {
+    private final double[] blackMetalDensities = {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85,
-            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
+            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
     };
+
+    // Константы для преобразования единиц
+    private static final double MM_TO_CM = 0.1;
+    private static final double G_PER_CM3_TO_KG_PER_CM3 = 0.001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +60,7 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
         setContentView(R.layout.activity_profile_pipe_lenght_calculate);
 
         // Инициализация массива materials
-        materials = new String[]{"Черный металл", "Нержавейка", "Алюминий"};
+        materials = new String[]{"Черный металл", "Нержавеющий металл", "Алюминий"};
 
         // Инициализация элементов интерфейса
         editTextDensity = findViewById(R.id.editTextDensity);
@@ -63,71 +69,65 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
         editTextSideB = findViewById(R.id.editTextSideB);
         editTextWall = findViewById(R.id.editTextWallProfilePipeL);
         totalLength = findViewById(R.id.textViewLengthTotal);
-        btnCalculate = findViewById(R.id.btnCalculate);
+        btnCalculate = findViewById(R.id.btnCalculateProfilePipeL);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
-        // Обработчик нажатия на кнопку расчета
-        btnCalculate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                calculateLength(); // Изменено на расчет длины
-            }
-        });
-
-        // Обработчик для кнопки выбора материала
-        btnMaterial.setOnClickListener(v -> showMaterialMenu());
-
-        // Обработчик для кнопки выбора марки
-        btnMark.setOnClickListener(v -> {
-            String selectedMaterial = btnMaterial.getText().toString();
-            if (selectedMaterial.equals(getString(R.string.material))) {
-                // Если материал не выбран, показываем сообщение
-                Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
-            } else {
-                showGradeMenu(selectedMaterial);
-            }
-        });
-    }
-
-    // Метод для отображения меню выбора материала
-    private void showMaterialMenu() {
-        if (materials == null) {
-            Toast.makeText(this, "Массив материалов не инициализирован", Toast.LENGTH_SHORT).show();
-            return;
+        // Проверка на null
+        if (editTextDensity == null || editTextMass == null || editTextSideA == null || editTextSideB == null || editTextWall == null) {
+            Log.e("InitError", "One or more EditText fields are null!");
+            finish();
         }
 
+        // Обработчики кликов
+        btnCalculate.setOnClickListener(v -> calculateLength());
+        btnMaterial.setOnClickListener(v -> showMaterialMenu());
+        btnMark.setOnClickListener(v -> handleMarkButtonClick());
+    }
+
+    private void handleMarkButtonClick() {
+        String material = btnMaterial.getText().toString();
+        if (material.equals(getString(R.string.material))) {
+            Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
+        } else {
+            showGradeMenu(material);
+        }
+    }
+
+    private void showMaterialMenu() {
         PopupMenu popupMenu = new PopupMenu(this, btnMaterial);
         for (String material : materials) {
             popupMenu.getMenu().add(material);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedMaterial = item.getTitle().toString();
-            btnMaterial.setText(selectedMaterial);
-            // Сбрасываем текст марки при изменении материала
-            btnMark.setText(getString(R.string.mark));
+            btnMaterial.setText(item.getTitle());
+            btnMark.setText(R.string.mark);
+            editTextDensity.setText(""); // Сброс плотности при смене материала
             return true;
         });
         popupMenu.show();
     }
 
-    // Метод для отображения меню выбора марки
-    private void showGradeMenu(String selectedMaterial) {
+    private void showGradeMenu(String material) {
         PopupMenu popupMenu = new PopupMenu(this, btnMark);
         String[] grades;
         double[] densities;
 
-        if (selectedMaterial.equals(getString(R.string.black_metal))) {
-            grades = blackMetalGrades;
-            densities = blackMetalDensities;
-        } else if (selectedMaterial.equals(getString(R.string.stainless_steel))) {
-            grades = stainlessSteelGrades;
-            densities = stainlessSteelDensities;
-        } else if (selectedMaterial.equals(getString(R.string.aluminum))) {
-            grades = aluminumGrades;
-            densities = aluminumDensities;
-        } else {
-            return; // Для других материалов не показываем меню
+        switch (material) {
+            case "Черный металл":
+                grades = blackMetalGrades;
+                densities = blackMetalDensities;
+                break;
+            case "Нержавеющий металл":
+                grades = stainlessSteelGrades;
+                densities = stainlessSteelDensities;
+                break;
+            case "Алюминий":
+                grades = aluminumGrades;
+                densities = aluminumDensities;
+                break;
+            default:
+                return;
         }
 
         for (String grade : grades) {
@@ -135,74 +135,86 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedGrade = item.getTitle().toString();
-            btnMark.setText(selectedGrade);
+            String grade = item.getTitle().toString();
+            btnMark.setText(grade);
 
-            // Обновляем плотность в зависимости от выбранной марки
-            int selectedIndex = Arrays.asList(grades).indexOf(selectedGrade);
-            double selectedDensity = densities[selectedIndex];
-            editTextDensity.setText(String.format("%.2f", selectedDensity)); // Обновляем плотность
-
+            int index = Arrays.asList(grades).indexOf(grade);
+            if (index != -1 && index < densities.length) {
+                String formattedDensity = String.format(Locale.US, "%.2f", densities[index]);
+                editTextDensity.setText(formattedDensity);
+            } else {
+                Log.e("DensityError", "Invalid index for density array");
+            }
             return true;
         });
         popupMenu.show();
     }
 
-    // Метод для расчета длины
     private void calculateLength() {
         try {
-            // Получаем значения из EditText
-            double density = Double.parseDouble(editTextDensity.getText().toString()); // г/см³
-            double weight = Double.parseDouble(editTextMass.getText().toString()); // кг
-            double externalWidth = Double.parseDouble(editTextSideA.getText().toString()); // мм (внешняя ширина)
-            double externalHeight = Double.parseDouble(editTextSideB.getText().toString()); // мм (внешняя высота)
-            double wallThickness = Double.parseDouble(editTextWall.getText().toString()); // мм (толщина стенки)
+            // Получаем и проверяем значения
+            String densityStr = editTextDensity.getText().toString().trim();
+            String massStr = editTextMass.getText().toString().trim();
+            String sideAStr = editTextSideA.getText().toString().trim();
+            String sideBStr = editTextSideB.getText().toString().trim();
+            String wallStr = editTextWall.getText().toString().trim();
 
-            // Переводим единицы измерения
-            double externalWidth_cm = externalWidth * 0.1; // мм -> см
-            double externalHeight_cm = externalHeight * 0.1; // мм -> см
-            double wallThickness_cm = wallThickness * 0.1; // мм -> см
-            double density_kg_per_cm3 = density * 0.001; // г/см³ -> кг/см³
-
-            // Проверка на корректность значений
-            if (density <= 0 || weight <= 0 || externalWidth <= 0 || externalHeight <= 0 || wallThickness <= 0) {
-                totalLength.setText("Ошибка: значения должны быть положительными");
+            if (densityStr.isEmpty() || massStr.isEmpty() || sideAStr.isEmpty() || sideBStr.isEmpty() || wallStr.isEmpty()) {
+                totalLength.setText("Заполните все поля!");
                 return;
             }
 
-            // Рассчитываем внешнюю и внутреннюю площадь сечения
-            double externalArea = externalWidth_cm * externalHeight_cm; // внешняя площадь в см²
-            double internalWidth = externalWidth_cm - 2 * wallThickness_cm; // внутренняя ширина
-            double internalHeight = externalHeight_cm - 2 * wallThickness_cm; // внутренняя высота
-            double internalArea = internalWidth * internalHeight; // внутренняя площадь в см²
+            // Парсим значения
+            double density = Double.parseDouble(densityStr); // г/см³
+            double mass = Double.parseDouble(massStr); // кг
+            double externalWidth = Double.parseDouble(sideAStr); // мм
+            double externalHeight = Double.parseDouble(sideBStr); // мм
+            double wallThickness = Double.parseDouble(wallStr); // мм
+
+            // Проверка положительных значений
+            if (density <= 0 || mass <= 0 || externalWidth <= 0 || externalHeight <= 0 || wallThickness <= 0) {
+                totalLength.setText("Значения должны быть > 0");
+                return;
+            }
+
+            // Конвертация единиц
+            double externalWidthCm = externalWidth * MM_TO_CM; // мм -> см
+            double externalHeightCm = externalHeight * MM_TO_CM; // мм -> см
+            double wallThicknessCm = wallThickness * MM_TO_CM; // мм -> см
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+
+            // Рассчитываем внутренние размеры
+            double internalWidthCm = externalWidthCm - 2 * wallThicknessCm; // внутренняя ширина
+            double internalHeightCm = externalHeightCm - 2 * wallThicknessCm; // внутренняя высота
 
             // Площадь сечения материала (внешняя площадь минус внутренняя)
-            double materialArea = externalArea - internalArea; // площадь сечения материала в см²
+            double externalArea = externalWidthCm * externalHeightCm; // внешняя площадь
+            double internalArea = internalWidthCm * internalHeightCm; // внутренняя площадь
+            double materialArea = externalArea - internalArea; // площадь сечения материала
 
-            // Рассчитываем объем (используем формулу V = W / ρ, где W — это вес, а ρ — плотность)
-            double volume = weight / density_kg_per_cm3; // объем в см³
+            // Объем материала
+            double volume = mass / densityKgPerCm3; // объем в см³
 
-            // Рассчитываем длину
-            double length_cm = volume / materialArea; // длина в см
-            double length_mm = length_cm * 10; // перевести длину в мм
+            // Длина профиля
+            double lengthCm = volume / materialArea; // длина в см
+            double lengthMm = lengthCm * 10; // длина в мм
 
-            // Выводим результат в TextView
-            totalLength.setText(String.format("Длина: %.2f мм.", length_mm));
+            // Выводим результат
+            totalLength.setText(String.format(Locale.US, "Длина: %.2f мм", lengthMm));
+
         } catch (NumberFormatException e) {
-            // Обработка ошибки, если пользователь ввел некорректные данные
-            totalLength.setText("Ошибка: введите корректные числа");
+            totalLength.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
         }
     }
 
-
-    // Метод для возврата на предыдущую активность
     public void btnBack(View view) {
-        startActivity(new Intent(ProfilePipeCalculateLength.this, SelectForm.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, SelectForm.class));
+        finish();
     }
 
     public void btnGoMass(View view) {
-        startActivity(new Intent(ProfilePipeCalculateLength.this, ProfilePipeCalculateWeight.class));
-        finish(); // Закрываем текущую активность
+        startActivity(new Intent(this, ProfilePipeCalculateWeight.class));
+        finish();
     }
 }

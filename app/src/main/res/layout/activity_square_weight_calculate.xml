@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".CirclePipeCalculateLength">
+    tools:context=".SquareCalculateWeight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             style="@style/BaseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pipe"
+            android:text="@string/square"
             android:layout_marginStart="10sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBack"
             app:layout_constraintStart_toEndOf="@id/btnBack"
@@ -59,15 +59,14 @@
             android:layout_marginEnd="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnBack"
-            tools:ignore="UseCompoundDrawables">
+            app:layout_constraintTop_toBottomOf="@id/btnBack">
 
             <ImageView
                 android:id="@+id/imageView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/square"
-                app:srcCompat="@drawable/ic_circlepipe" />
+                app:srcCompat="@drawable/ic_main_square" />
 
             <TextView
                 android:id="@+id/textViewWeightTotal"
@@ -93,7 +92,6 @@
             android:layout_width="167sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:importantForAccessibility="no"
             app:layout_constraintEnd_toEndOf="@id/btnMaterial"
             app:layout_constraintStart_toStartOf="@id/btnMaterial"
             app:layout_constraintTop_toBottomOf="@id/btnMaterial"
@@ -114,7 +112,6 @@
             android:layout_width="167sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
-            android:importantForAccessibility="no"
             app:layout_constraintEnd_toEndOf="@id/btnMark"
             app:layout_constraintStart_toStartOf="@id/btnMark"
             app:layout_constraintTop_toBottomOf="@id/btnMaterial"
@@ -134,8 +131,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                tools:ignore="UselessParent">
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/Density" />
@@ -149,9 +145,7 @@
 
                     <EditText
                         android:id="@+id/editTextDensity"
-                        style="@style/editTextDensity"
-                        android:importantForAutofill="no"
-                        tools:ignore="LabelFor,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                        style="@style/editTextDensity" />
 
                     <TextView
                         style="@style/Unit" />
@@ -166,10 +160,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:onClick="btnGoMass"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white"
+
 
             android:text="@string/calculateWeight"
-
             app:layout_constraintStart_toStartOf="@id/linearLayout"
             app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
@@ -177,16 +172,13 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/BaseText"
-
-
-            android:textColor="@color/black"
-            android:backgroundTint="@color/white"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="@string/calculateLeght"
+            android:onClick="btnGoLength"
 
+
+            android:text="@string/calculateLeght"
             app:layout_constraintEnd_toEndOf="@id/linearLayout"
             app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
@@ -208,7 +200,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/unbounded"
-                android:text="@string/mass" />
+                android:text="@string/length" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -218,18 +210,16 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextMassCirclePipeL"
+                    android:id="@+id/editTextLength"
                     style="@style/editTextDensity"
-                    android:hint="@string/mass"
-                    android:importantForAutofill="no"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:hint="@string/length" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/unbounded"
-                    android:text="@string/kg" />
+                    android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
 
@@ -251,7 +241,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/unbounded"
-                android:text="@string/Diametr" />
+                android:text="@string/squareA" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -261,11 +251,9 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextDiametrCirclePipeL"
+                    android:id="@+id/editTextSquareA"
                     style="@style/editTextDensity"
-                    android:hint="@string/Diametr"
-                    android:importantForAutofill="no"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:hint="@string/squareA" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -275,58 +263,14 @@
                     android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/lineralLayoutWall"
-            android:layout_width="335sp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/ic_element_primary"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutSquareA"
-            app:layout_constraintStart_toStartOf="@+id/lineralLayoutSquareA"
-            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutSquareA">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
-                android:text="@string/wall" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/editTextWallCirclePipeL"
-                    style="@style/editTextDensity"
-                    android:hint="@string/wall"
-                    android:importantForAutofill="no"
-                    tools:ignore="TouchTargetSizeCheck" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
-                    android:text="@string/millimetre" />
-            </LinearLayout>
-        </LinearLayout>
-
 
         <!-- Кнопка "Рассчитать" -->
         <Button
-            android:id="@+id/btnCalculateCirclePipeL"
             style="@style/BaseText"
+            android:id="@+id/btnCalculate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/ic_element_primary"
             android:elevation="15sp"
             android:paddingStart="40sp"
@@ -335,9 +279,9 @@
             app:icon="@drawable/ic_enter"
             app:iconPadding="10sp"
             app:iconTint="@color/MainElementWhite"
-            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutWall"
-            app:layout_constraintStart_toStartOf="@+id/lineralLayoutWall"
-            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutWall" />
+            app:layout_constraintEnd_toEndOf="@id/lineralLayoutSquareA"
+            app:layout_constraintStart_toStartOf="@id/lineralLayoutSquareA"
+            app:layout_constraintTop_toBottomOf="@id/lineralLayoutSquareA" />
 
         <!-- Пустое пространство для прокрутки -->
         <Space

@@ -36,5 +36,50 @@
 
     </style>
 
+<style name="btnMaterialMark">
+    <item name="android:layout_width">170sp</item>
+    <item name="android:layout_height">56sp</item>
+    <item name="android:layout_marginTop">10sp</item>
+    <item name="backgroundTint">@android:color/transparent</item>
+    <item name="android:drawableEnd">@android:drawable/arrow_down_float</item>
+    <item name="fontFamily">@font/unbounded</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textColor">@color/MainElementWhite</item>
+    <item name="android:textSize">14sp</item>
+</style>
+
+    <style name="Density">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10sp</item>
+        <item name="android:layout_marginTop">5sp</item>
+        <item name="fontFamily">@font/unbounded</item>
+        <item name="android:text">@string/density</item>
+    </style>
+
+
+    <style name="editTextDensity">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:inputType">numberDecimal|numberSigned </item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10sp</item>
+        <item name="android:layout_marginTop">5sp</item>
+        <item name="fontFamily">@font/unbounded</item>
+        <item name="android:hint">@string/density</item>
+        <item name="android:importantForAutofill">no</item>
+    </style>
+
+    <style name="Unit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">10sp</item>
+        <item name="fontFamily">@font/unbounded</item>
+        <item name="android:text">@string/gsm3</item>
+
+    </style>
+
+
 
 </resources>

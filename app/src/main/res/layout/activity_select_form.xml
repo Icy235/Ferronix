@@ -13,6 +13,7 @@
         android:background="@color/primary"
         android:backgroundTint="@color/primary"
         android:fontFamily="@font/unbounded"
+        android:textColor="@color/white"
         android:gravity="center"
         android:paddingTop="15sp"
         android:paddingBottom="15sp"

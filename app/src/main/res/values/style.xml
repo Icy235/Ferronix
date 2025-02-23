@@ -4,7 +4,7 @@
     <style name="MainMenuButton">
         <item name="android:elevation" >20sp</item>
         <item name="android:fontFamily">@font/unbounded</item>
-        <item name="android:backgroundTint">@color/white</item>
+        <item name="android:backgroundTint">@color/MainElementWhite</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_height">74sp</item>
@@ -19,7 +19,7 @@
         <item name="android:fontFamily">@font/unbounded</item>
         <item name="android:backgroundTint">@color/primary</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/MainElementWhite</item>
         <item name="android:layout_height">53sp</item>
         <item name="android:layout_width">294sp</item>
         <item name="icon">@drawable/ic_history</item>
@@ -27,16 +27,18 @@
 
 
     <style name="BaseText">
+
         <item name="android:fontFamily">@font/unbounded</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="android:textColor">@color/MainElementWhite</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
 
     </style>
 
 <style name="btnMaterialMark">
+
     <item name="android:layout_width">170sp</item>
     <item name="android:layout_height">56sp</item>
     <item name="android:layout_marginTop">10sp</item>
@@ -49,6 +51,8 @@
 </style>
 
     <style name="Density">
+        <item name="android:textColor">@color/MainElementWhite</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">10sp</item>
@@ -59,6 +63,8 @@
 
 
     <style name="editTextDensity">
+
+        <item name="android:textColorHint">@color/hintColor</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:textSize">14sp</item>
         <item name="android:layout_weight">1</item>
@@ -72,6 +78,8 @@
     </style>
 
     <style name="Unit">
+        <item name="android:textColor">@color/MainElementWhite</item>
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginStart">10sp</item>
@@ -80,6 +88,15 @@
 
     </style>
 
-
+   <style name="ElementHeaderText">
+       <item name="android:textColor">@color/MainElementWhite</item>
+       <item name="android:background">@android:color/transparent</item>
+       <item name="android:layout_width">wrap_content</item>
+       <item name="android:layout_height">wrap_content</item>
+       <item name="android:layout_marginStart">10sp</item>
+       <item name="android:layout_marginTop">5sp</item>
+       <item name="fontFamily">@font/unbounded</item>
+   </style>
+       
 
 </resources>

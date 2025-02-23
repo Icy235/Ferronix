@@ -132,6 +132,7 @@
             app:layout_constraintTop_toBottomOf="@id/btnMark">
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -141,6 +142,7 @@
                     style="@style/Density" />
 
                 <LinearLayout
+                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -203,6 +205,8 @@
             app:layout_constraintTop_toBottomOf="@id/chip">
 
             <TextView
+                android:textColor="@color/MainElementWhite"
+                android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -211,6 +215,7 @@
                 android:text="@string/mass" />
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -225,6 +230,8 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:background="@android:color/transparent"
+                    android:textColor="@color/MainElementWhite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -246,6 +253,8 @@
 
             <!-- Текст "Площадь" -->
             <TextView
+                android:textColor="@color/MainElementWhite"
+                android:background="@android:color/transparent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -255,15 +264,16 @@
 
             <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
                 <!-- Поле ввода площади -->
                 <EditText
+                    style="@style/editTextDensity"
                     android:id="@+id/editTextSideA"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -276,6 +286,7 @@
 
                 <!-- Текст "мм²" -->
                 <TextView
+                    style="@style/Unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -298,6 +309,8 @@
 
             <!-- Текст "Площадь" -->
             <TextView
+                android:background="@android:color/transparent"
+                android:textColor="@color/MainElementWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -310,12 +323,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-
+                android:background="@android:color/transparent"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
                 <!-- Поле ввода площади -->
                 <EditText
+                    style="@style/editTextDensity"
                     android:id="@+id/editTextSideB"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -328,6 +342,7 @@
 
                 <!-- Текст "мм²" -->
                 <TextView
+                    style="@style/Unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -349,6 +364,8 @@
             app:layout_constraintTop_toBottomOf="@+id/lineralLayoutSquareA">
 
             <TextView
+                android:background="@android:color/transparent"
+                android:textColor="@color/MainElementWhite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -357,6 +374,7 @@
                 android:text="@string/wall" />
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -371,10 +389,10 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    style="@style/Unit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
                     android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
@@ -406,6 +424,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCalculateCircle" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCalculateProfilePipeL" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

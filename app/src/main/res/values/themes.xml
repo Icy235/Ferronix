@@ -11,8 +11,9 @@
     <style name="Theme.Ferronix" parent="Base.Theme.Ferronix" >
 
         <item name="colorPrimary">@color/primary</item>
-        <item name="backgroundColor">@color/Background</item>
+        <item name="android:background">#282828</item>
         <item name="colorOnSecondary">@color/MainElementWhite</item>
+
 
     </style>
 </resources>

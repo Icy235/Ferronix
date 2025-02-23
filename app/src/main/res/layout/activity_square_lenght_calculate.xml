@@ -129,6 +129,7 @@
             app:layout_constraintTop_toBottomOf="@id/btnMark">
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -137,6 +138,7 @@
                     style="@style/Density" />
 
                 <LinearLayout
+                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -191,11 +193,7 @@
             app:layout_constraintTop_toBottomOf="@id/chip">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
+                style="@style/ElementHeaderText"
                 android:text="@string/mass" />
 
             <LinearLayout
@@ -203,6 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
                 android:orientation="horizontal">
 
                 <EditText
@@ -211,10 +210,7 @@
                     android:hint="@string/mass" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
+                    style="@style/Unit"
                     android:text="@string/kg" />
             </LinearLayout>
         </LinearLayout>
@@ -232,11 +228,7 @@
             app:layout_constraintTop_toBottomOf="@id/lineralLayoutLenght">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
+                style="@style/ElementHeaderText"
                 android:text="@string/squareA" />
 
             <LinearLayout
@@ -244,6 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:background="@android:color/transparent"
                 android:orientation="horizontal">
 
                 <EditText
@@ -252,10 +245,7 @@
                     android:hint="@string/squareA" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
+                    style="@style/Unit"
                     android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
@@ -285,7 +275,6 @@
             android:layout_height="500sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCalculateCircle" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

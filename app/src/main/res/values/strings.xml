@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">Ferronix</string>
-    <string name="ChoosingForm">Выбор формы</string>
+    <string name="app_name">FERRONIX</string>
+    <string name="ChoosingForm">Выбор шаблона</string>
     <string name="history">История</string>
     <string name="square">Квадрат</string>
     <string name="circle">Круг</string>

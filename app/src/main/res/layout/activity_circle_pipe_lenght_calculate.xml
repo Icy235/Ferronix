@@ -132,6 +132,7 @@
             app:layout_constraintTop_toBottomOf="@id/btnMark">
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -141,6 +142,7 @@
                     style="@style/Density" />
 
                 <LinearLayout
+                    android:background="@android:color/transparent"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -203,14 +205,11 @@
             app:layout_constraintTop_toBottomOf="@id/chip">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
+                style="@style/ElementHeaderText"
                 android:text="@string/mass" />
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -225,10 +224,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
+                    style="@style/Unit"
                     android:text="@string/kg" />
             </LinearLayout>
         </LinearLayout>
@@ -246,14 +242,11 @@
             app:layout_constraintTop_toBottomOf="@id/lineralLayoutLenght">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
+                style="@style/ElementHeaderText"
                 android:text="@string/Diametr" />
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -268,10 +261,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
+                    style="@style/Unit"
                     android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
@@ -289,14 +279,11 @@
             app:layout_constraintTop_toBottomOf="@+id/lineralLayoutSquareA">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/unbounded"
+                style="@style/ElementHeaderText"
                 android:text="@string/wall" />
 
             <LinearLayout
+                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -311,10 +298,7 @@
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/unbounded"
+                    style="@style/Unit"
                     android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
@@ -346,6 +330,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCalculateCircle" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCalculateCirclePipeL" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

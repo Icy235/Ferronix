@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".CirclePipeCalculateWeight">
+    tools:context=".ProfilePipeCalculateWeight">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -43,7 +43,7 @@
             style="@style/BaseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/pipe"
+            android:text="@string/corner"
             android:layout_marginStart="10sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBack"
             app:layout_constraintStart_toEndOf="@id/btnBack"
@@ -66,8 +66,8 @@
                 android:id="@+id/imageView2"
                 android:layout_width="146sp"
                 android:layout_height="146sp"
-                android:contentDescription="@string/circlePipe"
-                app:srcCompat="@drawable/circle_truba_size" />
+                android:contentDescription="@string/corner"
+                app:srcCompat="@drawable/ugolok_size" />
 
             <TextView
                 android:id="@+id/textViewWeightTotal"
@@ -150,7 +150,6 @@
                     android:orientation="horizontal">
 
                     <EditText
-
                         android:id="@+id/editTextDensity"
                         style="@style/editTextDensity"
                         android:importantForAutofill="no"
@@ -169,9 +168,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:onClick="btnGoLength"
             android:textColor="@color/black"
             android:backgroundTint="@color/white"
+
             android:text="@string/calculateWeight"
 
             app:layout_constraintStart_toStartOf="@id/linearLayout"
@@ -181,6 +180,9 @@
         <com.google.android.material.chip.Chip
             android:id="@+id/chip2"
             style="@style/BaseText"
+
+
+
             android:onClick="btnGoLength"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -215,7 +217,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextLength"
+                    android:id="@+id/editTextLengthCornerW"
                     style="@style/editTextDensity"
                     android:hint="@string/length"
                     android:importantForAutofill="no"
@@ -230,34 +232,78 @@
         <!-- Блок с диаметром -->
         <LinearLayout
             android:id="@+id/lineralLayoutSquareA"
-            android:layout_width="335sp"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_element_primary"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@id/lineralLayoutLenght"
-            app:layout_constraintStart_toStartOf="@id/lineralLayoutLenght"
-            app:layout_constraintTop_toBottomOf="@id/lineralLayoutLenght">
+            app:layout_constraintStart_toStartOf="@+id/lineralLayoutLenght"
+            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenght">
 
+            <!-- Текст "Площадь" -->
             <TextView
                 style="@style/ElementHeaderText"
-                android:text="@string/Diametr" />
+                android:text="@string/sideA" />
 
+            <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
             <LinearLayout
-                android:background="@android:color/transparent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
+                <!-- Поле ввода площади -->
                 <EditText
-                    android:id="@+id/editTextDiametrCircleW"
                     style="@style/editTextDensity"
-                    android:hint="@string/Diametr"
+                    android:id="@+id/editTextSideA"
+                    android:hint="@string/site"
                     android:importantForAutofill="no"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:inputType="numberDecimal|numberSigned" />
 
+                <!-- Текст "мм²" -->
+                <TextView
+                    style="@style/Unit"
+                    android:text="@string/millimetre" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lineralLayoutSquareB"
+            android:layout_width="160sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_element_primary"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutLenght"
+            app:layout_constraintStart_toEndOf="@+id/lineralLayoutSquareA"
+            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenght">
+
+            <!-- Текст "Площадь" -->
+            <TextView
+                style="@style/ElementHeaderText"
+                android:text="@string/sideB" />
+
+            <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal">
+
+                <!-- Поле ввода площади -->
+                <EditText
+                    style="@style/editTextDensity"
+                    android:id="@+id/editTextSideB"
+                    android:hint="@string/site"
+                    android:importantForAutofill="no"
+                    android:inputType="numberDecimal|numberSigned" />
+
+                <!-- Текст "мм²" -->
                 <TextView
                     style="@style/Unit"
                     android:text="@string/millimetre" />
@@ -272,7 +318,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_element_primary"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutSquareA"
+            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutSquareB"
             app:layout_constraintStart_toStartOf="@+id/lineralLayoutSquareA"
             app:layout_constraintTop_toBottomOf="@+id/lineralLayoutSquareA">
 
@@ -289,7 +335,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextWallCirclePipeW"
+                    android:id="@+id/editTextWallCornerW"
                     style="@style/editTextDensity"
                     android:hint="@string/wall"
                     android:importantForAutofill="no"
@@ -304,7 +350,7 @@
 
         <!-- Кнопка "Рассчитать" -->
         <Button
-            android:id="@+id/btnCalculate"
+            android:id="@+id/btnCalculateCornerW"
             style="@style/BaseText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -328,6 +374,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
+            app:layout_constraintTop_toBottomOf="@+id/btnCalculateCornerW" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

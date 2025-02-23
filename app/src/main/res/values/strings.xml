@@ -38,5 +38,11 @@
     <string name="profilePipe">Профильная труба</string>
     <string name="pipe">Труба</string>
     <string name="site">Сторона</string>
+    <string name="list">Лист</string>
+    <string name="ugolok">Уголок</string>
+    <string name="custom">Произвольный</string>
+    <string name="thickness">Толщина</string>
+    <string name="customList">Произвольный лист</string>
+    <string name="corner">Уголок</string>
 
 </resources>

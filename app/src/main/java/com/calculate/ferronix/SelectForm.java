@@ -41,5 +41,15 @@ public class SelectForm extends AppCompatActivity {
         finish(); // Закрываем текущую активность
     }
 
+    public void btnListCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, ListMenu.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnCornerCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, CornerCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
+
 
 }

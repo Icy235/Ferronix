@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="MainMenuButton">
         <item name="android:elevation" >20sp</item>
@@ -30,7 +30,7 @@
 
         <item name="android:fontFamily">@font/unbounded</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:textColor">@color/MainElementWhite</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -63,7 +63,7 @@
 
 
     <style name="editTextDensity">
-
+<item name="android:textColor">@color/MainElementWhite</item>
         <item name="android:textColorHint">@color/hintColor</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:textSize">14sp</item>
@@ -74,7 +74,7 @@
         <item name="android:layout_marginTop">5sp</item>
         <item name="fontFamily">@font/unbounded</item>
         <item name="android:hint">@string/density</item>
-        <item name="android:importantForAutofill">no</item>
+        <item name="android:importantForAutofill" tools:ignore="NewApi">no</item>
     </style>
 
     <style name="Unit">

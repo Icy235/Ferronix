@@ -64,10 +64,10 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/square"
-                app:srcCompat="@drawable/ic_circlepipe" />
+                android:layout_width="146sp"
+                android:layout_height="146sp"
+                android:contentDescription="@string/circlePipe"
+                app:srcCompat="@drawable/circle_truba_size" />
 
             <TextView
                 android:id="@+id/textViewWeightTotal"

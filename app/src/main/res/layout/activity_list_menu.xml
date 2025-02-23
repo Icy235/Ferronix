@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SelectForm">
+    tools:context=".ListMenu">
 
     <TextView
         android:id="@+id/textViewHeader"
@@ -31,17 +31,17 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Square"
-        android:onClick="btnSquareCalculate"
+        android:onClick="btnCustom"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
-        app:srcCompat="@drawable/kvadrat_m"
+        app:srcCompat="@drawable/list_m"
         tools:ignore="HardcodedText" />
 
     <TextView
         android:id="@+id/textViewSquare"
         style="@style/BaseText"
-        android:text="@string/square"
+        android:text="@string/custom"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
         app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
         app:layout_constraintTop_toBottomOf="@+id/imageButtonSquare" />
@@ -53,23 +53,25 @@
         android:layout_marginStart="34dp"
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Circle"
-        android:onClick="btnCircleCalculate"
+
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonSquare"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageButtonSquare"
         app:layout_constraintTop_toTopOf="@+id/imageButtonSquare"
-        app:srcCompat="@drawable/circle_m"
+        app:srcCompat="@drawable/list_gost_8568_77_m"
         tools:ignore="HardcodedText" />
 
 
     <TextView
         android:id="@+id/textViewCircle"
         style="@style/BaseText"
-        android:text="@string/circle"
+        android:hint="ГОСТ 8568-77"
+        android:text="В разработке"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
         app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle"
+        tools:ignore="HardcodedText" />
 
 
     <ImageButton
@@ -78,23 +80,25 @@
         android:layout_height="146sp"
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Circle"
-        android:onClick="btnCirclePipeCalculate"
+
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonProfilePipe"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
         app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
         app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/circle_truba_m"
+        app:srcCompat="@drawable/list_gost_24045_94_m"
         tools:ignore="HardcodedText" />
 
 
     <TextView
         android:id="@+id/textViewCirclePipe"
         style="@style/BaseText"
-        android:text="@string/circlePipe"
+        android:hint="ГОСТ 24045-94"
+        android:text="В разработке"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
         app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCirclePipe" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonCirclePipe"
+        tools:ignore="HardcodedText" />
 
     <ImageButton
         android:id="@+id/imageButtonProfilePipe"
@@ -103,12 +107,12 @@
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Circle"
 
-        android:onClick="btnProfilePipeCalculate"
+
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
         app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
         app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/porf_truba_m"
+        app:srcCompat="@drawable/list_gost_8706_78_m"
         tools:ignore="HardcodedText" />
 
 
@@ -117,67 +121,13 @@
         style="@style/BaseText"
         android:layout_width="170sp"
         android:gravity="center"
-        android:text="@string/profilePipe"
+        android:hint="ГОСТ 8706-78"
+        android:text="В разработке"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
         app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonProfilePipe" />
-
-
-    <ImageButton
-        android:id="@+id/imageButtonList"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-
-        android:onClick="btnListCalculate"
-        android:scaleType="centerCrop"
-
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfilePipe"
-        app:srcCompat="@drawable/list_m"
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonProfilePipe"
         tools:ignore="HardcodedText" />
 
 
-    <TextView
-        android:id="@+id/textViewList"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:text="@string/list"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonList"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonList"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonList" />
-
-
-    <ImageButton
-        android:id="@+id/imageButtonUgolok"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-
-        android:onClick="btnCornerCalculate"
-        android:scaleType="centerCrop"
-
-
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonList"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfilePipe"
-        app:srcCompat="@drawable/ugolok_m"
-        tools:ignore="HardcodedText" />
-
-
-    <TextView
-        android:id="@+id/textViewUgolok"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:text="@string/ugolok"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonUgolok"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonUgolok"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonUgolok" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

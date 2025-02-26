@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# AppMetrica ProGuard rules
+-keep class io.appmetrica.analytics.** { *; }
+-keep class com.yandex.metrica.** { *; }

@@ -26,6 +26,7 @@
         android:onClick="btnSelectForm"
         android:text="@string/ChoosingForm"
         app:iconTint="@color/black"
+        android:hapticFeedbackEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />

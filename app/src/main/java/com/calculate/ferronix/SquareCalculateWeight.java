@@ -18,12 +18,13 @@ import java.util.Locale;
 
 public class SquareCalculateWeight extends AppCompatActivity {
 
-    private EditText editTextDensity, editTextLength, editTextSquareA;
+    private EditText editTextDensity, editTextLength, editTextSquareA, editTextPricePerKg, editTextQuantity;
     private TextView totalWeight;
-    private Button btnCalculate, btnMaterial, btnMark;
+    private Button btnMaterial, btnMark;
 
     private String[] materials;
-    // Инициализация массивов для Алюминия
+
+    // Массивы для материалов
     private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
@@ -31,7 +32,6 @@ public class SquareCalculateWeight extends AppCompatActivity {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
-    // Инициализация массивов для Нержавейки
     private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
@@ -39,7 +39,6 @@ public class SquareCalculateWeight extends AppCompatActivity {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
-    // Инициализация массивов для черного металла
     private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
@@ -66,8 +65,10 @@ public class SquareCalculateWeight extends AppCompatActivity {
         editTextDensity = findViewById(R.id.editTextDensity);
         editTextLength = findViewById(R.id.editTextLength);
         editTextSquareA = findViewById(R.id.editTextSquareA);
+        editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
+        editTextQuantity = findViewById(R.id.editTextQuantity);
         totalWeight = findViewById(R.id.textViewWeightTotal);
-        btnCalculate = findViewById(R.id.btnCalculate);
+        Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
@@ -154,6 +155,8 @@ public class SquareCalculateWeight extends AppCompatActivity {
             String densityStr = editTextDensity.getText().toString().trim();
             String lengthStr = editTextLength.getText().toString().trim();
             String squareAStr = editTextSquareA.getText().toString().trim();
+            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+            String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || lengthStr.isEmpty() || squareAStr.isEmpty()) {
                 totalWeight.setText("Заполните все поля!");
@@ -185,8 +188,31 @@ public class SquareCalculateWeight extends AppCompatActivity {
             // Вес профиля
             double weight = volume * densityKgPerCm3; // вес в кг
 
+            // Форматируем итоговый текст
+            StringBuilder resultText = new StringBuilder();
+
+            // Проверяем, введено ли количество
+            if (quantityStr.isEmpty()) {
+                resultText.append(String.format(Locale.US, "Масса: %.2f кг", weight));
+            } else {
+                double quantity = Double.parseDouble(quantityStr);
+                // Проверка положительных значений
+                if (quantity <= 0) {
+                    totalWeight.setText("Количество должно быть > 0");
+                    return;
+                }
+                double totalWeightValue = weight * quantity; // общая масса
+                double totalCost = Double.parseDouble(pricePerKgStr) * totalWeightValue; // общая стоимость
+                double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
+                resultText.append(String.format(Locale.US, "\nЦена еденицы: %.2f руб", pricePerUnit));
+                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
+                resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+            }
+
             // Выводим результат
-            totalWeight.setText(String.format(Locale.US, "Вес: %.2f кг", weight));
+            totalWeight.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
             totalWeight.setText("Ошибка в формате чисел");

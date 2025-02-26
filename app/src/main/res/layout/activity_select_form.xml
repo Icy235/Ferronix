@@ -31,6 +31,7 @@
         android:layout_marginTop="40dp"
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Square"
+        android:hapticFeedbackEnabled="true"
         android:onClick="btnSquareCalculate"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +55,7 @@
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Circle"
         android:onClick="btnCircleCalculate"
+        android:hapticFeedbackEnabled="true"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonSquare"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +82,7 @@
         android:contentDescription="Circle"
         android:onClick="btnCirclePipeCalculate"
         android:scaleType="centerCrop"
+        android:hapticFeedbackEnabled="true"
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonProfilePipe"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
         app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
@@ -102,7 +105,7 @@
         android:layout_height="146sp"
         android:backgroundTint="@android:color/transparent"
         android:contentDescription="Circle"
-
+        android:hapticFeedbackEnabled="true"
         android:onClick="btnProfilePipeCalculate"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
@@ -132,7 +135,7 @@
 
         android:onClick="btnListCalculate"
         android:scaleType="centerCrop"
-
+        android:hapticFeedbackEnabled="true"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
         app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
         app:layout_constraintTop_toBottomOf="@+id/textViewProfilePipe"
@@ -160,7 +163,7 @@
 
         android:onClick="btnCornerCalculate"
         android:scaleType="centerCrop"
-
+        android:hapticFeedbackEnabled="true"
 
         app:layout_constraintBottom_toBottomOf="@+id/imageButtonList"
         app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"

@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+
 }
 
 android {
@@ -10,16 +11,20 @@ android {
         applicationId = "com.calculate.ferronix"
         minSdk = 24
         targetSdk = 35
-        versionCode = 4
-        versionName = "0.4.1"
+        versionCode = 8
+        versionName = "1.1.0"
+
+
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        versionNameSuffix = "alfa"
+
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true // Удаляет неиспользуемые ресурсы
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -40,9 +45,12 @@ dependencies {
     implementation(libs.constraintlayout)
 
     implementation(libs.material3)
-    implementation ("androidx.compose.material3:material3:1.3.1")
-    implementation ("androidx.compose.material3:material3-window-size-class:1.3.1")
-    implementation ("androidx.compose.material3:material3-adaptive-navigation-suite:1.4.0-alpha04")
+
+
+// AppMetrica SDK.
+    implementation("io.appmetrica.analytics:analytics:7.7.0")
+
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

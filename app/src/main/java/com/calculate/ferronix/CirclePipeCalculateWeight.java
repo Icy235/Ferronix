@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class CirclePipeCalculateWeight extends AppCompatActivity {
 
-    private EditText editTextDensity, editTextLength, editTextDiametr, editTextWall;
+    private EditText editTextDensity, editTextLength, editTextDiametr, editTextWall, editTextPricePerKg, editTextQuantity;
     private TextView totalWeight;
     private Button btnMaterial, btnMark;
 
@@ -50,6 +50,10 @@ public class CirclePipeCalculateWeight extends AppCompatActivity {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
     };
 
+    // Константы для преобразования единиц
+    private static final double MM_TO_CM = 0.1;
+    private static final double G_PER_CM3_TO_KG_PER_CM3 = 0.001;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +67,13 @@ public class CirclePipeCalculateWeight extends AppCompatActivity {
         editTextDensity = findViewById(R.id.editTextDensity);
         editTextLength = findViewById(R.id.editTextLength);
         editTextWall = findViewById(R.id.editTextWallCirclePipeW);
-        editTextDiametr = findViewById(R.id.editTextDiametrCircleW);
+        editTextDiametr = findViewById(R.id.editTextDiametrCirclePipeW);
+        editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
+        editTextQuantity = findViewById(R.id.editTextQuantity);
         totalWeight = findViewById(R.id.textViewWeightTotal);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
-        Button btnCalculate = findViewById(R.id.btnCalculate);
+        Button btnCalculate = findViewById(R.id.btnCalculateCirclePipeW);
 
         // Проверка инициализации
         if (editTextDensity == null || editTextLength == null || editTextWall == null || editTextDiametr == null) {
@@ -153,6 +159,8 @@ public class CirclePipeCalculateWeight extends AppCompatActivity {
             String lengthStr = editTextLength.getText().toString().trim();
             String diametrStr = editTextDiametr.getText().toString().trim();
             String wallStr = editTextWall.getText().toString().trim();
+            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+            String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || lengthStr.isEmpty() || diametrStr.isEmpty() || wallStr.isEmpty()) {
                 totalWeight.setText("Заполните все поля!");
@@ -160,10 +168,10 @@ public class CirclePipeCalculateWeight extends AppCompatActivity {
             }
 
             // Парсим значения
-            double density = Double.parseDouble(densityStr);
-            double length = Double.parseDouble(lengthStr);
-            double diametr = Double.parseDouble(diametrStr);
-            double wall = Double.parseDouble(wallStr);
+            double density = Double.parseDouble(densityStr); // г/см³
+            double length = Double.parseDouble(lengthStr); // мм
+            double diametr = Double.parseDouble(diametrStr); // мм
+            double wall = Double.parseDouble(wallStr); // мм
 
             // Проверка положительных значений
             if (density <= 0 || length <= 0 || diametr <= 0 || wall <= 0) {
@@ -172,17 +180,46 @@ public class CirclePipeCalculateWeight extends AppCompatActivity {
             }
 
             // Конвертация единиц
-            double diametrCm = diametr * 0.1;
-            double wallCm = wall * 0.1;
-            double lengthCm = length * 0.1;
-            double innerDiametrCm = diametrCm - 2 * wallCm;
+            double diametrCm = diametr * MM_TO_CM; // мм -> см
+            double wallCm = wall * MM_TO_CM; // мм -> см
+            double lengthCm = length * MM_TO_CM; // мм -> см
+            double innerDiametrCm = diametrCm - 2 * wallCm; // внутренний диаметр в см
 
-            // Расчёты
-            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4;
-            double volume = area * lengthCm;
-            double weight = volume * density * 0.001; // Учёт конвертации г/см³ -> кг/см³
+            // Площадь поперечного сечения трубы
+            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4; // см²
 
-            totalWeight.setText(String.format(Locale.US, "Вес: %.2f кг", weight));
+            // Объем трубы
+            double volume = area * lengthCm; // см³
+
+            // Вес одной штуки
+            double weight = volume * density * G_PER_CM3_TO_KG_PER_CM3; // кг
+
+            // Форматируем итоговый текст
+            StringBuilder resultText = new StringBuilder();
+
+            // Проверяем, введено ли количество
+            if (quantityStr.isEmpty()) {
+                resultText.append(String.format(Locale.US, "Масса: %.2f кг", weight));
+            } else {
+                double quantity = Double.parseDouble(quantityStr);
+                // Проверка положительных значений
+                if (quantity <= 0) {
+                    totalWeight.setText("Количество должно быть > 0");
+                    return;
+                }
+                double totalWeightValue = weight * quantity; // общая масса
+                double totalCost = Double.parseDouble(pricePerKgStr) * totalWeightValue; // общая стоимость
+                double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
+                resultText.append(String.format(Locale.US, "\nСтоимость еденицы: %.2f руб", pricePerUnit));
+                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
+                resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+
+            }
+
+            // Выводим результат
+            totalWeight.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
             totalWeight.setText("Ошибка в формате чисел");

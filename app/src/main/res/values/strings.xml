@@ -8,7 +8,7 @@
     <string name="lengthL">Длина L</string>
     <string name="squareA">Сторона квадрата А</string>
     <string name="calculate">Расчет</string>
-    <string name="calculateWeight">Расчет веса</string>
+    <string name="calculateWeight">Расчет массы</string>
     <string name="calculateLeght">Расчет длины</string>
     <string name="back">Back</string>
     <string name="save">Save</string>
@@ -44,5 +44,8 @@
     <string name="thickness">Толщина</string>
     <string name="customList">Произвольный лист</string>
     <string name="corner">Уголок</string>
+
+
+
 
 </resources>

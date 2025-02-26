@@ -18,12 +18,13 @@ import java.util.Locale;
 
 public class ProfilePipeCalculateLength extends AppCompatActivity {
 
-    private EditText editTextDensity, editTextMass, editTextSideA, editTextSideB, editTextWall;
+    private EditText editTextDensity, editTextMass, editTextSideA, editTextSideB, editTextWall, editTextPricePerKg, editTextQuantity;
     private TextView totalLength;
-    private Button btnCalculate, btnMaterial, btnMark;
+    private Button btnMaterial, btnMark;
 
     private String[] materials;
-    // Инициализация массивов для Алюминия
+
+    // Массивы для материалов
     private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
@@ -31,7 +32,6 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
-    // Инициализация массивов для Нержавейки
     private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
@@ -39,7 +39,6 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
-    // Инициализация массивов для черного металла
     private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
@@ -68,8 +67,10 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
         editTextSideA = findViewById(R.id.editTextSideA);
         editTextSideB = findViewById(R.id.editTextSideB);
         editTextWall = findViewById(R.id.editTextWallProfilePipeL);
+        editTextPricePerKg = findViewById(R.id.editTextPricePerKg); // Поле для цены за кг
+        editTextQuantity = findViewById(R.id.editTextQuantity); // Поле для количества
         totalLength = findViewById(R.id.textViewLengthTotal);
-        btnCalculate = findViewById(R.id.btnCalculateProfilePipeL);
+        Button btnCalculate = findViewById(R.id.btnCalculateProfilePipeL);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
@@ -158,6 +159,8 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
             String sideAStr = editTextSideA.getText().toString().trim();
             String sideBStr = editTextSideB.getText().toString().trim();
             String wallStr = editTextWall.getText().toString().trim();
+            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+            String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || massStr.isEmpty() || sideAStr.isEmpty() || sideBStr.isEmpty() || wallStr.isEmpty()) {
                 totalLength.setText("Заполните все поля!");
@@ -197,14 +200,33 @@ public class ProfilePipeCalculateLength extends AppCompatActivity {
 
             // Длина профиля
             double lengthCm = volume / materialArea; // длина в см
-            double lengthMm = lengthCm * 10; // длина в мм
+            double lengthM = lengthCm / 100; // длина в метрах
+
+            // Форматируем итоговый текст
+            StringBuilder resultText = new StringBuilder();
+
+            // Проверяем, введено ли количество
+            if (!quantityStr.isEmpty()) {
+                double quantity = Double.parseDouble(quantityStr);
+                // Проверка положительных значений
+                if (quantity <= 0) {
+                    totalLength.setText("Количество должно быть > 0");
+                    return;
+                }
+                double massPerUnit = mass / quantity;
+                resultText.append(String.format("Общая длина: %.2f м\n", lengthM));
+                resultText.append(String.format("Длина еденицы: %.2f м\n", lengthM / quantity));
+                resultText.append(String.format("Масса еденицы: %.2f кг\n", massPerUnit));
+            } else {
+                resultText.append(String.format("Длина: %.2f м\n", lengthM));
+            }
 
             // Выводим результат
-            totalLength.setText(String.format(Locale.US, "Длина: %.2f мм", lengthMm));
+            totalLength.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
-            totalLength.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            totalLength.setText("Введите корректные значения!");
+            Log.e("CalculationError", "Invalid number format", e);
         }
     }
 

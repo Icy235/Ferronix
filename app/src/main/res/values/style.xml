@@ -27,7 +27,7 @@
 
 
     <style name="BaseText">
-
+<item name="android:textAlignment">center</item>
         <item name="android:fontFamily">@font/unbounded</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
         <item name="android:textSize">15sp</item>

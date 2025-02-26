@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ferronix"
         tools:targetApi="31">
+
+        <!-- Главное меню -->
         <activity
             android:name=".MainMenu"
             android:exported="true"
@@ -19,12 +24,11 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-
+        <!-- Выбор формы -->
         <activity
             android:name=".SelectForm"
             android:exported="true"
@@ -32,13 +36,13 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
+        <!-- Калькуляторы для квадратных профилей -->
         <activity
             android:name=".SquareCalculateWeight"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-
         <activity
             android:name=".SquareCalculateLength"
             android:exported="true"
@@ -46,14 +50,13 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-
+        <!-- Калькуляторы для круглых профилей -->
         <activity
             android:name=".CircleCalculateWeight"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-
         <activity
             android:name=".CircleCalculateLength"
             android:exported="true"
@@ -61,13 +64,13 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
+        <!-- Калькуляторы для круглых труб -->
         <activity
             android:name=".CirclePipeCalculateLength"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-
         <activity
             android:name=".CirclePipeCalculateWeight"
             android:exported="true"
@@ -75,14 +78,13 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-
+        <!-- Калькуляторы для профильных труб -->
         <activity
             android:name=".ProfilePipeCalculateLength"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-
         <activity
             android:name=".ProfilePipeCalculateWeight"
             android:exported="true"
@@ -90,7 +92,7 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-
+        <!-- Меню списков -->
         <activity
             android:name=".ListMenu"
             android:exported="true"
@@ -98,6 +100,7 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
+        <!-- Кастомный список -->
         <activity
             android:name=".ListCustom"
             android:exported="true"
@@ -105,13 +108,13 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
+        <!-- Калькуляторы для уголков -->
         <activity
             android:name=".CornerCalculateLength"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-
         <activity
             android:name=".CornerCalculateWeight"
             android:exported="true"
@@ -120,7 +123,4 @@
         </activity>
 
     </application>
-
-
-
 </manifest>

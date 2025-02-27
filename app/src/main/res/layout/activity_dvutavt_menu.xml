@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DvutavrMenu">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="0dp"
+        android:layout_height="80sp"
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/unbounded"
+        android:gravity="center"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        android:text="@string/dvutavr"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ГОСТ 57837-2017 -->
+    <LinearLayout
+        android:id="@+id/ProfilePipe"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/List"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 57837-2017"
+
+
+            app:srcCompat="@drawable/dvutavr_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="ГОСТ 57837-2017"
+            android:textSize="11sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="В разработке"
+            android:textSize="7sp"
+            tools:ignore="HardcodedText,SmallSp" />
+    </LinearLayout>
+
+    <!-- ГОСТ 26020-83 -->
+    <LinearLayout
+        android:id="@+id/Gost2602083"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/List"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 26020-83"
+
+
+            app:srcCompat="@drawable/dvutavr_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="ГОСТ 26020-83"
+            android:textSize="11sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="В разработке"
+            android:textSize="7sp"
+            tools:ignore="HardcodedText,SmallSp" />
+    </LinearLayout>
+
+    <!-- ГОСТ 8239-89 -->
+    <LinearLayout
+        android:id="@+id/List"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/Gost2602083"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 26020-83"
+
+
+            app:srcCompat="@drawable/dvutavr_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="ГОСТ 8239-89"
+            android:textSize="11sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="В разработке"
+            android:textSize="7sp"
+            tools:ignore="HardcodedText,SmallSp" />
+    </LinearLayout>
+
+    <!-- Произвольный -->
+    <LinearLayout
+        android:id="@+id/CustomDvutavr"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/List">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/dvutavr"
+            android:onClick="btnCustom"
+            app:srcCompat="@drawable/dvutavr_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:textSize="11sp"
+            android:id="@+id/textViewCustom"
+            style="@style/SelectFormCardText"
+            android:layout_gravity="center"
+            android:text="@string/custom" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

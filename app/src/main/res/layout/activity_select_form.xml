@@ -6,9 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".SelectForm">
 
+    <!-- Заголовок -->
     <TextView
         android:id="@+id/textViewHeader"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="80sp"
         android:background="@color/primary"
         android:backgroundTint="@color/primary"
@@ -23,164 +24,227 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/imageButtonSquare"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:layout_marginStart="10dp"
+    <!-- Квадрат -->
+    <LinearLayout
+        android:id="@+id/Square"
+        style="@style/SelectFormLayout"
         android:layout_marginTop="40dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Square"
-        android:hapticFeedbackEnabled="true"
-        android:onClick="btnSquareCalculate"
-        android:scaleType="centerCrop"
+        app:layout_constraintEnd_toStartOf="@+id/Circle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
-        app:srcCompat="@drawable/kvadrat_m"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
 
-    <TextView
-        android:id="@+id/textViewSquare"
-        style="@style/BaseText"
-        android:text="@string/square"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonSquare" />
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/square"
+            android:onClick="btnSquareCalculate"
+            app:srcCompat="@drawable/kvadrat_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
-    <ImageButton
-        android:id="@+id/imageButtonCircle"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:layout_marginStart="34dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-        android:onClick="btnCircleCalculate"
-        android:hapticFeedbackEnabled="true"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonSquare"
+        <TextView
+            android:id="@+id/textViewSquare"
+            style="@style/SelectFormCardText"
+            android:layout_gravity="center"
+            android:text="@string/square" />
+    </LinearLayout>
+
+    <!-- Круг -->
+    <LinearLayout
+        android:id="@+id/Circle"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/List"
+        app:layout_constraintStart_toEndOf="@+id/Square"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/circle"
+            android:hapticFeedbackEnabled="true"
+            android:onClick="btnCircleCalculate"
+            app:srcCompat="@drawable/circle_m"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/circle" />
+    </LinearLayout>
+
+    <!-- Лист -->
+    <LinearLayout
+        android:id="@+id/List"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonSquare"
-        app:srcCompat="@drawable/circle_m"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toEndOf="@+id/Circle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/list"
+            android:onClick="btnListCalculate"
+            app:srcCompat="@drawable/list_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/textViewList"
+            style="@style/SelectFormCardText"
+            android:text="@string/list" />
+    </LinearLayout>
+
+    <!-- Профильная труба -->
+    <LinearLayout
+        android:id="@+id/ProfilePipe"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toStartOf="@+id/CirclePipe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Square">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/profilePipe"
+            android:onClick="btnProfilePipeCalculate"
+            app:srcCompat="@drawable/porf_truba_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/profilePipe" />
+    </LinearLayout>
+
+    <!-- Круглая труба -->
+    <LinearLayout
+        android:id="@+id/CirclePipe"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toStartOf="@+id/Ugolok"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/Circle">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:backgroundTint="@android:color/transparent"
+            android:contentDescription="@string/circlePipe"
+            android:onClick="btnCirclePipeCalculate"
+            app:srcCompat="@drawable/circle_truba_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            android:id="@+id/textViewCirclePipe"
+            style="@style/SelectFormCardText"
+            android:text="@string/circlePipe" />
+    </LinearLayout>
+
+    <!-- Уголок -->
+    <LinearLayout
+        android:id="@+id/Ugolok"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/CirclePipe"
+        app:layout_constraintTop_toBottomOf="@+id/List">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/corner"
+            android:onClick="btnCornerCalculate"
+            app:srcCompat="@drawable/ugolok_m"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/ugolok" />
+    </LinearLayout>
+
+    <!-- Двутавр -->
+    <LinearLayout
+        android:id="@+id/Dvutavr"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toStartOf="@+id/Shveller"
+        app:layout_constraintStart_toStartOf="@+id/ProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePipe">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:onClick="btnDvutavr"
+            android:contentDescription="@string/dvutavr"
+            app:srcCompat="@drawable/dvutavr_m"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/dvutavr" />
 
 
-    <TextView
-        android:id="@+id/textViewCircle"
-        style="@style/BaseText"
-        android:text="@string/circle"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle" />
+    </LinearLayout>
 
 
-    <ImageButton
-        android:id="@+id/imageButtonCirclePipe"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-        android:onClick="btnCirclePipeCalculate"
-        android:scaleType="centerCrop"
-        android:hapticFeedbackEnabled="true"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/circle_truba_m"
-        tools:ignore="HardcodedText" />
+    <LinearLayout
+        android:id="@+id/Shveller"
+        style="@style/SelectFormLayout"
+
+        app:layout_constraintEnd_toStartOf="@+id/Shestigrannik"
+        app:layout_constraintStart_toEndOf="@+id/Dvutavr"
+        app:layout_constraintTop_toBottomOf="@+id/ProfilePipe">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/shveller"
+            app:srcCompat="@drawable/shveller_m"
+            android:onClick="btnShveller"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/shveller" />
 
 
-    <TextView
-        android:id="@+id/textViewCirclePipe"
-        style="@style/BaseText"
-        android:text="@string/circlePipe"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCirclePipe" />
+    </LinearLayout>
 
-    <ImageButton
-        android:id="@+id/imageButtonProfilePipe"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-        android:hapticFeedbackEnabled="true"
-        android:onClick="btnProfilePipeCalculate"
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/porf_truba_m"
-        tools:ignore="HardcodedText" />
+    <!-- Шестигранник  -->
+    <LinearLayout
+        android:id="@+id/Shestigrannik"
+        style="@style/SelectFormLayout"
 
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/Shveller"
+        app:layout_constraintTop_toTopOf="@+id/Shveller">
 
-    <TextView
-        android:id="@+id/textViewProfilePipe"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:text="@string/profilePipe"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonProfilePipe" />
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/shestigrannik"
+            android:onClick="btnShestigrannikCalculate"
+            app:srcCompat="@drawable/shestigr_m"
+            tools:ignore="DuplicateSpeakableTextCheck" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/shestigrannik" />
 
 
-    <ImageButton
-        android:id="@+id/imageButtonList"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
+    </LinearLayout>
 
-        android:onClick="btnListCalculate"
-        android:scaleType="centerCrop"
-        android:hapticFeedbackEnabled="true"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfilePipe"
-        app:srcCompat="@drawable/list_m"
-        tools:ignore="HardcodedText" />
+    <!-- Арматура  @TODO невидимо-->
+    <LinearLayout
+        android:id="@+id/Armatura"
+        style="@style/SelectFormLayout"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Shveller">
 
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/armatura"
+            app:srcCompat="@drawable/armatura_gost"
+            tools:ignore="DuplicateSpeakableTextCheck,DuplicateSpeakableTextCheck" />
 
-    <TextView
-        android:id="@+id/textViewList"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:text="@string/list"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonList"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonList"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonList" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/armatura" />
 
-
-    <ImageButton
-        android:id="@+id/imageButtonUgolok"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-
-        android:onClick="btnCornerCalculate"
-        android:scaleType="centerCrop"
-        android:hapticFeedbackEnabled="true"
-
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonList"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProfilePipe"
-        app:srcCompat="@drawable/ugolok_m"
-        tools:ignore="HardcodedText" />
-
-
-    <TextView
-        android:id="@+id/textViewUgolok"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:text="@string/ugolok"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonUgolok"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonUgolok"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonUgolok" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="В разработке"
+            android:textSize="7sp"
+            tools:ignore="HardcodedText,SmallSp" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

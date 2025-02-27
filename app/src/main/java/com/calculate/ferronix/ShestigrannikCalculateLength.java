@@ -1,5 +1,6 @@
 package com.calculate.ferronix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,18 +14,20 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
-public class SquareCalculateLength extends AppCompatActivity {
+public class ShestigrannikCalculateLength extends AppCompatActivity {
 
-    private EditText editTextDensity, editTextMass, editTextSquareA, editTextPricePerKg, editTextQuantity;
+    private EditText editTextDensity, editTextMass, editTextSide, editTextPricePerKg, editTextQuantity;
     private TextView totalLength;
     private Button btnMaterial, btnMark;
 
     private String[] materials;
-
-    // Массивы для материалов
+    // Инициализация массивов для Алюминия
     private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
@@ -32,6 +35,7 @@ public class SquareCalculateLength extends AppCompatActivity {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
+    // Инициализация массивов для Нержавейки
     private final String[] stainlessSteelGrades = {
             "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
@@ -39,6 +43,7 @@ public class SquareCalculateLength extends AppCompatActivity {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
+    // Инициализация массивов для черного металла
     private final String[] blackMetalGrades = {
             "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
             "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
@@ -52,33 +57,42 @@ public class SquareCalculateLength extends AppCompatActivity {
     private static final double MM_TO_CM = 0.1;
     private static final double G_PER_CM3_TO_KG_PER_CM3 = 0.001;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_square_lenght_calculate);
+        setContentView(R.layout.activity_shveller_custom_calculate_length);
 
         // Инициализация массива materials
-        materials = new String[]{"Черный металл", "Нержавейка", "Алюминий"};
+        materials = new String[]{"Черный металл", "Нержавеющая сталь", "Алюминий"};
+
+        Log.d("Start", "Расчет длины прутка запущен");
 
         // Инициализация элементов интерфейса
         editTextDensity = findViewById(R.id.editTextDensity);
         editTextMass = findViewById(R.id.editTextMass);
-        editTextSquareA = findViewById(R.id.editTextSquareA);
-        editTextPricePerKg = findViewById(R.id.editTextPricePerKg); // Поле для цены за кг
-        editTextQuantity = findViewById(R.id.editTextQuantity); // Поле для количества
+        editTextSide = findViewById(R.id.editTextSide);
+        editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
+        editTextQuantity = findViewById(R.id.editTextQuantity);
         totalLength = findViewById(R.id.textViewLengthTotal);
         Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
+
+
         // Проверка на null
-        if (editTextDensity == null || editTextMass == null || editTextSquareA == null) {
+        if (editTextDensity == null || editTextMass == null || editTextSide == null ||
+                editTextPricePerKg == null || editTextQuantity == null) {
             Log.e("InitError", "One or more EditText fields are null!");
             finish();
         }
 
-        // Обработчики кликов
+
+
+
         // Обработчики кликов
         btnCalculate.setOnClickListener(v -> {
             // Выполнение тактильной обратной связи
@@ -94,6 +108,7 @@ public class SquareCalculateLength extends AppCompatActivity {
             handleMarkButtonClick();
         });
     }
+
 
     private void handleMarkButtonClick() {
         String material = btnMaterial.getText().toString();
@@ -128,7 +143,7 @@ public class SquareCalculateLength extends AppCompatActivity {
                 grades = blackMetalGrades;
                 densities = blackMetalDensities;
                 break;
-            case "Нержавейка":
+            case "Нержавеющая сталь":
                 grades = stainlessSteelGrades;
                 densities = stainlessSteelDensities;
                 break;
@@ -165,11 +180,11 @@ public class SquareCalculateLength extends AppCompatActivity {
             // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
             String massStr = editTextMass.getText().toString().trim();
-            String squareAStr = editTextSquareA.getText().toString().trim();
+            String sideStr = editTextSide.getText().toString().trim();
             String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
             String quantityStr = editTextQuantity.getText().toString().trim();
 
-            if (densityStr.isEmpty() || massStr.isEmpty() || squareAStr.isEmpty()) {
+            if (densityStr.isEmpty() || massStr.isEmpty() || sideStr.isEmpty()) {
                 totalLength.setText("Заполните все поля!");
                 return;
             }
@@ -177,23 +192,23 @@ public class SquareCalculateLength extends AppCompatActivity {
             // Парсим значения
             double density = Double.parseDouble(densityStr); // г/см³
             double mass = Double.parseDouble(massStr); // кг
-            double squareA = Double.parseDouble(squareAStr); // мм
+            double side = Double.parseDouble(sideStr); // мм
 
             // Проверка положительных значений
-            if (density <= 0 || mass <= 0 || squareA <= 0) {
+            if (density <= 0 || mass <= 0 || side <= 0) {
                 totalLength.setText("Значения должны быть > 0");
                 return;
             }
 
             // Конвертация единиц
-            double squareACm = squareA * MM_TO_CM; // мм -> см
+            double sideCm = side * MM_TO_CM; // мм -> см
             double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
 
-            // Площадь поперечного сечения
-            double area = squareACm * squareACm; // площадь в см²
+            // Рассчитываем площадь шестиугольника
+            double area = (3 * Math.sqrt(3) / 2) * Math.pow(sideCm, 2); // площадь в см²
 
-            // Длина профиля
-            double lengthCm = mass / (area * densityKgPerCm3); // длина в см
+            // Рассчитываем длину
+            double lengthCm = mass / (densityKgPerCm3 * area); // длина в см
             double lengthM = lengthCm / 100; // длина в метрах
 
             // Форматируем итоговый текст
@@ -223,14 +238,16 @@ public class SquareCalculateLength extends AppCompatActivity {
             Log.e("CalculationError", "Invalid number format", e);
         }
     }
-
     public void btnBack(View view) {
         startActivity(new Intent(this, SelectForm.class));
         finish();
     }
 
     public void btnGoMass(View view) {
-        startActivity(new Intent(this, SquareCalculateWeight.class));
+        startActivity(new Intent(this, ShestigrannikCalculateWeight.class));
         finish();
     }
+
+
+
 }

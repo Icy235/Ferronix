@@ -10,6 +10,7 @@
         <item name="android:layout_height">74sp</item>
         <item name="android:layout_width">294sp</item>
         <item name="icon">@drawable/ic_list</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
 
     </style>
 
@@ -48,7 +49,29 @@
     <item name="android:gravity">center</item>
     <item name="android:textColor">@color/MainElementWhite</item>
     <item name="android:textSize">14sp</item>
+
 </style>
+
+
+    <style name="btnCalculate">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/ic_element_primary</item>
+        <item name="android:elevation">20dp</item>
+        <item name="android:paddingStart">40sp</item>
+        <item name="android:paddingEnd">40sp</item>
+        <item name="android:text">@string/calculate</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/unbounded</item>
+        <item name="android:hapticFeedbackEnabled">true</item>
+
+    </style>
+
+
+
+
+
 
     <style name="Density">
         <item name="android:textColor">@color/MainElementWhite</item>
@@ -97,6 +120,35 @@
        <item name="android:layout_marginTop">5sp</item>
        <item name="fontFamily">@font/unbounded</item>
    </style>
-       
+
+
+
+    <style name="SelectFormImage">
+        <item name="android:layout_width">115sp</item>
+        <item name="android:layout_height">115sp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
+    <style name="SelectFormLayout">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">5sp</item>
+    </style>
+
+    <style name="SelectFormCardText">
+        <item name="android:textAlignment">center</item>
+        <item name="android:fontFamily">@font/unbounded</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/MainElementWhite</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+
+
+
 
 </resources>

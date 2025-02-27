@@ -15,11 +15,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
-public class SquareCalculateLength extends AppCompatActivity {
+public class ShvellerCustomCalculateWeight extends AppCompatActivity {
 
-    private EditText editTextDensity, editTextMass, editTextSquareA, editTextPricePerKg, editTextQuantity;
-    private TextView totalLength;
+    private EditText editTextDensity, editTextLength, editTextHeightH, editTextWidthB, editTextThicknessS, editTextThicknessT, editTextPricePerKg, editTextQuantity;
+    private TextView totalWeight;
     private Button btnMaterial, btnMark;
 
     private String[] materials;
@@ -56,34 +57,36 @@ public class SquareCalculateLength extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_square_lenght_calculate);
+        setContentView(R.layout.activity_shveller_custom_calculate_weight);
 
         // Инициализация массива materials
-        materials = new String[]{"Черный металл", "Нержавейка", "Алюминий"};
+        materials = new String[]{"Черный металл", "Нержавеющий металл", "Алюминий"};
 
         // Инициализация элементов интерфейса
         editTextDensity = findViewById(R.id.editTextDensity);
-        editTextMass = findViewById(R.id.editTextMass);
-        editTextSquareA = findViewById(R.id.editTextSquareA);
-        editTextPricePerKg = findViewById(R.id.editTextPricePerKg); // Поле для цены за кг
-        editTextQuantity = findViewById(R.id.editTextQuantity); // Поле для количества
-        totalLength = findViewById(R.id.textViewLengthTotal);
+        editTextLength = findViewById(R.id.editTextLength);
+        editTextHeightH = findViewById(R.id.editTextHeightH);
+        editTextWidthB = findViewById(R.id.editTextWidthB);
+        editTextThicknessS = findViewById(R.id.editTextThicknessS);
+        editTextThicknessT = findViewById(R.id.editTextThicknessT);
+        editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
+        editTextQuantity = findViewById(R.id.editTextQuantity);
+        totalWeight = findViewById(R.id.textViewWeightTotal);
         Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
 
         // Проверка на null
-        if (editTextDensity == null || editTextMass == null || editTextSquareA == null) {
+        if (editTextDensity == null || editTextLength == null || editTextHeightH == null || editTextWidthB == null || editTextThicknessS == null || editTextThicknessT == null) {
             Log.e("InitError", "One or more EditText fields are null!");
             finish();
         }
 
         // Обработчики кликов
-        // Обработчики кликов
         btnCalculate.setOnClickListener(v -> {
             // Выполнение тактильной обратной связи
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            calculateLength();
+            calculateWeight();
         });
         btnMaterial.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
@@ -128,7 +131,7 @@ public class SquareCalculateLength extends AppCompatActivity {
                 grades = blackMetalGrades;
                 densities = blackMetalDensities;
                 break;
-            case "Нержавейка":
+            case "Нержавеющий металл":
                 grades = stainlessSteelGrades;
                 densities = stainlessSteelDensities;
                 break;
@@ -145,7 +148,7 @@ public class SquareCalculateLength extends AppCompatActivity {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            String grade = item.getTitle().toString();
+            String grade = Objects.requireNonNull(item.getTitle()).toString();
             btnMark.setText(grade);
 
             int index = Arrays.asList(grades).indexOf(grade);
@@ -160,67 +163,84 @@ public class SquareCalculateLength extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void calculateLength() {
+    private void calculateWeight() {
         try {
             // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
-            String massStr = editTextMass.getText().toString().trim();
-            String squareAStr = editTextSquareA.getText().toString().trim();
+            String lengthStr = editTextLength.getText().toString().trim();
+            String heightHStr = editTextHeightH.getText().toString().trim();
+            String widthBStr = editTextWidthB.getText().toString().trim();
+            String thicknessSStr = editTextThicknessS.getText().toString().trim();
+            String thicknessTStr = editTextThicknessT.getText().toString().trim();
             String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
             String quantityStr = editTextQuantity.getText().toString().trim();
 
-            if (densityStr.isEmpty() || massStr.isEmpty() || squareAStr.isEmpty()) {
-                totalLength.setText("Заполните все поля!");
+            if (densityStr.isEmpty() || lengthStr.isEmpty() || heightHStr.isEmpty() || widthBStr.isEmpty() || thicknessSStr.isEmpty() || thicknessTStr.isEmpty()) {
+                totalWeight.setText("Заполните все поля!");
                 return;
             }
 
             // Парсим значения
             double density = Double.parseDouble(densityStr); // г/см³
-            double mass = Double.parseDouble(massStr); // кг
-            double squareA = Double.parseDouble(squareAStr); // мм
+            double length = Double.parseDouble(lengthStr); // мм
+            double heightH = Double.parseDouble(heightHStr); // мм
+            double widthB = Double.parseDouble(widthBStr); // мм
+            double thicknessS = Double.parseDouble(thicknessSStr); // мм
+            double thicknessT = Double.parseDouble(thicknessTStr); // мм
 
             // Проверка положительных значений
-            if (density <= 0 || mass <= 0 || squareA <= 0) {
-                totalLength.setText("Значения должны быть > 0");
+            if (density <= 0 || length <= 0 || heightH <= 0 || widthB <= 0 || thicknessS <= 0 || thicknessT <= 0) {
+                totalWeight.setText("Значения должны быть > 0");
                 return;
             }
 
             // Конвертация единиц
-            double squareACm = squareA * MM_TO_CM; // мм -> см
+            double heightHCm = heightH * MM_TO_CM; // мм -> см
+            double widthBCm = widthB * MM_TO_CM; // мм -> см
+            double thicknessSCm = thicknessS * MM_TO_CM; // мм -> см
+            double thicknessTCm = thicknessT * MM_TO_CM; // мм -> см
+            double lengthCm = length * MM_TO_CM; // мм -> см
             double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
 
-            // Площадь поперечного сечения
-            double area = squareACm * squareACm; // площадь в см²
+            // Рассчитываем объем стенки и полок швеллера
+            double volumeWeb = (heightHCm - thicknessTCm) * thicknessSCm * lengthCm; // объем стенки
+            double volumeFlanges = 2 * (widthBCm * thicknessTCm * lengthCm); // объем двух полок
 
-            // Длина профиля
-            double lengthCm = mass / (area * densityKgPerCm3); // длина в см
-            double lengthM = lengthCm / 100; // длина в метрах
+            // Общий объем материала
+            double volume = volumeWeb + volumeFlanges; // объем в см³
+
+            // Вес швеллера
+            double weight = volume * densityKgPerCm3; // вес в кг
 
             // Форматируем итоговый текст
             StringBuilder resultText = new StringBuilder();
 
             // Проверяем, введено ли количество
-            if (!quantityStr.isEmpty()) {
+            if (quantityStr.isEmpty()) {
+                resultText.append(String.format(Locale.US, "Масса: %.2f кг", weight));
+            } else {
                 double quantity = Double.parseDouble(quantityStr);
                 // Проверка положительных значений
                 if (quantity <= 0) {
-                    totalLength.setText("Количество должно быть > 0");
+                    totalWeight.setText("Количество должно быть > 0");
                     return;
                 }
-                double massPerUnit = mass / quantity;
-                resultText.append(String.format("Общая длина: %.2f м\n", lengthM));
-                resultText.append(String.format("Длина еденицы: %.2f м\n", lengthM / quantity));
-                resultText.append(String.format("Масса еденицы: %.2f кг\n", massPerUnit));
-            } else {
-                resultText.append(String.format("Длина: %.2f м\n", lengthM));
+                double totalWeightValue = weight * quantity; // общая масса
+                double totalCost = Double.parseDouble(pricePerKgStr) * totalWeightValue; // общая стоимость
+                double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
+                resultText.append(String.format(Locale.US, "\nСтоимость еденицы: %.2f руб", pricePerUnit));
+                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
+                resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
             }
 
             // Выводим результат
-            totalLength.setText(resultText.toString());
+            totalWeight.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
-            totalLength.setText("Введите корректные значения!");
-            Log.e("CalculationError", "Invalid number format", e);
+            totalWeight.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
         }
     }
 
@@ -229,8 +249,8 @@ public class SquareCalculateLength extends AppCompatActivity {
         finish();
     }
 
-    public void btnGoMass(View view) {
-        startActivity(new Intent(this, SquareCalculateWeight.class));
+    public void btnGoLength(View view) {
+        startActivity(new Intent(this, ShvellerCustomCalculateLength.class));
         finish();
     }
 }

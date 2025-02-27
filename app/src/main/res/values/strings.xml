@@ -2,8 +2,8 @@
     <string name="app_name">FERRONIX</string>
     <string name="ChoosingForm">Выбор шаблона</string>
     <string name="history">История</string>
-    <string name="square">Квадрат</string>
-    <string name="circle">Круг</string>
+    <string name="square">Профиль</string>
+    <string name="circle">Пруток</string>
     <string name="density">Плотность</string>
     <string name="lengthL">Длина L</string>
     <string name="squareA">Сторона квадрата А</string>
@@ -44,8 +44,18 @@
     <string name="thickness">Толщина</string>
     <string name="customList">Произвольный лист</string>
     <string name="corner">Уголок</string>
-
-
+    <string name="dvutavr">Двутавр</string>
+    <string name="shveller">Швеллер</string>
+    <string name="shestigrannik">Шестигранник</string>
+    <string name="armatura">Арматура</string>
+    <string name="heightH">Высота h</string>
+    <string name="height">Высота</string>
+    <string name="thicknessS">Толщина S</string>
+    <string name="thicknessText">Толщина</string>
+    <string name="widthBase">Ширина полки b</string>
+    <string name="width">Ширина</string>
+    <string name="thicknessBase">Толщина полки</string>
+    <string name="shestigrannikTemp">Расстояние между гранями S</string>
 
 
 </resources>

@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <application
         android:allowBackup="true"
@@ -92,7 +93,7 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Меню списков -->
+        <!-- Меню листа -->
         <activity
             android:name=".ListMenu"
             android:exported="true"
@@ -100,7 +101,7 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Кастомный список -->
+        <!-- Кастомный лист -->
         <activity
             android:name=".ListCustom"
             android:exported="true"
@@ -117,6 +118,67 @@
         </activity>
         <activity
             android:name=".CornerCalculateWeight"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Меню двутавра -->
+        <activity
+            android:name=".DvutavrMenu"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- двутавр -->
+        <activity
+            android:name=".DvutavrCustomCalculateWeight"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".DvutavrCustomCalculateLength"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
+
+        <!-- Меню швеллера -->
+        <activity
+            android:name=".ShvellerMenu"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- швеллер -->
+        <activity
+            android:name=".ShvellerCustomCalculateWeight"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".ShvellerCustomCalculateLength"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
+        <!-- шестигранник -->
+        <activity
+            android:name=".ShestigrannikCalculateLength"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+        <activity
+            android:name=".ShestigrannikCalculateWeight"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">

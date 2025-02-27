@@ -82,9 +82,20 @@ public class ProfilePipeCalculateWeight extends AppCompatActivity {
         }
 
         // Обработчики кликов
-        btnCalculate.setOnClickListener(v -> calculateWeight());
-        btnMaterial.setOnClickListener(v -> showMaterialMenu());
-        btnMark.setOnClickListener(v -> handleMarkButtonClick());
+        // Обработчики кликов
+        btnCalculate.setOnClickListener(v -> {
+            // Выполнение тактильной обратной связи
+            v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+            calculateWeight();
+        });
+        btnMaterial.setOnClickListener(v -> {
+            v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+            showMaterialMenu();
+        });
+        btnMark.setOnClickListener(v -> {
+            v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+            handleMarkButtonClick();
+        });
     }
 
     private void handleMarkButtonClick() {

@@ -46,10 +46,24 @@ public class SelectForm extends AppCompatActivity {
         finish(); // Закрываем текущую активность
     }
 
+    public void btnDvutavr(View view) {
+        startActivity(new Intent(SelectForm.this, DvutavrMenu.class));
+        finish(); // Закрываем текущую активность
+    }
+
     public void btnCornerCalculate(View view) {
         startActivity(new Intent(SelectForm.this, CornerCalculateWeight.class));
         finish(); // Закрываем текущую активность
     }
 
+    public void btnShveller(View view) {
+        startActivity(new Intent(SelectForm.this, ShvellerMenu.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnShestigrannikCalculate(View view) {
+        startActivity(new Intent(SelectForm.this, ShestigrannikCalculateWeight.class));
+        finish(); // Закрываем текущую активность
+    }
 
 }

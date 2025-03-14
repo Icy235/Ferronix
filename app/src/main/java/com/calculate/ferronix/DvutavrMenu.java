@@ -22,7 +22,7 @@ public class DvutavrMenu extends AppCompatActivity {
     }
 
     public void btnCustom(View view) {
-        startActivity(new Intent(DvutavrMenu.this, DvutavrCustomCalculateWeight.class));
+        startActivity(new Intent(DvutavrMenu.this, DvutavrCustomCalculate.class));
         finish(); // Закрываем текущую активность
     }
 

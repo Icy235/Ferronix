@@ -22,113 +22,132 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageButton
-        android:id="@+id/imageButtonSquare"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="40dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Square"
-        android:onClick="btnCustom"
-        android:hapticFeedbackEnabled="true"
-        android:scaleType="centerCrop"
+    <!--Произвольный-->
+    <LinearLayout
+        android:id="@+id/List"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toStartOf="@+id/ListGost24045_94"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewHeader"
-        app:srcCompat="@drawable/list_m"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
 
-    <TextView
-        android:id="@+id/textViewSquare"
-        style="@style/BaseText"
-        android:text="@string/custom"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonSquare" />
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/customList"
+            android:onClick="btnCustom"
+            app:srcCompat="@drawable/list_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
-    <ImageButton
-        android:id="@+id/imageButtonCircle"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:layout_marginStart="34dp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/custom"
+            />
 
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonSquare"
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ListGost8568_77"
+        style="@style/SelectFormLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toTopOf="@+id/imageButtonSquare"
-        app:srcCompat="@drawable/list_gost_8568_77_m"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintStart_toEndOf="@+id/ListGost8568_77romb"
+        app:layout_constraintTop_toBottomOf="@+id/ListGost24045_94">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 8568-77 Чечевичное рифление"
+
+            android:onClick="btnGost8568_77chechevich"
+            app:srcCompat="@drawable/list_gost_8568_77_chechevich"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="ГОСТ 8568-77"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/chechevich_rifl"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:layout_marginTop="2sp"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/textViewCircle"
-        style="@style/BaseText"
-        android:hint="ГОСТ 8568-77"
-        android:text="В разработке"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCircle"
-        tools:ignore="HardcodedText" />
+
+    <!-- ГОСТ 24045-94 -->
+    <LinearLayout
+        android:id="@+id/ListGost24045_94"
+        style="@style/SelectFormLayout"
+
+        android:layout_marginTop="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/List"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 24045-94"
+            android:onClick="btnGost24045_94"
+            app:srcCompat="@drawable/list_gost_24045_94_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/gost_24045_94" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
 
 
-    <ImageButton
-        android:id="@+id/imageButtonCirclePipe"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
+    <LinearLayout
+        android:id="@+id/ListGost8568_77romb"
+        style="@style/SelectFormLayout"
+        app:layout_constraintEnd_toStartOf="@+id/ListGost8568_77"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ListGost24045_94">
 
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCircle"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCircle"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/list_gost_24045_94_m"
-        tools:ignore="HardcodedText" />
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="ГОСТ 8568-77"
 
+            android:onClick="btnGost8568_77romb"
+            app:srcCompat="@drawable/list_gost_8568_77_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
-    <TextView
-        android:id="@+id/textViewCirclePipe"
-        style="@style/BaseText"
-        android:hint="ГОСТ 24045-94"
-        android:text="В разработке"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonCirclePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonCirclePipe"
-        tools:ignore="HardcodedText" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="ГОСТ 8568-77"
+            tools:ignore="HardcodedText" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:text="@string/romb_rifl"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
 
-    <ImageButton
-        android:id="@+id/imageButtonProfilePipe"
-        android:layout_width="146sp"
-        android:layout_height="146sp"
-        android:backgroundTint="@android:color/transparent"
-        android:contentDescription="Circle"
-
-
-        android:scaleType="centerCrop"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonSquare"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonSquare"
-        app:layout_constraintTop_toBottomOf="@+id/textViewSquare"
-        app:srcCompat="@drawable/list_gost_8706_78_m"
-        tools:ignore="HardcodedText" />
-
-
-    <TextView
-        android:id="@+id/textViewProfilePipe"
-        style="@style/BaseText"
-        android:layout_width="170sp"
-        android:gravity="center"
-        android:hint="ГОСТ 8706-78"
-        android:text="В разработке"
-        app:layout_constraintEnd_toEndOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintStart_toStartOf="@+id/imageButtonProfilePipe"
-        app:layout_constraintTop_toBottomOf="@+id/imageButtonProfilePipe"
-        tools:ignore="HardcodedText" />
-
+        <TextView
+            style="@style/SelectFormCardText"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:layout_marginTop="2sp"
+            android:textSize="7sp"
+            tools:ignore="SmallSp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

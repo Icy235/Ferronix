@@ -1,6 +1,8 @@
 package com.calculate.ferronix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,15 +14,17 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.Objects;
 
-public class SquareCalculateWeight extends AppCompatActivity {
+public class SquareCalculate extends AppCompatActivity {
 
     private EditText editTextDensity, editTextLength, editTextSquareA, editTextPricePerKg, editTextQuantity;
-    private TextView totalWeight;
-    private Button btnMaterial, btnMark;
+    private TextView total, textViewLength, textViewUnit;
+    private Button btnMaterial, btnMark, btnGoWeight, btnGoLength;
 
     private String[] materials;
 
@@ -67,10 +71,14 @@ public class SquareCalculateWeight extends AppCompatActivity {
         editTextSquareA = findViewById(R.id.editTextSquareA);
         editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
         editTextQuantity = findViewById(R.id.editTextQuantity);
-        totalWeight = findViewById(R.id.textViewWeightTotal);
+        total = findViewById(R.id.textViewTotal);
+        textViewLength = findViewById(R.id.textViewLength);
+        textViewUnit = findViewById(R.id.textViewUnit);
         Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
+        btnGoWeight = findViewById(R.id.btnGoWeight);
+        btnGoLength = findViewById(R.id.btnGoLength);
 
         // Проверка на null
         if (editTextDensity == null || editTextLength == null || editTextSquareA == null) {
@@ -78,21 +86,59 @@ public class SquareCalculateWeight extends AppCompatActivity {
             finish();
         }
 
-        // Обработчики кликов
+        // Устанавливаем активную кнопку при запуске
+        setActiveButton(btnGoWeight, btnGoLength);
+
         // Обработчики кликов
         btnCalculate.setOnClickListener(v -> {
-            // Выполнение тактильной обратной связи
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            calculateWeight();
+            if (textViewLength.getText().toString().equals("Масса")) {
+                calculateWeight();
+            } else {
+                calculateLength();
+            }
         });
+
         btnMaterial.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             showMaterialMenu();
         });
+
         btnMark.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             handleMarkButtonClick();
         });
+
+        btnGoWeight.setOnClickListener(v -> {
+            // Переключаем на расчет массы
+            textViewLength.setText("Длина");
+            textViewUnit.setText("мм");
+            editTextLength.setHint("Длина");
+
+            // Устанавливаем активную кнопку
+            setActiveButton(btnGoWeight, btnGoLength);
+        });
+
+        btnGoLength.setOnClickListener(v -> {
+            // Переключаем на расчет длины
+            textViewLength.setText("Масса");
+            textViewUnit.setText("кг");
+            editTextLength.setHint("Масса");
+
+            // Устанавливаем активную кнопку
+            setActiveButton(btnGoLength, btnGoWeight);
+        });
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void setActiveButton(Button activeButton, Button inactiveButton) {
+        // Устанавливаем цвет фона и текста для активной кнопки
+        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))); // Белый фон
+        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black)); // Черный текст
+
+        // Убираем подсветку и устанавливаем цвет текста для неактивной кнопки
+        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent))); // Прозрачный фон
+        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white)); // Белый текст
     }
 
     private void handleMarkButtonClick() {
@@ -145,7 +191,7 @@ public class SquareCalculateWeight extends AppCompatActivity {
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
-            String grade = item.getTitle().toString();
+            String grade = Objects.requireNonNull(item.getTitle()).toString();
             btnMark.setText(grade);
 
             int index = Arrays.asList(grades).indexOf(grade);
@@ -160,7 +206,7 @@ public class SquareCalculateWeight extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void calculateWeight() {
+    private void calculateLength() {
         try {
             // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
@@ -170,7 +216,7 @@ public class SquareCalculateWeight extends AppCompatActivity {
             String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || lengthStr.isEmpty() || squareAStr.isEmpty()) {
-                totalWeight.setText("Заполните все поля!");
+                total.setText("Заполните все поля!");
                 return;
             }
 
@@ -181,7 +227,7 @@ public class SquareCalculateWeight extends AppCompatActivity {
 
             // Проверка положительных значений
             if (density <= 0 || length <= 0 || squareA <= 0) {
-                totalWeight.setText("Значения должны быть > 0");
+                total.setText("Значения должны быть > 0");
                 return;
             }
 
@@ -209,24 +255,103 @@ public class SquareCalculateWeight extends AppCompatActivity {
                 double quantity = Double.parseDouble(quantityStr);
                 // Проверка положительных значений
                 if (quantity <= 0) {
-                    totalWeight.setText("Количество должно быть > 0");
+                    total.setText("Количество должно быть > 0");
                     return;
                 }
-                double totalWeightValue = weight * quantity; // общая масса
-                double totalCost = Double.parseDouble(pricePerKgStr) * totalWeightValue; // общая стоимость
-                double pricePerUnit = totalCost / quantity; // цена за одну штуку
+                double totalValue = weight * quantity; // общая масса
 
-                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
-                resultText.append(String.format(Locale.US, "\nЦена еденицы: %.2f руб", pricePerUnit));
-                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
-                resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                resultText.append(String.format(Locale.US, "Масса единицы: %.2f кг", weight));
+                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalValue));
+
+                // Если цена за кг указана, добавляем стоимость
+                if (!pricePerKgStr.isEmpty()) {
+                    double pricePerKg = Double.parseDouble(pricePerKgStr);
+                    double totalCost = pricePerKg * totalValue; // общая стоимость
+                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
+                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                }
             }
 
             // Выводим результат
-            totalWeight.setText(resultText.toString());
+            total.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
-            totalWeight.setText("Ошибка в формате чисел");
+            total.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
+        }
+    }
+
+    private void calculateWeight() {
+        try {
+            // Получаем и проверяем значения
+            String densityStr = editTextDensity.getText().toString().trim();
+            String weightStr = editTextLength.getText().toString().trim();
+            String squareAStr = editTextSquareA.getText().toString().trim();
+            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+            String quantityStr = editTextQuantity.getText().toString().trim();
+
+            if (densityStr.isEmpty() || weightStr.isEmpty() || squareAStr.isEmpty()) {
+                total.setText("Заполните все поля!");
+                return;
+            }
+
+            // Парсим значения
+            double density = Double.parseDouble(densityStr); // г/см³
+            double weight = Double.parseDouble(weightStr); // кг
+            double squareA = Double.parseDouble(squareAStr); // мм
+
+            // Проверка положительных значений
+            if (density <= 0 || weight <= 0 || squareA <= 0) {
+                total.setText("Значения должны быть > 0");
+                return;
+            }
+
+            // Конвертация единиц
+            double squareACm = squareA * MM_TO_CM; // мм -> см
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+
+            // Площадь поперечного сечения
+            double area = squareACm * squareACm; // площадь в см²
+
+            // Длина профиля
+            double length = weight / (area * densityKgPerCm3); // см
+
+            // Форматируем итоговый текст
+            StringBuilder resultText = new StringBuilder();
+
+            // Проверяем, введено ли количество
+            if (quantityStr.isEmpty()) {
+                resultText.append(String.format(Locale.US, "Длина: %.2f м", length / 100)); // Переводим см в метры
+            } else {
+                double quantity = Double.parseDouble(quantityStr);
+                // Проверка положительных значений
+                if (quantity <= 0) {
+                    total.setText("Количество должно быть > 0");
+                    return;
+                }
+                double totalLengthValue = length * quantity / 100; // общая длина в метрах
+
+                resultText.append(String.format(Locale.US, "Длина единицы: %.2f м", length / 100));
+                resultText.append(String.format(Locale.US, "\nОбщая длина: %.2f м", totalLengthValue));
+
+                // Если цена за кг указана, добавляем стоимость
+                if (!pricePerKgStr.isEmpty()) {
+                    double pricePerKg = Double.parseDouble(pricePerKgStr);
+                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
+                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
+                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                }
+            }
+
+            // Выводим результат
+            total.setText(resultText.toString());
+
+        } catch (NumberFormatException e) {
+            total.setText("Ошибка в формате чисел");
             Log.e("CalcError", "Parsing error: " + e.getMessage());
         }
     }
@@ -236,8 +361,5 @@ public class SquareCalculateWeight extends AppCompatActivity {
         finish();
     }
 
-    public void btnGoLength(View view) {
-        startActivity(new Intent(this, SquareCalculateLength.class));
-        finish();
-    }
+
 }

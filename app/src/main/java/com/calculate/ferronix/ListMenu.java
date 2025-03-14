@@ -26,7 +26,19 @@ public class ListMenu extends AppCompatActivity {
         finish(); // Закрываем текущую активность
     }
 
+    public void btnGost24045_94(View view) {
+        startActivity(new Intent(ListMenu.this, ListGost24045_94.class));
+        finish(); // Закрываем текущую активность
+    }
+    public void btnGost8568_77chechevich(View view) {
+        startActivity(new Intent(ListMenu.this, ListGost8568_77_chechevich.class));
+        finish(); // Закрываем текущую активность
+    }
 
 
+    public void btnGost8568_77romb(View view) {
+        startActivity(new Intent(ListMenu.this, ListGost8568_77_romb.class));
+        finish(); // Закрываем текущую активность
+    }
 
 }

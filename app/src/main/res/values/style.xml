@@ -31,7 +31,7 @@
 <item name="android:textAlignment">center</item>
         <item name="android:fontFamily">@font/unbounded</item>
         <item name="android:backgroundTint">@android:color/transparent</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/MainElementWhite</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>

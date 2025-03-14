@@ -63,21 +63,22 @@
         <ImageButton
             style="@style/SelectFormImage"
             android:contentDescription="ГОСТ 8240-97"
-
+            android:onClick="btnShvellerGost8240_97"
 
             app:srcCompat="@drawable/shveller_m"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
         <TextView
             style="@style/SelectFormCardText"
-            android:text="ГОСТ 8240-97"
-            tools:ignore="HardcodedText" />
+            android:text="@string/gost_8240_97"/>
 
         <TextView
             style="@style/SelectFormCardText"
-            android:text="В разработке"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:layout_marginTop="2sp"
             android:textSize="7sp"
-            tools:ignore="HardcodedText,SmallSp" />
+            tools:ignore="SmallSp" />
     </LinearLayout>
 
     <!-- Произвольный -->

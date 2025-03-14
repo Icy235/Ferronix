@@ -39,55 +39,34 @@
 
         <!-- Калькуляторы для квадратных профилей -->
         <activity
-            android:name=".SquareCalculateWeight"
+            android:name=".SquareCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-        <activity
-            android:name=".SquareCalculateLength"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
+
 
         <!-- Калькуляторы для круглых профилей -->
         <activity
-            android:name=".CircleCalculateWeight"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
-        <activity
-            android:name=".CircleCalculateLength"
+            android:name=".CircleCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Калькуляторы для круглых труб -->
+
+        <!-- круглые труб -->
+
         <activity
-            android:name=".CirclePipeCalculateLength"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
-        <activity
-            android:name=".CirclePipeCalculateWeight"
+            android:name=".CirclePipeCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Калькуляторы для профильных труб -->
+        <!--Профильная труба -->
         <activity
-            android:name=".ProfilePipeCalculateLength"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
-        <activity
-            android:name=".ProfilePipeCalculateWeight"
+            android:name=".ProfilePipeCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -109,15 +88,10 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Калькуляторы для уголков -->
+        <!-- Уголок -->
+
         <activity
-            android:name=".CornerCalculateLength"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
-        <activity
-            android:name=".CornerCalculateWeight"
+            android:name=".CornerCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -133,17 +107,12 @@
 
         <!-- двутавр -->
         <activity
-            android:name=".DvutavrCustomCalculateWeight"
+            android:name=".DvutavrCustomCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
-        <activity
-            android:name=".DvutavrCustomCalculateLength"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
+
 
 
 
@@ -157,32 +126,53 @@
 
         <!-- швеллер -->
         <activity
-            android:name=".ShvellerCustomCalculateWeight"
+            android:name=".ShvellerCustomCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
+        <!-- Швеллер ГОСТ 8240-97  -->
         <activity
-            android:name=".ShvellerCustomCalculateLength"
+            android:name=".ShvellerGost8240_97"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
 
-        <!-- шестигранник -->
+
+        <!-- Шестигранник -->
         <activity
-            android:name=".ShestigrannikCalculateLength"
+            android:name=".ShestigrannikCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
+
+        <!-- Лист ГОСТ 24045-94 -->
         <activity
-            android:name=".ShestigrannikCalculateWeight"
+            android:name=".ListGost24045_94"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
+
+        <!-- Лист ГОСТ 8568-77 с чечевичным рифлением -->
+        <activity
+            android:name=".ListGost8568_77_chechevich"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Лист ГОСТ 8568-77 с ромбическим рифлением -->
+        <activity
+            android:name=".ListGost8568_77_romb"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
 
     </application>
 </manifest>

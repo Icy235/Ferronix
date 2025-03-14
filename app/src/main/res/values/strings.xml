@@ -56,6 +56,22 @@
     <string name="width">Ширина</string>
     <string name="thicknessBase">Толщина полки</string>
     <string name="shestigrannikTemp">Расстояние между гранями S</string>
+    <string name="meter">м</string>
+    <string name="gost_24045_94">ГОСТ 24045–94</string>
+    <string name="lengthA">Длина А</string>
+    <string name="lengthB">Длина B</string>
+    <string name="New">Новый</string>
+    <string name="chechevich_rifl">Чечевичное рифление</string>
+    <string name="romb_rifl">Ромбическое рифление</string>
+    <string name="shveller_gost_8240_97">Швеллер ГОСТ 8240–97</string>
+    <string name="gost_8240_97">ГОСТ 8240–97</string>
+    <string name="quanity">Количество</string>
+    <string name="costPerKg">Цена за кг</string>
+    <string name="cost">Цена</string>
+    <string name="rub">руб</string>
+    <string name="kolvo">Кол-во</string>
+    <string name="listWithRombRifl">Лист с ромбическим рифлением</string>
+    <string name="listWithChechevichRifl">Лист с чечевичным рифлением</string>
 
 
 </resources>

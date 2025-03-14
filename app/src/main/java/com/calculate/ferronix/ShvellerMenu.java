@@ -22,7 +22,12 @@ public class ShvellerMenu extends AppCompatActivity {
     }
 
     public void btnCustom(View view) {
-        startActivity(new Intent(ShvellerMenu.this, ShvellerCustomCalculateWeight.class));
+        startActivity(new Intent(ShvellerMenu.this, ShvellerCustomCalculate.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnShvellerGost8240_97(View view) {
+        startActivity(new Intent(ShvellerMenu.this, ShvellerGost8240_97.class));
         finish(); // Закрываем текущую активность
     }
 

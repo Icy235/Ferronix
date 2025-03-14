@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".DvutavrCustomCalculateWeight">
+    tools:context=".DvutavrCustomCalculate">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -89,6 +89,7 @@
                     android:layout_width="167sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
+                    android:importantForAccessibility="no"
                     app:layout_constraintEnd_toEndOf="@id/btnMaterial"
                     app:layout_constraintStart_toStartOf="@id/btnMaterial"
                     app:layout_constraintTop_toBottomOf="@id/btnMaterial"
@@ -108,6 +109,7 @@
                     android:layout_width="167sp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="7dp"
+                    android:importantForAccessibility="no"
                     app:layout_constraintEnd_toEndOf="@id/btnMark"
                     app:layout_constraintStart_toStartOf="@id/btnMark"
                     app:layout_constraintTop_toBottomOf="@id/btnMaterial"
@@ -127,10 +129,12 @@
             android:id="@+id/linearLayout"
             android:layout_width="190sp"
             android:layout_height="80sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginStart="5dp"
             android:background="@drawable/ic_element_primary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnGoLength"
             app:layout_constraintEnd_toEndOf="@+id/infoCell"
-            app:layout_constraintTop_toBottomOf="@+id/infoCell">
+            app:layout_constraintStart_toEndOf="@+id/btnGoWeight"
+            app:layout_constraintTop_toTopOf="@+id/btnGoWeight">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -151,45 +155,46 @@
                     <EditText
                         android:id="@+id/editTextDensity"
                         style="@style/editTextDensity"
-                        tools:ignore="TouchTargetSizeCheck" />
+                        android:importantForAutofill="no"
+                        tools:ignore="LabelFor,TouchTargetSizeCheck" />
 
                     <TextView style="@style/Unit" />
-
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
 
-        <!-- Кнопка "Рассчитать вес" -->
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip"
-            style="@style/BaseText"
-            android:layout_width="130sp"
+        <!-- Кнопка "Рассчитать массу" -->
+        <Button
+            android:id="@+id/btnGoWeight"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hapticFeedbackEnabled="true"
-
-            android:onClick="btnGoMass"
-
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/unbounded"
             android:text="@string/calculateWeight"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout"
             app:layout_constraintStart_toStartOf="@+id/infoCell"
             app:layout_constraintTop_toBottomOf="@+id/infoCell" />
 
         <!-- Кнопка "Рассчитать длину" -->
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip2"
-            style="@style/BaseText"
-            android:layout_width="130sp"
+        <Button
+            android:id="@+id/btnGoLength"
+
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/unbounded"
             android:hapticFeedbackEnabled="true"
             android:text="@string/calculateLeght"
-            android:backgroundTint="@color/white"
-            android:textColor="@color/black"
-
-            app:layout_constraintStart_toStartOf="@+id/chip"
-            app:layout_constraintTop_toBottomOf="@+id/chip" />
+            android:textAlignment="center"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/btnGoWeight"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoWeight" />
 
         <!-- Блок с массой -->
         <LinearLayout
-            android:id="@+id/lineralLayoutLenghtMass"
+            android:id="@+id/lineralLayoutLenght"
             android:layout_width="335sp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -201,8 +206,9 @@
             app:layout_constraintTop_toBottomOf="@+id/lineralLayoutBase">
 
             <TextView
+                android:id="@+id/textViewLength"
                 style="@style/ElementHeaderText"
-                android:text="@string/mass" />
+                android:text="@string/length" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -213,15 +219,17 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/editTextMass"
+                    android:id="@+id/editTextLength"
                     style="@style/editTextDensity"
-                    android:hint="@string/mass"
+                    android:hint="@string/length"
+                    android:importantForAutofill="no"
                     android:textColorHint="@color/hintColor"
                     tools:ignore="TouchTargetSizeCheck" />
 
                 <TextView
+                    android:id="@id/textViewUnit"
                     style="@style/Unit"
-                    android:text="@string/kg" />
+                    android:text="@string/millimetre" />
 
             </LinearLayout>
         </LinearLayout>
@@ -234,8 +242,8 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_element_primary"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/chip2"
-            app:layout_constraintTop_toBottomOf="@+id/chip2">
+            app:layout_constraintStart_toStartOf="@+id/btnGoLength"
+            app:layout_constraintTop_toBottomOf="@+id/btnGoLength">
 
             <!-- Текст "Высота" -->
             <TextView
@@ -407,13 +415,13 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_element_primary"
             android:orientation="vertical"
-            app:layout_constraintStart_toStartOf="@+id/lineralLayoutLenghtMass"
-            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenghtMass">
+            app:layout_constraintStart_toStartOf="@+id/lineralLayoutLenght"
+            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenght">
 
             <!-- Текст "Площадь" -->
             <TextView
                 style="@style/ElementHeaderText"
-                android:text="Количество" />
+                android:text="@string/quanity" />
 
             <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
             <LinearLayout
@@ -428,7 +436,7 @@
                 <EditText
                     android:id="@+id/editTextQuantity"
                     style="@style/editTextDensity"
-                    android:hint="Кол-во"
+                    android:hint="@string/kolvo"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal|numberSigned"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -436,7 +444,8 @@
                 <!-- Текст "мм²" -->
                 <TextView
                     style="@style/Unit"
-                    android:text="шт" />
+                    android:text="шт"
+                    tools:ignore="HardcodedText" />
 
             </LinearLayout>
         </LinearLayout>
@@ -448,13 +457,13 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/ic_element_primary"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutLenghtMass"
-            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenghtMass">
+            app:layout_constraintEnd_toEndOf="@+id/lineralLayoutLenght"
+            app:layout_constraintTop_toBottomOf="@+id/lineralLayoutLenght">
 
             <!-- Текст "Площадь" -->
             <TextView
                 style="@style/ElementHeaderText"
-                android:text="Цена за кг" />
+                android:text="@string/costPerKg" />
 
             <!-- Горизонтальный контейнер для EditText и текста "мм²" -->
             <LinearLayout
@@ -469,7 +478,7 @@
                 <EditText
                     android:id="@+id/editTextPricePerKg"
                     style="@style/editTextDensity"
-                    android:hint="Цена"
+                    android:hint="@string/cost"
                     android:importantForAutofill="no"
                     android:inputType="numberDecimal|numberSigned"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -477,7 +486,7 @@
                 <!-- Текст "мм²" -->
                 <TextView
                     style="@style/Unit"
-                    android:text="руб" />
+                    android:text="@string/rub" />
             </LinearLayout>
         </LinearLayout>
 
@@ -485,20 +494,33 @@
 
         <!--Тут текстовый блок с расчетом длины-->
         <TextView
-            android:id="@+id/textViewLengthTotal"
+            android:id="@+id/textViewWeightTotal"
             style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="15dp"
 
+            android:gravity="center"
             android:padding="5sp"
             app:layout_constraintEnd_toEndOf="@+id/btnCalculate"
             app:layout_constraintStart_toStartOf="@+id/btnCalculate"
             app:layout_constraintTop_toBottomOf="@+id/btnCalculate" />
 
 
+
         <Button
             android:id="@+id/btnCalculate"
-            style="@style/btnCalculate"
-            android:hapticFeedbackEnabled="true"
+            style="@style/BaseText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ic_element_primary"
+            android:elevation="15sp"
+            android:paddingStart="40sp"
+            android:paddingEnd="40sp"
+            android:text="@string/calculate"
+            android:visibility="visible"
             app:icon="@drawable/ic_enter"
             app:iconPadding="10sp"
             app:iconTint="@color/MainElementWhite"
@@ -518,6 +540,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewLengthTotal" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewWeightTotal" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

@@ -1,6 +1,8 @@
 package com.calculate.ferronix;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,16 +14,17 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Objects;
 
-public class DvutavrCustomCalculateWeight extends AppCompatActivity {
+public class DvutavrCustomCalculate extends AppCompatActivity {
 
     private EditText editTextDensity, editTextLength, editTextHeightH, editTextWidthB, editTextThicknessS, editTextThicknessT, editTextPricePerKg, editTextQuantity;
-    private TextView totalWeight;
-    private Button btnMaterial, btnMark;
+    private TextView totalWeight, textViewLength, textViewUnit;
+    private Button btnMaterial, btnMark, btnGoWeight, btnGoLength;
 
     private String[] materials;
 
@@ -57,7 +60,7 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dvutavr_custom_calculate_weight);
+        setContentView(R.layout.activity_dvutavr_custom_calculate);
 
         // Инициализация массива materials
         materials = new String[]{"Черный металл", "Нержавеющий металл", "Алюминий"};
@@ -72,9 +75,13 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
         editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
         editTextQuantity = findViewById(R.id.editTextQuantity);
         totalWeight = findViewById(R.id.textViewWeightTotal);
+        textViewLength = findViewById(R.id.textViewLength);
+        textViewUnit = findViewById(R.id.textViewUnit);
         Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
+        btnGoWeight = findViewById(R.id.btnGoWeight);
+        btnGoLength = findViewById(R.id.btnGoLength);
 
         // Проверка на null
         if (editTextDensity == null || editTextLength == null || editTextHeightH == null || editTextWidthB == null || editTextThicknessS == null || editTextThicknessT == null) {
@@ -82,21 +89,60 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
             finish();
         }
 
-        // Обработчики кликов
+        // Устанавливаем активную кнопку при запуске
+        setActiveButton(btnGoWeight, btnGoLength);
+
         // Обработчики кликов
         btnCalculate.setOnClickListener(v -> {
             // Выполнение тактильной обратной связи
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            calculateWeight();
+            if (textViewLength.getText().toString().equals("Масса")) {
+                calculateWeight();
+            } else {
+                calculateLength();
+            }
         });
+
         btnMaterial.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             showMaterialMenu();
         });
+
         btnMark.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             handleMarkButtonClick();
         });
+
+        btnGoWeight.setOnClickListener(v -> {
+            // Переключаем на расчет массы
+            textViewLength.setText("Длина");
+            textViewUnit.setText("м");
+            editTextLength.setHint("Длина");
+
+            // Устанавливаем активную кнопку
+            setActiveButton(btnGoWeight, btnGoLength);
+        });
+
+        btnGoLength.setOnClickListener(v -> {
+            // Переключаем на расчет длины
+            textViewLength.setText("Масса");
+            textViewUnit.setText("кг");
+            editTextLength.setHint("Масса");
+
+            // Устанавливаем активную кнопку
+            setActiveButton(btnGoLength, btnGoWeight);
+        });
+    }
+
+    @SuppressLint("ResourceAsColor")
+    private void setActiveButton(Button activeButton, Button inactiveButton) {
+        // Устанавливаем цвет фона и текста для активной кнопки
+        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))); // Белый фон
+        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black)); // Черный текст
+
+        // Убираем подсветку и устанавливаем цвет текста для неактивной кнопки
+        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent))); // Прозрачный фон
+        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white)); // Белый текст
     }
 
     private void handleMarkButtonClick() {
@@ -164,7 +210,7 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
         popupMenu.show();
     }
 
-    private void calculateWeight() {
+    private void calculateLength() {
         try {
             // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
@@ -227,13 +273,19 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
                     return;
                 }
                 double totalWeightValue = weight * quantity; // общая масса
-                double totalCost = Double.parseDouble(pricePerKgStr) * totalWeightValue; // общая стоимость
-                double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
 
                 resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
-                resultText.append(String.format(Locale.US, "\nСтоимость еденицы: %.2f руб", pricePerUnit));
                 resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
-                resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                // Если цена за кг указана, добавляем стоимость
+                if (!pricePerKgStr.isEmpty()) {
+                    double pricePerKg = Double.parseDouble(pricePerKgStr);
+                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
+                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
+                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                }
             }
 
             // Выводим результат
@@ -245,13 +297,93 @@ public class DvutavrCustomCalculateWeight extends AppCompatActivity {
         }
     }
 
+    private void calculateWeight() {
+        try {
+            // Получаем и проверяем значения
+            String densityStr = editTextDensity.getText().toString().trim();
+            String weightStr = editTextLength.getText().toString().trim();
+            String heightHStr = editTextHeightH.getText().toString().trim();
+            String widthBStr = editTextWidthB.getText().toString().trim();
+            String thicknessSStr = editTextThicknessS.getText().toString().trim();
+            String thicknessTStr = editTextThicknessT.getText().toString().trim();
+            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+            String quantityStr = editTextQuantity.getText().toString().trim();
+
+            if (densityStr.isEmpty() || weightStr.isEmpty() || heightHStr.isEmpty() || widthBStr.isEmpty() || thicknessSStr.isEmpty() || thicknessTStr.isEmpty()) {
+                totalWeight.setText("Заполните все поля!");
+                return;
+            }
+
+            // Парсим значения
+            double density = Double.parseDouble(densityStr); // г/см³
+            double weight = Double.parseDouble(weightStr); // кг
+            double heightH = Double.parseDouble(heightHStr); // мм
+            double widthB = Double.parseDouble(widthBStr); // мм
+            double thicknessS = Double.parseDouble(thicknessSStr); // мм
+            double thicknessT = Double.parseDouble(thicknessTStr); // мм
+
+            // Проверка положительных значений
+            if (density <= 0 || weight <= 0 || heightH <= 0 || widthB <= 0 || thicknessS <= 0 || thicknessT <= 0) {
+                totalWeight.setText("Значения должны быть > 0");
+                return;
+            }
+
+            // Конвертация единиц
+            double heightHCm = heightH * MM_TO_CM; // мм -> см
+            double widthBCm = widthB * MM_TO_CM; // мм -> см
+            double thicknessSCm = thicknessS * MM_TO_CM; // мм -> см
+            double thicknessTCm = thicknessT * MM_TO_CM; // мм -> см
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+
+            // Рассчитываем объем полок и стенки
+            double volumeFlanges = 2 * (widthBCm * thicknessTCm); // объем двух полок на 1 метр длины
+            double volumeWeb = (heightHCm - 2 * thicknessTCm) * thicknessSCm; // объем стенки на 1 метр длины
+
+            // Общий объем материала на 1 метр длины
+            double volumePerMeter = volumeFlanges + volumeWeb; // объем в см³ на 1 метр длины
+
+            // Длина двутавра
+            double length = weight / (volumePerMeter * densityKgPerCm3); // длина в метрах
+
+            // Форматируем итоговый текст
+            StringBuilder resultText = new StringBuilder();
+
+            // Проверяем, введено ли количество
+            if (quantityStr.isEmpty()) {
+                resultText.append(String.format(Locale.US, "Длина: %.2f м", length));
+            } else {
+                double quantity = Double.parseDouble(quantityStr);
+                // Проверка положительных значений
+                if (quantity <= 0) {
+                    totalWeight.setText("Количество должно быть > 0");
+                    return;
+                }
+
+                double totalLengthValue = length * quantity; // общая длина
+                resultText.append(String.format(Locale.US, "Длина единицы: %.2f м", length));
+                resultText.append(String.format(Locale.US, "\nОбщая длина: %.2f м", totalLengthValue));
+
+                // Если цена за кг указана, добавляем стоимость
+                if (!pricePerKgStr.isEmpty()) {
+                    double pricePerKg = Double.parseDouble(pricePerKgStr);
+                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
+                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+
+                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
+                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                }
+            }
+
+            // Выводим результат
+            totalWeight.setText(resultText.toString());
+
+        } catch (NumberFormatException e) {
+            totalWeight.setText("Ошибка в формате чисел");
+            Log.e("CalcError", "Parsing error: " + e.getMessage());
+        }
+    }
     public void btnBack(View view) {
         startActivity(new Intent(this, SelectForm.class));
-        finish();
-    }
-
-    public void btnGoLength(View view) {
-        startActivity(new Intent(this, DvutavrCustomCalculateLength.class));
         finish();
     }
 }

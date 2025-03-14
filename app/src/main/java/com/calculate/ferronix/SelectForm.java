@@ -22,22 +22,22 @@ public class SelectForm extends AppCompatActivity {
     }
 
     public void btnSquareCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, SquareCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, SquareCalculate.class));
         finish(); // Закрываем текущую активность
     }
 
     public void btnCircleCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, CircleCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, CircleCalculate.class));
         finish(); // Закрываем текущую активность
     }
 
     public void btnCirclePipeCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, CirclePipeCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, CirclePipeCalculate.class));
         finish(); // Закрываем текущую активность
     }
 
     public void btnProfilePipeCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, ProfilePipeCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, ProfilePipeCalculate.class));
         finish(); // Закрываем текущую активность
     }
 
@@ -52,7 +52,7 @@ public class SelectForm extends AppCompatActivity {
     }
 
     public void btnCornerCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, CornerCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, CornerCalculate.class));
         finish(); // Закрываем текущую активность
     }
 
@@ -62,7 +62,7 @@ public class SelectForm extends AppCompatActivity {
     }
 
     public void btnShestigrannikCalculate(View view) {
-        startActivity(new Intent(SelectForm.this, ShestigrannikCalculateWeight.class));
+        startActivity(new Intent(SelectForm.this, ShestigrannikCalculate.class));
         finish(); // Закрываем текущую активность
     }
 

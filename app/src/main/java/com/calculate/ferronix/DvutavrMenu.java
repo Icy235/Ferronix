@@ -15,7 +15,7 @@ public class DvutavrMenu extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dvutavt_menu);
+        setContentView(R.layout.activity_dvutavr_menu);
 
 
 
@@ -27,6 +27,19 @@ public class DvutavrMenu extends AppCompatActivity {
     }
 
 
+    public void btnGost57837_2017(View view) {
+        startActivity(new Intent(DvutavrMenu.this, DvutavrGost57837_2017.class));
+        finish(); // Закрываем текущую активность
+    }
 
+    public void btnGost8239_89(View view) {
+        startActivity(new Intent(DvutavrMenu.this, DvutavrGost8239_89.class));
+        finish(); // Закрываем текущую активность
+    }
+
+    public void btnGost26020_83(View view) {
+        startActivity(new Intent(DvutavrMenu.this, DvutavrGost26020_83.class));
+        finish(); // Закрываем текущую активность
+    }
 
 }

@@ -72,6 +72,10 @@
     <string name="kolvo">Кол-во</string>
     <string name="listWithRombRifl">Лист с ромбическим рифлением</string>
     <string name="listWithChechevichRifl">Лист с чечевичным рифлением</string>
+    <string name="dvutavr_gost_57837_2017">Двутавр ГОСТ 57837–2017</string>
+    <string name="dvutavr_gost_8239_89">Двутавр ГОСТ 8239–89</string>
+    <string name="number">Номер</string>
+    <string name="dvutavr_gost_26020_83">Двутавр ГОСТ 26020–83</string>
 
 
 </resources>

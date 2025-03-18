@@ -36,7 +36,7 @@
         <ImageButton
             style="@style/SelectFormImage"
             android:contentDescription="ГОСТ 57837-2017"
-
+            android:onClick="btnGost57837_2017"
 
             app:srcCompat="@drawable/dvutavr_m"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
@@ -47,11 +47,7 @@
             android:textSize="11sp"
             tools:ignore="HardcodedText" />
 
-        <TextView
-            style="@style/SelectFormCardText"
-            android:text="В разработке"
-            android:textSize="7sp"
-            tools:ignore="HardcodedText,SmallSp" />
+
     </LinearLayout>
 
     <!-- ГОСТ 26020-83 -->
@@ -67,7 +63,7 @@
             style="@style/SelectFormImage"
             android:contentDescription="ГОСТ 26020-83"
 
-
+            android:onClick="btnGost26020_83"
             app:srcCompat="@drawable/dvutavr_m"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
@@ -79,9 +75,11 @@
 
         <TextView
             style="@style/SelectFormCardText"
-            android:text="В разработке"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:layout_marginTop="2sp"
             android:textSize="7sp"
-            tools:ignore="HardcodedText,SmallSp" />
+            tools:ignore="SmallSp" />
     </LinearLayout>
 
     <!-- ГОСТ 8239-89 -->
@@ -97,7 +95,7 @@
             style="@style/SelectFormImage"
             android:contentDescription="ГОСТ 26020-83"
 
-
+            android:onClick="btnGost8239_89"
             app:srcCompat="@drawable/dvutavr_m"
             tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
 
@@ -109,9 +107,11 @@
 
         <TextView
             style="@style/SelectFormCardText"
-            android:text="В разработке"
+            android:backgroundTint="#FF0000"
+            android:text="@string/New"
+            android:layout_marginTop="2sp"
             android:textSize="7sp"
-            tools:ignore="HardcodedText,SmallSp" />
+            tools:ignore="SmallSp" />
     </LinearLayout>
 
     <!-- Произвольный -->

@@ -173,6 +173,41 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
+        <!-- Лист ГОСТ 8568-77 гост
+      -->
+        <activity
+            android:name=".Gost8568_77_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
+        <!-- Двутавр ГОСТ 57837-2017 -->
+        <activity
+            android:name=".DvutavrGost57837_2017"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Двутавр ГОСТ 8239-89 -->
+        <activity
+            android:name=".DvutavrGost8239_89"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Двутавр ГОСТ 26020-83 -->
+        <activity
+            android:name=".DvutavrGost26020_83"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
 
     </application>
 </manifest>

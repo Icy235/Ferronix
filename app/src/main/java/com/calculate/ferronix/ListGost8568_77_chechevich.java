@@ -180,4 +180,9 @@ public class ListGost8568_77_chechevich extends AppCompatActivity {
         startActivity(new Intent(this, SelectForm.class));
         finish();
     }
+    public void btnGost8568_77_pdf(View view) {
+        startActivity(new Intent(this, Gost8568_77_pdf.class));
+        finish();
+    }
+
 }

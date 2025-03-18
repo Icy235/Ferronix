@@ -12,8 +12,8 @@ android {
         applicationId = "com.calculate.ferronix"
         minSdk = 24
         targetSdk = 35
-        versionCode = 10
-        versionName = "1.3.0"
+        versionCode = 11
+        versionName = "1.3.1"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,6 +67,9 @@ dependencies {
 
     // AppMetrica SDK.
     implementation(libs.analytics)
+
+    // PDF Reader
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

@@ -23,3 +23,5 @@
 # AppMetrica ProGuard rules
 -keep class io.appmetrica.analytics.** { *; }
 -keep class com.yandex.metrica.** { *; }
+-keep class Control.NetworkHelper { *; }
+-dontwarn okhttp3.**

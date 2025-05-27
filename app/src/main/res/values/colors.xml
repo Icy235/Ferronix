@@ -9,5 +9,6 @@
     <color name="Background">#272628</color>
     <color name="MainElementWhite">#FFFFFF</color>
     <color name="hintColor">#ABABAB</color>
+    <color name="Disabled">#DCDCDC</color>
 
 </resources>

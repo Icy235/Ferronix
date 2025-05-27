@@ -2,6 +2,7 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
+
 }
 
 android {
@@ -12,8 +13,8 @@ android {
         applicationId = "com.calculate.ferronix"
         minSdk = 24
         targetSdk = 35
-        versionCode = 11
-        versionName = "1.3.1"
+        versionCode = 14
+        versionName = "1.3.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -26,6 +27,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
         debug {
             isMinifyEnabled = false
@@ -45,10 +47,14 @@ android {
             localPropertiesFile.inputStream().use { load(it) } // Загружаем свойства
         }
         val apiKey = properties.getProperty("api.key", "")
+        val botToken = properties.getProperty("bot.token", "")
+        val chatId = properties.getProperty("chat.id", "")
 
         if (apiKey.isNotEmpty()) {
             buildTypes.forEach {
                 it.buildConfigField("String", "API_KEY", "\"$apiKey\"")
+                it.buildConfigField("String", "BOT_TOKEN", "\"$botToken\"")
+                it.buildConfigField("String", "CHAT_ID", "\"$chatId\"")
             }
         } else {
             throw IllegalArgumentException("API_KEY is missing in local.properties")
@@ -59,7 +65,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
+
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
@@ -69,7 +75,12 @@ dependencies {
     implementation(libs.analytics)
 
     // PDF Reader
+    implementation("com.github.DImuthuUpe:AndroidPdfViewer:3.1.0-beta.1")
+    implementation(libs.firebase.storage)
+    implementation(libs.okhttp)
 
+   //Точки для листания
+    implementation("com.github.tommybuonomo:dotsindicator:3.0.3")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Control.GostsList">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <TextView
+        android:id="@+id/gostTitle"
+        style="@style/TitleText"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textSize="23sp"
+        android:backgroundTint="@color/primary"
+        android:text="@string/usableGostsList"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textViewGost8240_97"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_8240_97"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost8240_97"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost8240_97"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost8240_97_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost8240_97_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost8240_97"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost8240_97" />
+
+                <ImageView
+                    android:id="@+id/btnGost8240_97"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_element_primary"
+                    android:onClick="btnGost8240_97_pdf"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/lineGost8240_97"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGost8240_97_Name"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGost8240_97_Name"
+                    app:srcCompat="@drawable/shveller_m" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp">
+
+
+                <TextView
+                    android:id="@+id/textViewGost8239_89"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_8239_89"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost8239_89"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost8239_89"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost8239_89_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost8239_89_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost8239_89"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost8239_89" />
+
+                <ImageView
+                    android:id="@+id/btnGost8239_89"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_element_primary"
+                    android:onClick="btnGost8240_97_pdf"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/lineGost8239_89"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGost8239_89_Name"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGost8239_89_Name"
+                    app:srcCompat="@drawable/dvutavr_m" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textViewGost26020_83"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_26020_83"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost26020_83"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost26020_83"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost26020_83_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost26020_83_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost26020_83"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost26020_83" />
+
+                <ImageView
+                    android:id="@+id/btnGost26020_83"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_element_primary"
+                    android:onClick="btnGost26020_83_pdf"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/lineGost26020_83"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGost26020_83_Name"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGost26020_83_Name"
+                    app:srcCompat="@drawable/dvutavr_m" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textViewGost57837_2017"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_57836_2017"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost57836_2017"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost57837_2017"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost57836_2017_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost57836_2017_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost57836_2017"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost57836_2017" />
+
+                <ImageView
+                    android:id="@+id/btnGost57836_2017"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_element_primary"
+                    android:importantForAccessibility="no"
+                    android:onClick="btnGost57836_2017_pdf"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/lineGost57836_2017"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGost57836_2017_Name"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGost57836_2017_Name"
+                    app:srcCompat="@drawable/dvutavr_m" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textViewGost24045_94"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_24045_94"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost24045_94"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost24045_94"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost24045_94_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost24045_94_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost24045_94"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost24045_94" />
+
+                <ImageView
+                    android:id="@+id/btnGost24045_94"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ic_element_primary"
+                    android:onClick="btnGost24045_94_pdf"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/lineGost24045_94"
+                    app:layout_constraintStart_toEndOf="@+id/textViewGost24045_94_Name"
+                    app:layout_constraintTop_toTopOf="@+id/textViewGost24045_94_Name"
+                    app:srcCompat="@drawable/list_gost_24045_94_m" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/textViewGost8568_77"
+                    style="@style/BaseText"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/gost_8568_77"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/lineGost8568_77"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewGost8568_77"
+                    app:srcCompat="@drawable/line_white" />
+
+                <TextView
+                    android:id="@+id/textViewGost8568_77_Name"
+                    style="@style/BaseText"
+                    android:layout_width="200dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/Gost8568_77_Name"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/lineGost8568_77"
+                    app:layout_constraintTop_toBottomOf="@+id/lineGost8568_77" />
+
+
+                    <ImageView
+                        android:id="@+id/btnGost8568_77_chechevich"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:background="@drawable/ic_element_primary"
+                        android:onClick="btnGost8568_77_pdf"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/lineGost8568_77"
+                        app:layout_constraintStart_toEndOf="@+id/textViewGost8568_77_Name"
+                        app:layout_constraintTop_toTopOf="@+id/textViewGost8568_77_Name"
+                        app:srcCompat="@drawable/list_gost_8568_77_chechevich" />
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:id="@+id/textViewGost34028_2016"
+                style="@style/BaseText"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/gost_34028_2016"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/lineGost34028_2016"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGost34028_2016"
+                app:srcCompat="@drawable/line_white" />
+
+            <TextView
+                android:id="@+id/textViewGost34028_2016_Name"
+                style="@style/BaseText"
+                android:layout_width="200dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="@string/Gost34028_2016_Name"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/lineGost34028_2016"
+                app:layout_constraintTop_toBottomOf="@+id/lineGost34028_2016" />
+
+
+            <ImageView
+                android:id="@+id/btnGost34028_2016_chechevich"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/ic_element_primary"
+                android:onClick="btnGost34028_2016_pdf"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/lineGost34028_2016"
+                app:layout_constraintStart_toEndOf="@+id/textViewGost34028_2016_Name"
+                app:layout_constraintTop_toTopOf="@+id/textViewGost34028_2016_Name"
+                app:srcCompat="@drawable/armatura_gost" />
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+<Space
+    android:layout_width="match_parent"
+    android:layout_height="500dp"/>
+        </LinearLayout>
+
+</ScrollView>

@@ -2,9 +2,19 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <!-- Для Android 9 и ниже -->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
+    <!-- Для Android 10+ (если нужно записывать в Downloads) -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="28" />
+
 
     <application
         android:allowBackup="true"
@@ -19,7 +29,7 @@
 
         <!-- Главное меню -->
         <activity
-            android:name=".MainMenu"
+            android:name="Control.MainMenu"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -31,7 +41,7 @@
 
         <!-- Выбор формы -->
         <activity
-            android:name=".SelectForm"
+            android:name=".Sortament.SelectForm"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -39,7 +49,7 @@
 
         <!-- Калькуляторы для квадратных профилей -->
         <activity
-            android:name=".SquareCalculate"
+            android:name=".Sortament.SquareProfileCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -48,7 +58,7 @@
 
         <!-- Калькуляторы для круглых профилей -->
         <activity
-            android:name=".CircleCalculate"
+            android:name=".Sortament.CircleCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -58,7 +68,7 @@
         <!-- круглые труб -->
 
         <activity
-            android:name=".CirclePipeCalculate"
+            android:name=".Sortament.CirclePipeCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -66,7 +76,7 @@
 
         <!--Профильная труба -->
         <activity
-            android:name=".ProfilePipeCalculate"
+            android:name=".Sortament.ProfilePipeCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -74,7 +84,7 @@
 
         <!-- Меню листа -->
         <activity
-            android:name=".ListMenu"
+            android:name=".Sortament.ListMenu"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -82,7 +92,7 @@
 
         <!-- Кастомный лист -->
         <activity
-            android:name=".ListCustom"
+            android:name=".Sortament.ListCustom"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -91,7 +101,7 @@
         <!-- Уголок -->
 
         <activity
-            android:name=".CornerCalculate"
+            android:name=".Sortament.CornerCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -99,7 +109,7 @@
 
         <!-- Меню двутавра -->
         <activity
-            android:name=".DvutavrMenu"
+            android:name=".Sortament.DvutavrMenu"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -107,7 +117,7 @@
 
         <!-- двутавр -->
         <activity
-            android:name=".DvutavrCustomCalculate"
+            android:name=".Sortament.DvutavrCustomCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -118,7 +128,7 @@
 
         <!-- Меню швеллера -->
         <activity
-            android:name=".ShvellerMenu"
+            android:name=".Sortament.ShvellerMenu"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -126,14 +136,14 @@
 
         <!-- швеллер -->
         <activity
-            android:name=".ShvellerCustomCalculate"
+            android:name=".Sortament.ShvellerCustomCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
         <!-- Швеллер ГОСТ 8240-97  -->
         <activity
-            android:name=".ShvellerGost8240_97"
+            android:name=".Sortament.ShvellerGost8240_97"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -143,7 +153,7 @@
 
         <!-- Шестигранник -->
         <activity
-            android:name=".ShestigrannikCalculate"
+            android:name=".Sortament.ShestigrannikCalculate"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -151,7 +161,7 @@
 
         <!-- Лист ГОСТ 24045-94 -->
         <activity
-            android:name=".ListGost24045_94"
+            android:name=".Sortament.ListGost24045_94"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -159,7 +169,7 @@
 
         <!-- Лист ГОСТ 8568-77 с чечевичным рифлением -->
         <activity
-            android:name=".ListGost8568_77_chechevich"
+            android:name=".Sortament.ListGost8568_77_chechevich"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -167,25 +177,18 @@
 
         <!-- Лист ГОСТ 8568-77 с ромбическим рифлением -->
         <activity
-            android:name=".ListGost8568_77_romb"
+            android:name=".Sortament.ListGost8568_77_romb"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Лист ГОСТ 8568-77 гост
-      -->
-        <activity
-            android:name=".Gost8568_77_pdf"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
+
 
 
         <!-- Двутавр ГОСТ 57837-2017 -->
         <activity
-            android:name=".DvutavrGost57837_2017"
+            android:name=".Sortament.DvutavrGost57837_2017"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -193,7 +196,7 @@
 
         <!-- Двутавр ГОСТ 8239-89 -->
         <activity
-            android:name=".DvutavrGost8239_89"
+            android:name=".Sortament.DvutavrGost8239_89"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
@@ -201,11 +204,120 @@
 
         <!-- Двутавр ГОСТ 26020-83 -->
         <activity
-            android:name=".DvutavrGost26020_83"
+            android:name=".Sortament.DvutavrGost26020_83"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
+
+        <!--  ГОСТ 26020-83 pdf -->
+        <activity
+            android:name=".Sortament.gostPdf.Gost26020_83_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!--  ГОСТ 57837-2017 pdf -->
+        <activity
+            android:name=".Sortament.gostPdf.Gost57837_2017_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!--  ГОСТ 24045-94 pdf -->
+        <activity
+            android:name=".Sortament.gostPdf.Gost24045_94_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- ГОСТ 8568-77 pdf-->
+        <activity
+            android:name=".Sortament.gostPdf.Gost8568_77_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- ГОСТ 8239-89 pdf-->
+        <activity
+            android:name=".Sortament.gostPdf.Gost8239_89_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- ГОСТ 8240-97 pdf-->
+        <activity
+            android:name=".Sortament.gostPdf.Gost8240_97_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Список Гостов-->
+        <activity
+            android:name="Control.GostsList"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+
+        <!-- Меню расчета балки-->
+        <activity
+            android:name="Beams.BeamMenu"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Расчет профильной балки-->
+        <activity
+            android:name="Beams.ProfileBeam"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Меню профилей-->
+        <activity
+            android:name=".Sortament.ProfileMenu"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Расчет прямоугольного профиля-->
+        <activity
+            android:name=".Sortament.PryamougolniyProfileCalculate"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- Расчет арматуры-->
+        <activity
+            android:name=".Sortament.ArmaturaCalculate"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+        </activity>
+
+        <!-- ГОСТ 34028_2016-->
+        <activity
+            android:name=".Sortament.gostPdf.Gost34028_2016"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </activity>
+
 
 
 

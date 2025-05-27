@@ -13,8 +13,8 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="android:background">#282828</item>
         <item name="colorOnSecondary">@color/MainElementWhite</item>
-        <item name="android:textColor">@color/MainElementWhite</item>
-
+        <item name="android:textColor">@color/white</item>
+        <item name="android:windowAnimationStyle">@style/AppAnimation</item>
 
 
     </style>

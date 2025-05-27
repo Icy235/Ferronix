@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sortament.ProfileMenu">
+
+    <!-- Заголовок -->
+    <TextView
+        android:id="@+id/textViewHeader"
+        android:layout_width="0dp"
+        android:layout_height="80sp"
+        android:background="@color/primary"
+        android:backgroundTint="@color/primary"
+        android:fontFamily="@font/unbounded"
+        android:gravity="center"
+        android:paddingTop="15sp"
+        android:paddingBottom="15sp"
+        android:text="@string/Profile"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- ГОСТ 57837-2017 -->
+    <LinearLayout
+        android:id="@+id/ProfilePipe"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toStartOf="@+id/List"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/squareProfile"
+
+            android:onClick="btnSquareProfile"
+            app:srcCompat="@drawable/kvadrat_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+
+        <TextView
+            style="@style/SelectFormCardText"
+            android:layout_width="130dp"
+            android:text="@string/squareProfile"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/List"
+        style="@style/SelectFormLayout"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ProfilePipe"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeader">
+        <ImageButton
+            style="@style/SelectFormImage"
+            android:contentDescription="@string/priamiugolniy_profile"
+            android:onClick="btnPriamiugolniyProfile"
+            app:srcCompat="@drawable/priamougolnik_m"
+            tools:ignore="DuplicateSpeakableTextCheck,HardcodedText" />
+        <TextView
+            style="@style/SelectFormCardText"
+            android:layout_width="130dp"
+            android:text="@string/priamiugolniy_profile" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

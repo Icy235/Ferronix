@@ -2,7 +2,7 @@
     <string name="app_name">FERRONIX</string>
     <string name="ChoosingForm">Выбор шаблона</string>
     <string name="history">История</string>
-    <string name="square">Профиль</string>
+    <string name="squareProfile">Квадратный профиль</string>
     <string name="circle">Пруток</string>
     <string name="density">Плотность</string>
     <string name="lengthL">Длина L</string>
@@ -76,6 +76,29 @@
     <string name="dvutavr_gost_8239_89">Двутавр ГОСТ 8239–89</string>
     <string name="number">Номер</string>
     <string name="dvutavr_gost_26020_83">Двутавр ГОСТ 26020–83</string>
+    <string name="submit_error">Сообщить об ошибке</string>
+    <string name="version">v1.3.4</string>
+    <string name="gost_8568_77">ГОСТ 8568–77</string>
+    <string name="gost_26020_83">ГОСТ 26020–83</string>
+    <string name="gost_57836_2017">ГОСТ 57837–2017</string>
+    <string name="gost_8239_89">ГОСТ 8239–89</string>
+    <string name="inDevelop">В разработке</string>
+    <string name="calculateMetall">Расчет металлопроката</string>
+    <string name="gostList">Список ГОСТов</string>
+    <string name="weldingSeams">Сварные швы</string>
+    <string name="deflectionBeamCalculate">Расчет балки на прогиб</string>
+    <string name="usableGostsList">Список используемых ГОСТов</string>
+    <string name="Gost26020_83_Name">Двутавры стальные горячекатные с параллельными гранями полок</string>
+    <string name="Gost8239_89_Name">Двутавры стальные горячекатные</string>
+    <string name="Gost8240_97_Name">Швеллеры стальные горячекатные</string>
+    <string name="Gost57836_2017_Name">Двутавры стальные горячекатные с параллельными гранями полок</string>
+    <string name="Gost24045_94_Name">Профили стальные листовые гнутые с трапециевидными гофрами для строительства</string>
+    <string name="Gost8568_77_Name">Листы стальные с ромбическим и чечевичным рифлением</string>
+    <string name="priamiugolniy_profile">Прямоугольный профиль</string>
+    <string name="Profile">Профиль</string>
+    <string name="nominal_diametr">Номинальный диаметр</string>
+    <string name="gost_34028_2016">ГОСТ 34028-2016</string>
+    <string name="Gost34028_2016_Name">Прокат арматурный для железобетонных конструкций</string>
 
 
 </resources>

@@ -1,104 +1,169 @@
 <resources>
+    <!-- App Info -->
     <string name="app_name">FERRONIX</string>
-    <string name="ChoosingForm">Выбор шаблона</string>
-    <string name="history">История</string>
-    <string name="squareProfile">Квадратный профиль</string>
-    <string name="circle">Пруток</string>
-    <string name="density">Плотность</string>
-    <string name="lengthL">Длина L</string>
-    <string name="squareA">Сторона квадрата А</string>
+    <string name="version">v1.3.5</string>
+    <string name="inDevelop">В разработке</string>
+    <string name="submit_error">Сообщить об ошибке</string>
+
+    <!-- Main UI -->
+    <string name="back">Назад</string>
+    <string name="save">Сохранить</string>
+    <string name="New">Новый</string>
+    <string name="close">Закрыть</string>
     <string name="calculate">Расчет</string>
+    <string name="history">История</string>
+    <string name="ChoosingForm">Выбор шаблона</string>
+    <string name="calculateMetall">Расчет металлопроката</string>
     <string name="calculateWeight">Расчет массы</string>
     <string name="calculateLeght">Расчет длины</string>
-    <string name="back">Back</string>
-    <string name="save">Save</string>
-    <string name="kgm3">кг/м³</string>
-    <string name="gsm3">г/см³</string>
-    <string name="millimetre">мм</string>
+    <string name="deflectionBeamCalculate">Расчет балки на прогиб</string>
 
-
+    <!-- Materials -->
     <string name="material">Материал</string>
     <string name="mark">Марка</string>
     <string name="black_metal">Черный металл</string>
+    <string name="material_black_metal">Черный металл</string>
     <string name="stainless_steel">Нержавеющая сталь</string>
+    <string name="material_stainless_steel">Нержавеющая сталь</string>
     <string name="aluminum">Алюминий</string>
+    <string name="material_aluminum">Алюминий</string>
     <string name="steel_10">Сталь 10</string>
     <string name="steel_45">Сталь 45</string>
     <string name="grade_08Х17Т">08Х17Т</string>
     <string name="grade_20Х13">20Х13</string>
-    <string name="mass">Масса</string>
-    <string name="kg">кг.</string>
-    <string name="Diametr">Диаметр</string>
-    <string name="wall">Толщина стенки</string>
-    <string name="sideB">Строна B</string>
-    <string name="sideA">Сторона A</string>
-    <string name="weight">Вес</string>
+
+    <!-- Measurements -->
+    <string name="density">Плотность</string>
     <string name="length">Длина</string>
-    <string name="circlePipe">Круглая труба</string>
-    <string name="profilePipe">Профильная труба</string>
-    <string name="pipe">Труба</string>
-    <string name="site">Сторона</string>
-    <string name="list">Лист</string>
-    <string name="ugolok">Уголок</string>
-    <string name="custom">Произвольный</string>
+    <string name="lengthL">Длина L</string>
+    <string name="lengthA">Длина А</string>
+    <string name="lengthB">Длина B</string>
+    <string name="mass">Масса</string>
+    <string name="weight">Вес</string>
+    <string name="height">Высота</string>
+    <string name="heightH">Высота h</string>
+    <string name="width">Ширина</string>
     <string name="thickness">Толщина</string>
+    <string name="thicknessText">Толщина</string>
+    <string name="thicknessS">Толщина S</string>
+    <string name="sideA">Сторона A</string>
+    <string name="sideB">Сторона B</string>
+    <string name="squareA">Сторона квадрата А</string>
+    <string name="Diametr">Диаметр</string>
+    <string name="nominal_diametr">Номинальный диаметр</string>
+    <string name="wall">Толщина стенки</string>
+    <string name="widthBase">Ширина полки b</string>
+    <string name="thicknessBase">Толщина полки</string>
+    <string name="shestigrannikTemp">Расстояние между гранями S</string>
+    <string name="number">Номер</string>
+    <string name="quanity">Количество</string>
+    <string name="kolvo">Кол-во</string>
+
+    <!-- Product Types -->
+    <string name="circle">Пруток</string>
+    <string name="analytics_template_rod">Пруток</string>
+    <string name="squareProfile">Квадратный профиль</string>
+    <string name="priamiugolniy_profile">Прямоугольный профиль</string>
+    <string name="Profile">Профиль</string>
+    <string name="pipe">Труба</string>
+    <string name="circlePipe">Круглая труба</string>
+    <string name="analytics_template_pipe">Круглая труба</string>
+    <string name="profilePipe">Профильная труба</string>
+    <string name="list">Лист</string>
     <string name="customList">Произвольный лист</string>
+    <string name="listWithRombRifl">Лист с ромбическим рифлением</string>
+    <string name="listWithChechevichRifl">Лист с чечевичным рифлением</string>
+    <string name="ugolok">Уголок</string>
+    <string name="analytics_template_corner">Уголок</string>
     <string name="corner">Уголок</string>
     <string name="dvutavr">Двутавр</string>
     <string name="shveller">Швеллер</string>
     <string name="shestigrannik">Шестигранник</string>
     <string name="armatura">Арматура</string>
-    <string name="heightH">Высота h</string>
-    <string name="height">Высота</string>
-    <string name="thicknessS">Толщина S</string>
-    <string name="thicknessText">Толщина</string>
-    <string name="widthBase">Ширина полки b</string>
-    <string name="width">Ширина</string>
-    <string name="thicknessBase">Толщина полки</string>
-    <string name="shestigrannikTemp">Расстояние между гранями S</string>
-    <string name="meter">м</string>
-    <string name="gost_24045_94">ГОСТ 24045–94</string>
-    <string name="lengthA">Длина А</string>
-    <string name="lengthB">Длина B</string>
-    <string name="New">Новый</string>
+    <string name="analytics_template">Арматура</string>
+    <string name="custom">Произвольный</string>
+    <string name="site">Сторона</string>
+
+    <!-- Patterns -->
     <string name="chechevich_rifl">Чечевичное рифление</string>
     <string name="romb_rifl">Ромбическое рифление</string>
-    <string name="shveller_gost_8240_97">Швеллер ГОСТ 8240–97</string>
-    <string name="gost_8240_97">ГОСТ 8240–97</string>
-    <string name="quanity">Количество</string>
+
+    <!-- Units -->
+    <string name="kgm3">кг/м³</string>
+    <string name="gsm3">г/см³</string>
+    <string name="millimetre">мм</string>
+    <string name="unit_mm">мм</string>
+    <string name="meter">м</string>
+    <string name="unit_meter">м</string>
+    <string name="kg">кг.</string>
+    <string name="unit_kg">кг</string>
+    <string name="rub">руб</string>
+
+    <!-- Cost -->
     <string name="costPerKg">Цена за кг</string>
     <string name="cost">Цена</string>
-    <string name="rub">руб</string>
-    <string name="kolvo">Кол-во</string>
-    <string name="listWithRombRifl">Лист с ромбическим рифлением</string>
-    <string name="listWithChechevichRifl">Лист с чечевичным рифлением</string>
+
+    <!-- GOST Standards -->
+    <string name="gostList">Список ГОСТов</string>
+    <string name="usableGostsList">Список используемых ГОСТов</string>
+    <string name="weldingSeams">Сварные швы</string>
+    <string name="gost_24045_94">ГОСТ 24045–94</string>
+    <string name="gost_8240_97">ГОСТ 8240–97</string>
+    <string name="shveller_gost_8240_97">Швеллер ГОСТ 8240–97</string>
+    <string name="gost_57837_2017">ГОСТ 57837–2017</string>
     <string name="dvutavr_gost_57837_2017">Двутавр ГОСТ 57837–2017</string>
     <string name="dvutavr_gost_8239_89">Двутавр ГОСТ 8239–89</string>
-    <string name="number">Номер</string>
-    <string name="dvutavr_gost_26020_83">Двутавр ГОСТ 26020–83</string>
-    <string name="submit_error">Сообщить об ошибке</string>
-    <string name="version">v1.3.4</string>
-    <string name="gost_8568_77">ГОСТ 8568–77</string>
-    <string name="gost_26020_83">ГОСТ 26020–83</string>
-    <string name="gost_57836_2017">ГОСТ 57837–2017</string>
     <string name="gost_8239_89">ГОСТ 8239–89</string>
-    <string name="inDevelop">В разработке</string>
-    <string name="calculateMetall">Расчет металлопроката</string>
-    <string name="gostList">Список ГОСТов</string>
-    <string name="weldingSeams">Сварные швы</string>
-    <string name="deflectionBeamCalculate">Расчет балки на прогиб</string>
-    <string name="usableGostsList">Список используемых ГОСТов</string>
+    <string name="dvutavr_gost_26020_83">Двутавр ГОСТ 26020–83</string>
+    <string name="gost_26020_83">ГОСТ 26020–83</string>
+    <string name="gost_8568_77">ГОСТ 8568–77</string>
+    <string name="gost_5264_80">ГОСТ 5264-80</string>
+    <string name="gost_34028_2016">ГОСТ 34028-2016</string>
+    <string name="gost_57836_2017">ГОСТ 57837–2017</string>
+
+    <!-- GOST Descriptions -->
     <string name="Gost26020_83_Name">Двутавры стальные горячекатные с параллельными гранями полок</string>
     <string name="Gost8239_89_Name">Двутавры стальные горячекатные</string>
     <string name="Gost8240_97_Name">Швеллеры стальные горячекатные</string>
     <string name="Gost57836_2017_Name">Двутавры стальные горячекатные с параллельными гранями полок</string>
     <string name="Gost24045_94_Name">Профили стальные листовые гнутые с трапециевидными гофрами для строительства</string>
     <string name="Gost8568_77_Name">Листы стальные с ромбическим и чечевичным рифлением</string>
-    <string name="priamiugolniy_profile">Прямоугольный профиль</string>
-    <string name="Profile">Профиль</string>
-    <string name="nominal_diametr">Номинальный диаметр</string>
-    <string name="gost_34028_2016">ГОСТ 34028-2016</string>
     <string name="Gost34028_2016_Name">Прокат арматурный для железобетонных конструкций</string>
 
+    <!-- Calculation Results -->
+    <string name="mass_unit">Масса единицы</string>
+    <string name="mass_unit_format">Масса единицы: %.2f кг</string>
+    <string name="total_mass_unit_format">\nОбщая масса: %.2f кг</string>
+    <string name="length_unit">Длина единицы</string>
+    <string name="length_unit_format">Длина единицы: %.2f м</string>
+    <string name="total_length_unit_format">\nОбщая длина: %.2f м</string>
+    <string name="unit_cost_format">\nСтоимость единицы: %.2f руб</string>
+    <string name="total_unit_cost_format">\nОбщая стоимость: %.2f руб</string>
 
+    <!-- Dialogs -->
+    <string name="gost_info_dialog_title">Уведомление</string>
+    <string name="gost_info_dialog_message">Уважаемые пользователи,\nВ настоящее время ведется разработка упрощенного справочника\nпо стандартам ГОСТа на сварные швы.\nНа данный момент вы можете ознакомиться\nс оригинальным текстом ГОСТа.\nБлагодарим за ваше понимание!</string>
+
+    <!-- Errors -->
+    <string name="error_empty_fields">Заполните все поля!</string>
+    <string name="error_negative_values">Значения должны быть > 0</string>
+    <string name="error_no_material">Сначала выберите материал</string>
+    <string name="error_empty_length">Укажите длину арматуры!</string>
+    <string name="error_negative_length">Длина должна быть > 0</string>
+    <string name="error_empty_mass">Укажите массу арматуры!</string>
+    <string name="error_negative_mass">Масса должна быть > 0</string>
+    <string name="error_no_diameter">Выберите диаметр арматуры!</string>
+    <string name="error_negative_quantity">Количество должно быть > 0</string>
+    <string name="error_number_format">Ошибка в формате чисел</string>
+
+    <!-- Logs -->
+    <string name="log_init_error">One or more EditText fields are null!</string>
+    <string name="log_density_error">Invalid index for density array</string>
+    <string name="log_parsing_error">Parsing error: </string>
+
+    <!-- Analytics -->
+    <string name="analytics_type_weight">Вес</string>
+    <string name="analytics_type_length">Длина</string>
+    <string name="analytics_key_type">Тип</string>
+    <string name="analytics_key_template">Шаблон</string>
 </resources>

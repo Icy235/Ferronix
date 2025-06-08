@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat;
 
 import com.calculate.ferronix.R;
 
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
@@ -34,7 +35,6 @@ public class CirclePipeCalculate extends AppCompatActivity {
 
     private String[] materials;
 
-    // Массивы для материалов
     private final String[] aluminumGrades = {
             "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
     };
@@ -47,7 +47,7 @@ public class CirclePipeCalculate extends AppCompatActivity {
             "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
     };
     private final double[] stainlessSteelDensities = {
-            7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
+            7.70, 7.70, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
     private final String[] blackMetalGrades = {
@@ -56,10 +56,9 @@ public class CirclePipeCalculate extends AppCompatActivity {
     };
     private final double[] blackMetalDensities = {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85,
-            7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
+            7.85, 7.85, 7.85, 7.85, 7.85, 8.15, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
     };
 
-    // Константы для преобразования единиц
     private static final double MM_TO_CM = 0.1;
     private static final double G_PER_CM3_TO_KG_PER_CM3 = 0.001;
 
@@ -70,9 +69,18 @@ public class CirclePipeCalculate extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.circle_pipe_calculate);
 
-        materials = new String[]{"Черный металл", "Нержавеющая сталь", "Алюминий"};
+        materials = new String[]{
+                getString(R.string.material_black_metal),
+                getString(R.string.material_stainless_steel),
+                getString(R.string.material_aluminum)
+        };
 
-        // Инициализация элементов
+        initializeViews();
+        setupListeners();
+        setActiveButton(btnGoWeight, btnGoLength);
+    }
+
+    private void initializeViews() {
         editTextDensity = findViewById(R.id.editTextDensity);
         editTextLength = findViewById(R.id.editTextLength);
         editTextWall = findViewById(R.id.editTextWallCirclePipeW);
@@ -86,22 +94,12 @@ public class CirclePipeCalculate extends AppCompatActivity {
         btnMark = findViewById(R.id.btnMark);
         btnGoWeight = findViewById(R.id.btnGoWeight);
         btnGoLength = findViewById(R.id.btnGoLength);
-        Button btnCalculate = findViewById(R.id.btnCalculateCirclePipeW);
+    }
 
-        // Проверка инициализации
-        if (editTextDensity == null || editTextLength == null || editTextWall == null || editTextDiametr == null) {
-            Log.e("InitError", "One or more EditText fields are null!");
-            finish();
-        }
-
-        // Устанавливаем активную кнопку при запуске
-        setActiveButton(btnGoWeight, btnGoLength);
-
-        // Обработчики кликов
-        btnCalculate.setOnClickListener(v -> {
-            // Выполнение тактильной обратной связи
+    private void setupListeners() {
+        findViewById(R.id.btnCalculateCirclePipeW).setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            if (textViewLength.getText().toString().equals("Масса")) {
+            if (textViewLength.getText().toString().equals(getString(R.string.mass_unit))) {
                 calculateWeight();
             } else {
                 calculateLength();
@@ -119,41 +117,32 @@ public class CirclePipeCalculate extends AppCompatActivity {
         });
 
         btnGoWeight.setOnClickListener(v -> {
-            // Переключаем на расчет массы
-            textViewLength.setText("Длина");
-            textViewUnit.setText("м");
-            editTextLength.setHint("Длина");
-
-            // Устанавливаем активную кнопку
+            textViewLength.setText(R.string.length_unit);
+            textViewUnit.setText(R.string.unit_meter);
+            editTextLength.setHint(R.string.length_unit);
             setActiveButton(btnGoWeight, btnGoLength);
         });
 
         btnGoLength.setOnClickListener(v -> {
-            // Переключаем на расчет длины
-            textViewLength.setText("Масса");
-            textViewUnit.setText("кг");
-            editTextLength.setHint("Масса");
-
-            // Устанавливаем активную кнопку
+            textViewLength.setText(R.string.mass_unit);
+            textViewUnit.setText(R.string.unit_kg);
+            editTextLength.setHint(R.string.mass_unit);
             setActiveButton(btnGoLength, btnGoWeight);
         });
     }
 
     @SuppressLint("ResourceAsColor")
     private void setActiveButton(Button activeButton, Button inactiveButton) {
-        // Устанавливаем цвет фона и текста для активной кнопки
-        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))); // Белый фон
-        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black)); // Черный текст
-
-        // Убираем подсветку и устанавливаем цвет текста для неактивной кнопки
-        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent))); // Прозрачный фон
-        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white)); // Белый текст
+        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
+        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black));
+        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent)));
+        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
     private void handleMarkButtonClick() {
         String material = btnMaterial.getText().toString();
         if (material.equals(getString(R.string.material))) {
-            Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_no_material, Toast.LENGTH_SHORT).show();
         } else {
             showGradeMenu(material);
         }
@@ -167,7 +156,7 @@ public class CirclePipeCalculate extends AppCompatActivity {
         popupMenu.setOnMenuItemClickListener(item -> {
             btnMaterial.setText(item.getTitle());
             btnMark.setText(R.string.mark);
-            editTextDensity.setText(""); // Сброс плотности при смене материала
+            editTextDensity.setText("");
             return true;
         });
         popupMenu.show();
@@ -205,10 +194,10 @@ public class CirclePipeCalculate extends AppCompatActivity {
 
             int index = Arrays.asList(grades).indexOf(grade);
             if (index != -1 && index < densities.length) {
-                String formattedDensity = String.format(Locale.US, "%.2f", densities[index]);
+                String formattedDensity = String.format(Locale.getDefault(), "%.2f", densities[index]);
                 editTextDensity.setText(formattedDensity);
             } else {
-                Log.e("DensityError", "Invalid index for density array");
+                Log.e("DensityError", getString(R.string.log_density_error));
             }
             return true;
         });
@@ -217,7 +206,6 @@ public class CirclePipeCalculate extends AppCompatActivity {
 
     private void calculateLength() {
         try {
-            // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
             String lengthStr = editTextLength.getText().toString().trim();
             String diametrStr = editTextDiametr.getText().toString().trim();
@@ -226,82 +214,65 @@ public class CirclePipeCalculate extends AppCompatActivity {
             String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || lengthStr.isEmpty() || diametrStr.isEmpty() || wallStr.isEmpty()) {
-                totalWeight.setText("Заполните все поля!");
+                totalWeight.setText(R.string.error_empty_fields);
                 return;
             }
 
-            // Парсим значения
-            double density = Double.parseDouble(densityStr); // г/см³
-            double length = Double.parseDouble(lengthStr); // мм
-            double diametr = Double.parseDouble(diametrStr); // мм
-            double wall = Double.parseDouble(wallStr); // мм
+            double density = Double.parseDouble(densityStr);
+            double length = Double.parseDouble(lengthStr);
+            double diametr = Double.parseDouble(diametrStr);
+            double wall = Double.parseDouble(wallStr);
 
-            // Проверка положительных значений
             if (density <= 0 || length <= 0 || diametr <= 0 || wall <= 0) {
-                totalWeight.setText("Значения должны быть > 0");
+                totalWeight.setText(R.string.error_negative_values);
                 return;
             }
 
-            // Конвертация единиц
-            double diametrCm = diametr * MM_TO_CM; // мм -> см
-            double wallCm = wall * MM_TO_CM; // мм -> см
-            double lengthCm = length * MM_TO_CM; // мм -> см
-            double innerDiametrCm = diametrCm - 2 * wallCm; // внутренний диаметр в см
+            double diametrCm = diametr * MM_TO_CM;
+            double wallCm = wall * MM_TO_CM;
+            double lengthCm = length * MM_TO_CM;
+            double innerDiametrCm = diametrCm - 2 * wallCm;
 
-            // Площадь поперечного сечения трубы
-            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4; // см²
+            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4;
+            double volume = area * lengthCm;
+            double weight = volume * density * G_PER_CM3_TO_KG_PER_CM3;
 
-            // Объем трубы
-            double volume = area * lengthCm; // см³
-
-            // Вес одной штуки
-            double weight = volume * density * G_PER_CM3_TO_KG_PER_CM3; // кг
-
-            // Форматируем итоговый текст
             StringBuilder resultText = new StringBuilder();
 
-            // Проверяем, введено ли количество
             if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Масса: %.2f кг", weight));
+                resultText.append(String.format(Locale.getDefault(), getString(R.string.mass_unit_format), weight));
             } else {
                 double quantity = Double.parseDouble(quantityStr);
-                // Проверка положительных значений
                 if (quantity <= 0) {
-                    totalWeight.setText("Количество должно быть > 0");
+                    totalWeight.setText(R.string.error_negative_quantity);
                     return;
                 }
-                double totalWeightValue = weight * quantity; // общая масса
 
+                double totalWeightValue = weight * quantity;
+                resultText.append(String.format(Locale.getDefault(), getString(R.string.mass_unit_format), weight))
+                        .append(String.format(Locale.getDefault(), getString(R.string.total_mass_unit_format), totalWeightValue));
 
-                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
-                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f кг", totalWeightValue));
-                // Если цена за кг указана, добавляем стоимость
                 if (!pricePerKgStr.isEmpty()) {
                     double pricePerKg = Double.parseDouble(pricePerKgStr);
-                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
-                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+                    double totalCost = pricePerKg * weight * quantity;
+                    double pricePerUnit = totalCost / quantity;
 
-                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                    resultText.append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerUnit))
+                            .append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
                 }
             }
 
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Длина");
-            analytics.put("Шаблон", "Круглая труба");
-            NetworkHelper.sendCalculationData(this, analytics);
-            // Выводим результат
+            sendAnalytics(getString(R.string.analytics_type_length));
             totalWeight.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
-            totalWeight.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            totalWeight.setText(R.string.error_number_format);
+            Log.e("CalcError", getString(R.string.log_parsing_error) + e.getMessage());
         }
     }
 
     private void calculateWeight() {
         try {
-            // Получаем и проверяем значения
             String densityStr = editTextDensity.getText().toString().trim();
             String weightStr = editTextLength.getText().toString().trim();
             String diametrStr = editTextDiametr.getText().toString().trim();
@@ -310,72 +281,66 @@ public class CirclePipeCalculate extends AppCompatActivity {
             String quantityStr = editTextQuantity.getText().toString().trim();
 
             if (densityStr.isEmpty() || weightStr.isEmpty() || diametrStr.isEmpty() || wallStr.isEmpty()) {
-                totalWeight.setText("Заполните все поля!");
+                totalWeight.setText(R.string.error_empty_fields);
                 return;
             }
 
-            // Парсим значения
-            double density = Double.parseDouble(densityStr); // г/см³
-            double weight = Double.parseDouble(weightStr); // кг
-            double diametr = Double.parseDouble(diametrStr); // мм
-            double wall = Double.parseDouble(wallStr); // мм
+            double density = Double.parseDouble(densityStr);
+            double weight = Double.parseDouble(weightStr);
+            double diametr = Double.parseDouble(diametrStr);
+            double wall = Double.parseDouble(wallStr);
 
-            // Проверка положительных значений
             if (density <= 0 || weight <= 0 || diametr <= 0 || wall <= 0) {
-                totalWeight.setText("Значения должны быть > 0");
+                totalWeight.setText(R.string.error_negative_values);
                 return;
             }
 
-            // Конвертация единиц
-            double diametrCm = diametr * MM_TO_CM; // мм -> см
-            double wallCm = wall * MM_TO_CM; // мм -> см
-            double innerDiametrCm = diametrCm - 2 * wallCm; // внутренний диаметр в см
+            double diametrCm = diametr * MM_TO_CM;
+            double wallCm = wall * MM_TO_CM;
+            double innerDiametrCm = diametrCm - 2 * wallCm;
 
-            // Площадь поперечного сечения трубы
-            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4; // см²
+            double area = Math.PI * (Math.pow(diametrCm, 2) - Math.pow(innerDiametrCm, 2)) / 4;
+            double length = weight / (area * density * G_PER_CM3_TO_KG_PER_CM3);
 
-            // Длина трубы
-            double length = weight / (area * density * G_PER_CM3_TO_KG_PER_CM3); // длина в метрах
-
-            // Форматируем итоговый текст
             StringBuilder resultText = new StringBuilder();
 
-            // Проверяем, введено ли количество
             if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Длина: %.2f м", length));
+                resultText.append(String.format(Locale.getDefault(), getString(R.string.length_unit_format), length));
             } else {
                 double quantity = Double.parseDouble(quantityStr);
-                // Проверка положительных значений
                 if (quantity <= 0) {
-                    totalWeight.setText("Количество должно быть > 0");
+                    totalWeight.setText(R.string.error_negative_quantity);
                     return;
                 }
 
-                double totalLengthValue = length * quantity; // общая длина
-                resultText.append(String.format(Locale.US, "Длина единицы: %.2f м", length));
-                resultText.append(String.format(Locale.US, "\nОбщая длина: %.2f м", totalLengthValue));
+                double totalLengthValue = length * quantity;
+                resultText.append(String.format(Locale.getDefault(), getString(R.string.length_unit_format), length))
+                        .append(String.format(Locale.getDefault(), getString(R.string.total_length_unit_format), totalLengthValue));
 
-                // Если цена за кг указана, добавляем стоимость
                 if (!pricePerKgStr.isEmpty()) {
                     double pricePerKg = Double.parseDouble(pricePerKgStr);
-                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
-                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+                    double totalCost = pricePerKg * weight * quantity;
+                    double pricePerUnit = totalCost / quantity;
 
-                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                    resultText.append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerUnit))
+                            .append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
                 }
             }
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Масса");
-            analytics.put("Шаблон", "Круглая труба");
-            NetworkHelper.sendCalculationData(this, analytics);
-            // Выводим результат
+
+            sendAnalytics(getString(R.string.analytics_type_weight));
             totalWeight.setText(resultText.toString());
 
         } catch (NumberFormatException e) {
-            totalWeight.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            totalWeight.setText(R.string.error_number_format);
+            Log.e("CalcError", getString(R.string.log_parsing_error) + e.getMessage());
         }
+    }
+
+    private void sendAnalytics(String calculationType) {
+        Map<String, String> analytics = new HashMap<>();
+        analytics.put(getString(R.string.analytics_key_type), calculationType);
+        analytics.put(getString(R.string.analytics_key_template), getString(R.string.analytics_template_pipe));
+        NetworkHelper.sendCalculationData(this, analytics);
     }
 
     public void btnBack(View view) {

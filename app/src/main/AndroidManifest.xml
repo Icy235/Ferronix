@@ -275,13 +275,7 @@
             tools:ignore="DiscouragedApi,LockedOrientationActivity">
         </activity>
 
-        <!-- Расчет профильной балки-->
-        <activity
-            android:name="Beams.ProfileBeam"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity">
-        </activity>
+
 
         <!-- Меню профилей-->
         <activity
@@ -309,7 +303,18 @@
 
         <!-- ГОСТ 34028_2016-->
         <activity
-            android:name=".Sortament.gostPdf.Gost34028_2016"
+            android:name=".Sortament.gostPdf.Gost34028_2016_pdf"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.DOWNLOAD_COMPLETE" />
+            </intent-filter>
+        </activity>
+
+        <!-- ГОСТ 5264_80-->
+        <activity
+            android:name=".Sortament.gostPdf.Gost5264_80_pdf"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="DiscouragedApi,LockedOrientationActivity">

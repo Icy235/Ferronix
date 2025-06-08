@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.calculate.ferronix.R;
-import com.calculate.ferronix.Sortament.gostPdf.Gost34028_2016;
+import com.calculate.ferronix.Sortament.gostPdf.Gost34028_2016_pdf;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -30,18 +30,17 @@ import Control.NetworkHelper;
 
 public class ArmaturaCalculate extends AppCompatActivity {
 
-    private EditText editTextLength, editTextPricePerPice, editTextQuantity;
+    private EditText editTextLength, editTextPricePerPiece, editTextQuantity;
     private TextView totalWeight, textViewLength, textViewUnit;
     private Button btnDiametr, btnGoWeight, btnGoLength;
 
-    // Массивы для арматуры
-    private final String[] NominalDiametr = {
+    private final String[] nominalDiameters = {
             "4.0", "4.5", "5.0", "5.5", "6.0", "6.5", "7.0", "7.5", "8.0", "8.5",
             "9.0", "9.5", "10.0", "11.0", "12.0", "13.0", "14.0", "15.0", "16.0",
             "17.0", "18.0", "19.0", "20.0", "22.0", "25.0", "28.0", "32.0", "36.0", "40.0"
     };
 
-    private final double[] ArmaturaMass1Meter = {
+    private final double[] armaturaMassPerMeter = {
             0.099, 0.125, 0.154, 0.187, 0.222, 0.261, 0.302, 0.347, 0.395, 0.445,
             0.499, 0.556, 0.617, 0.746, 0.888, 1.042, 1.208, 1.387, 1.578, 1.782,
             1.998, 2.226, 2.466, 2.984, 3.853, 4.834, 6.313, 7.990, 9.865
@@ -53,25 +52,27 @@ public class ArmaturaCalculate extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.armatura_calculate);
 
-        // Инициализация элементов интерфейса
+        initializeViews();
+        setupListeners();
+        setActiveButton(btnGoWeight, btnGoLength);
+    }
+
+    private void initializeViews() {
         editTextLength = findViewById(R.id.editTextLength);
-        editTextPricePerPice = findViewById(R.id.editTextPricePerPice);
+        editTextPricePerPiece = findViewById(R.id.editTextPricePerPice);
         editTextQuantity = findViewById(R.id.editTextQuantity);
         totalWeight = findViewById(R.id.textViewWeightTotal);
         textViewLength = findViewById(R.id.textViewLength);
         textViewUnit = findViewById(R.id.textViewUnit);
-        Button btnCalculate = findViewById(R.id.btnCalculate);
         btnDiametr = findViewById(R.id.btnDiametr);
         btnGoWeight = findViewById(R.id.btnGoWeight);
         btnGoLength = findViewById(R.id.btnGoLength);
+    }
 
-        // Устанавливаем активную кнопку при запуске
-        setActiveButton(btnGoWeight, btnGoLength);
-
-        // Обработчики кликов
-        btnCalculate.setOnClickListener(v -> {
+    private void setupListeners() {
+        findViewById(R.id.btnCalculate).setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            if (textViewLength.getText().toString().equals("Масса")) {
+            if (textViewLength.getText().toString().equals(getString(R.string.mass_unit))) {
                 calculateWeight();
             } else {
                 calculateLength();
@@ -84,16 +85,16 @@ public class ArmaturaCalculate extends AppCompatActivity {
         });
 
         btnGoWeight.setOnClickListener(v -> {
-            textViewLength.setText("Длина");
-            textViewUnit.setText("м");
-            editTextLength.setHint("Длина");
+            textViewLength.setText(R.string.length_unit);
+            textViewUnit.setText(R.string.unit_meter);
+            editTextLength.setHint(R.string.length_unit);
             setActiveButton(btnGoWeight, btnGoLength);
         });
 
         btnGoLength.setOnClickListener(v -> {
-            textViewLength.setText("Масса");
-            textViewUnit.setText("кг");
-            editTextLength.setHint("Масса");
+            textViewLength.setText(R.string.mass_unit);
+            textViewUnit.setText(R.string.unit_kg);
+            editTextLength.setHint(R.string.mass_unit);
             setActiveButton(btnGoLength, btnGoWeight);
         });
     }
@@ -108,160 +109,153 @@ public class ArmaturaCalculate extends AppCompatActivity {
 
     private void showDiametrMenu() {
         PopupMenu popupMenu = new PopupMenu(this, btnDiametr);
-        for (String diameter : NominalDiametr) {
+        for (String diameter : nominalDiameters) {
             popupMenu.getMenu().add(diameter);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
-            String selectedDiametr = Objects.requireNonNull(item.getTitle()).toString();
-            btnDiametr.setText(selectedDiametr);
+            btnDiametr.setText(Objects.requireNonNull(item.getTitle()));
             return true;
         });
         popupMenu.show();
     }
 
+    private int getSelectedDiameterIndex() {
+        String selectedDiametr = btnDiametr.getText().toString();
+        return Arrays.asList(nominalDiameters).indexOf(selectedDiametr);
+    }
+
+    private DecimalFormat getCostFormatter() {
+        DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.getDefault());
+        symbols.setGroupingSeparator(' ');
+        return new DecimalFormat("#,##0.00", symbols);
+    }
+
     private void calculateLength() {
         try {
-            String lengthStr = editTextLength.getText().toString().trim();
-            String pricePerPiceStr = editTextPricePerPice.getText().toString().trim();
+            String inputStr = editTextLength.getText().toString().trim();
+            if (inputStr.isEmpty()) {
+                totalWeight.setText(R.string.error_empty_length);
+                return;
+            }
+
+            double length = Double.parseDouble(inputStr);
+            if (length <= 0) {
+                totalWeight.setText(R.string.error_negative_length);
+                return;
+            }
+
+            int index = getSelectedDiameterIndex();
+            if (index == -1) {
+                totalWeight.setText(R.string.error_no_diameter);
+                return;
+            }
+
+            double massPerMeter = armaturaMassPerMeter[index];
+            double weight = massPerMeter * length;
+            StringBuilder result = new StringBuilder();
             String quantityStr = editTextQuantity.getText().toString().trim();
 
-            if (lengthStr.isEmpty()) {
-                totalWeight.setText("Укажите длину арматуры!");
-                return;
-            }
-
-            double length = Double.parseDouble(lengthStr);
-            if (length <= 0) {
-                totalWeight.setText("Длина должна быть > 0");
-                return;
-            }
-
-            String selectedDiametr = btnDiametr.getText().toString();
-            int index = Arrays.asList(NominalDiametr).indexOf(selectedDiametr);
-            if (index == -1) {
-                totalWeight.setText("Выберите диаметр арматуры!");
-                return;
-            }
-
-            double massPerMeter = ArmaturaMass1Meter[index];
-            double weight = massPerMeter * length;
-
-            StringBuilder resultText = new StringBuilder();
             if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Масса арматуры: %.3f кг", weight));
+                result.append(String.format(Locale.getDefault(), getString(R.string.mass_unit_format), weight));
             } else {
                 double quantity = Double.parseDouble(quantityStr);
                 if (quantity <= 0) {
-                    totalWeight.setText("Количество должно быть > 0");
+                    totalWeight.setText(R.string.error_negative_quantity);
                     return;
                 }
 
                 double totalWeightValue = weight * quantity;
-                resultText.append(String.format(Locale.US, "Масса еденицы: %.3f кг", weight));
-                resultText.append(String.format(Locale.US, "\nОбщая масса: %.3f кг", totalWeightValue));
+                result.append(String.format(Locale.getDefault(), getString(R.string.mass_unit_format), weight))
+                        .append(String.format(Locale.getDefault(), getString(R.string.total_mass_unit_format), totalWeightValue));
 
-                if (!pricePerPiceStr.isEmpty()) {
-                    double pricePerPiece = Double.parseDouble(pricePerPiceStr);
+                String priceStr = editTextPricePerPiece.getText().toString().trim();
+                if (!priceStr.isEmpty()) {
+                    double pricePerPiece = Double.parseDouble(priceStr);
                     double totalCost = pricePerPiece * quantity;
-                    double pricePerUnit = pricePerPiece;
-
-
-                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-                    symbols.setGroupingSeparator(' ');
-                    DecimalFormat costFormatter = new DecimalFormat("#,##0.00", symbols);
-
-                    resultText.append(String.format(Locale.US, "\nЦена за еденицу: %s руб", costFormatter.format(pricePerUnit)));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %s руб", costFormatter.format(totalCost)));
+                    result.append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerPiece))
+                            .append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
                 }
             }
 
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Длина");
-            analytics.put("Шаблон", "Арматура");
-            NetworkHelper.sendCalculationData(this, analytics);
-
-            totalWeight.setText(resultText.toString());
+            sendAnalytics(getString(R.string.analytics_type_length));
+            totalWeight.setText(result.toString());
 
         } catch (NumberFormatException e) {
-            totalWeight.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            totalWeight.setText(R.string.error_number_format);
+            Log.e("CalcError", getString(R.string.log_parsing_error) + e.getMessage());
         }
     }
 
     private void calculateWeight() {
         try {
-            String massStr = editTextLength.getText().toString().trim();
-            String pricePerPiceStr = editTextPricePerPice.getText().toString().trim();
+            String inputStr = editTextLength.getText().toString().trim();
+            if (inputStr.isEmpty()) {
+                totalWeight.setText(R.string.error_empty_mass);
+                return;
+            }
+
+            double mass = Double.parseDouble(inputStr);
+            if (mass <= 0) {
+                totalWeight.setText(R.string.error_negative_mass);
+                return;
+            }
+
+            int index = getSelectedDiameterIndex();
+            if (index == -1) {
+                totalWeight.setText(R.string.error_no_diameter);
+                return;
+            }
+
+            double massPerMeter = armaturaMassPerMeter[index];
+            double length = mass / massPerMeter;
+            StringBuilder result = new StringBuilder();
             String quantityStr = editTextQuantity.getText().toString().trim();
 
-            if (massStr.isEmpty()) {
-                totalWeight.setText("Укажите массу арматуры!");
-                return;
-            }
-
-            double mass = Double.parseDouble(massStr);
-            if (mass <= 0) {
-                totalWeight.setText("Масса должна быть > 0");
-                return;
-            }
-
-            String selectedDiametr = btnDiametr.getText().toString();
-            int index = Arrays.asList(NominalDiametr).indexOf(selectedDiametr);
-            if (index == -1) {
-                totalWeight.setText("Выберите диаметр арматуры!");
-                return;
-            }
-
-            double massPerMeter = ArmaturaMass1Meter[index];
-            double length = mass / massPerMeter;
-
-            StringBuilder resultText = new StringBuilder();
             if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Длина арматуры: %.2f м", length));
+                result.append(String.format(Locale.getDefault(), getString(R.string.length_unit_format), length));
             } else {
                 double quantity = Double.parseDouble(quantityStr);
                 if (quantity <= 0) {
-                    totalWeight.setText("Количество должно быть > 0");
+                    totalWeight.setText(R.string.error_negative_quantity);
                     return;
                 }
 
-                double totalLengthValue = length * quantity;
-                resultText.append(String.format(Locale.US, "Длина еденицы: %.2f м", length));
-                resultText.append(String.format(Locale.US, "\nОбщая длина: %.2f м", totalLengthValue));
+                double totalLength = length * quantity;
+                result.append(String.format(Locale.getDefault(), getString(R.string.length_unit_format), length))
+                        .append(String.format(Locale.getDefault(), getString(R.string.total_length_unit_format), totalLength));
 
-                if (!pricePerPiceStr.isEmpty()) {
-                    double pricePerPiece = Double.parseDouble(pricePerPiceStr);
+                String priceStr = editTextPricePerPiece.getText().toString().trim();
+                if (!priceStr.isEmpty()) {
+                    double pricePerPiece = Double.parseDouble(priceStr);
                     double totalCost = pricePerPiece * quantity;
-                    double pricePerUnit = pricePerPiece;
-
-                    DecimalFormatSymbols symbols = new DecimalFormatSymbols(Locale.US);
-                    symbols.setGroupingSeparator(' ');
-                    DecimalFormat costFormatter = new DecimalFormat("#,##0.00", symbols);
-
-                    resultText.append(String.format(Locale.US, "\nЦена за еденицу: %s руб", costFormatter.format(pricePerUnit)));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %s руб", costFormatter.format(totalCost)));
+                    result.append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerPiece))
+                            .append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
                 }
             }
 
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Вес");
-            analytics.put("Шаблон", "Арматура");
-            NetworkHelper.sendCalculationData(this, analytics);
-
-            totalWeight.setText(resultText.toString());
+            sendAnalytics(getString(R.string.analytics_type_weight));
+            totalWeight.setText(result.toString());
 
         } catch (NumberFormatException e) {
-            totalWeight.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            totalWeight.setText(R.string.error_number_format);
+            Log.e("CalcError", getString(R.string.log_parsing_error) + e.getMessage());
         }
+    }
+
+    private void sendAnalytics(String calculationType) {
+        Map<String, String> analytics = new HashMap<>();
+        analytics.put(getString(R.string.analytics_key_type), calculationType);
+        analytics.put(getString(R.string.analytics_key_template), getString(R.string.analytics_template));
+        NetworkHelper.sendCalculationData(this, analytics);
     }
 
     public void btnBack(View view) {
         startActivity(new Intent(this, SelectForm.class));
         finish();
     }
+
     public void btnGost34028_2016_pdf(View view) {
-        startActivity(new Intent(this, Gost34028_2016.class));
+        startActivity(new Intent(this, Gost34028_2016_pdf.class));
         finish();
     }
 }

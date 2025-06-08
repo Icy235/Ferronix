@@ -1,0 +1,169 @@
+<resources>
+    <!-- App Info -->
+    <string name="app_name" translatable="false">FERRONIX</string>
+    <string name="version" translatable="false">v1.3.5</string>
+    <string name="inDevelop">İnkişaf etdirilir</string>
+    <string name="submit_error">Xəta haqqında bildir</string>
+
+    <!-- Main UI -->
+    <string name="back">Geri</string>
+    <string name="save">Yadda saxla</string>
+    <string name="New">Yeni</string>
+    <string name="close">Bağla</string>
+    <string name="calculate">Hesablama</string>
+    <string name="history">Tarixçə</string>
+    <string name="ChoosingForm">Şablon seçimi</string>
+    <string name="calculateMetall">Metal hesablaması</string>
+    <string name="calculateWeight">Çəki hesablaması</string>
+    <string name="calculateLeght">Uzunluq hesablaması</string>
+    <string name="deflectionBeamCalculate">Şüanın əyilmə hesablaması</string>
+
+    <!-- Materials -->
+    <string name="material">Material</string>
+    <string name="mark">Marka</string>
+    <string name="black_metal">Qara metal</string>
+    <string name="material_black_metal">Qara metal</string>
+    <string name="stainless_steel">Paslanmayan polad</string>
+    <string name="material_stainless_steel">Paslanmayan polad</string>
+    <string name="aluminum">Alüminium</string>
+    <string name="material_aluminum">Alüminium</string>
+    <string name="steel_10">Polad 10</string>
+    <string name="steel_45">Polad 45</string>
+    <string name="grade_08Х17Т" translatable="false">08Х17Т</string>
+    <string name="grade_20Х13" translatable="false">20Х13</string>
+
+    <!-- Measurements -->
+    <string name="density">Sıxlıq</string>
+    <string name="length">Uzunluq</string>
+    <string name="lengthL">Uzunluq L</string>
+    <string name="lengthA">Uzunluq A</string>
+    <string name="lengthB">Uzunluq B</string>
+    <string name="mass">Kütlə</string>
+    <string name="weight">Çəki</string>
+    <string name="height">Hündürlük</string>
+    <string name="heightH">Hündürlük h</string>
+    <string name="width">En</string>
+    <string name="thickness">Qalınlıq</string>
+    <string name="thicknessText">Qalınlıq</string>
+    <string name="thicknessS">Qalınlıq S</string>
+    <string name="sideA">Tərəf A</string>
+    <string name="sideB">Tərəf B</string>
+    <string name="squareA">Kvadratın tərəfi A</string>
+    <string name="Diametr">Diametr</string>
+    <string name="nominal_diametr">Nominal diametr</string>
+    <string name="wall">Divar qalınlığı</string>
+    <string name="widthBase">Rəf eni b</string>
+    <string name="thicknessBase">Rəf qalınlığı</string>
+    <string name="shestigrannikTemp">Üzlər arası məsafə S</string>
+    <string name="number">Nömrə</string>
+    <string name="quanity">Say</string>
+    <string name="kolvo">Say</string>
+
+    <!-- Product Types -->
+    <string name="circle">Çubuq</string>
+    <string name="analytics_template_rod">Çubuq</string>
+    <string name="squareProfile">Kvadrat profil</string>
+    <string name="priamiugolniy_profile">Düzbucaqlı profil</string>
+    <string name="Profile">Profil</string>
+    <string name="pipe">Boru</string>
+    <string name="circlePipe">Dairəvi boru</string>
+    <string name="analytics_template_pipe">Dairəvi boru</string>
+    <string name="profilePipe">Profil boru</string>
+    <string name="list">Lövhə</string>
+    <string name="customList">İxtiyari lövhə</string>
+    <string name="listWithRombRifl">Rombik relyefli lövhə</string>
+    <string name="listWithChechevichRifl">Mercimek relyefli lövhə</string>
+    <string name="ugolok">Künc</string>
+    <string name="analytics_template_corner">Künc</string>
+    <string name="corner">Künc</string>
+    <string name="dvutavr">İştaver</string>
+    <string name="shveller">Şveler</string>
+    <string name="shestigrannik">Altıbucaqlı</string>
+    <string name="armatura">Armatur</string>
+    <string name="analytics_template">Armatur</string>
+    <string name="custom">İxtiyari</string>
+    <string name="site">Tərəf</string>
+
+    <!-- Patterns -->
+    <string name="chechevich_rifl">Mercimek relyefi</string>
+    <string name="romb_rifl">Rombik relyef</string>
+
+    <!-- Units -->
+    <string name="kgm3">kq/m³</string>
+    <string name="gsm3">q/sm³</string>
+    <string name="millimetre">mm</string>
+    <string name="unit_mm">mm</string>
+    <string name="meter">m</string>
+    <string name="unit_meter">m</string>
+    <string name="kg">kq.</string>
+    <string name="unit_kg">kq</string>
+    <string name="rub">rub</string>
+
+    <!-- Cost -->
+    <string name="costPerKg">Kq üçün qiymət</string>
+    <string name="cost">Qiymət</string>
+
+    <!-- GOST Standards -->
+    <string name="gostList">GOST siyahısı</string>
+    <string name="usableGostsList">İstifadə olunan GOSTlar</string>
+    <string name="weldingSeams">Qaynaq tikişləri</string>
+    <string name="gost_24045_94">GOST 24045–94</string>
+    <string name="gost_8240_97">GOST 8240–97</string>
+    <string name="shveller_gost_8240_97">Şveler GOST 8240–97</string>
+    <string name="gost_57837_2017">GOST 57837–2017</string>
+    <string name="dvutavr_gost_57837_2017">İştaver GOST 57837–2017</string>
+    <string name="dvutavr_gost_8239_89">İştaver GOST 8239–89</string>
+    <string name="gost_8239_89">GOST 8239–89</string>
+    <string name="dvutavr_gost_26020_83">İştaver GOST 26020–83</string>
+    <string name="gost_26020_83">GOST 26020–83</string>
+    <string name="gost_8568_77">GOST 8568–77</string>
+    <string name="gost_5264_80">GOST 5264-80</string>
+    <string name="gost_34028_2016">GOST 34028-2016</string>
+    <string name="gost_57836_2017">GOST 57837–2017</string>
+
+    <!-- GOST Descriptions -->
+    <string name="Gost26020_83_Name">Paralel rəfli isti yayılmış polad iştaverlər</string>
+    <string name="Gost8239_89_Name">İsti yayılmış polad iştaverlər</string>
+    <string name="Gost8240_97_Name">İsti yayılmış polad şvelerlər</string>
+    <string name="Gost57836_2017_Name">Paralel rəfli isti yayılmış polad iştaverlər</string>
+    <string name="Gost24045_94_Name">Tikinti üçün trapezoidal dalğalı polad lövhə profilləri</string>
+    <string name="Gost8568_77_Name">Rombik və mercimek relyefli polad lövhələr</string>
+    <string name="Gost34028_2016_Name">Dəmir-beton konstruksiyalar üçün armatur prokatı</string>
+
+    <!-- Calculation Results -->
+    <string name="mass_unit">Vahid çəki</string>
+    <string name="mass_unit_format">Vahid çəki: %.2f kq</string>
+    <string name="total_mass_unit_format">\nÜmumi çəki: %.2f kq</string>
+    <string name="length_unit">Vahid uzunluq</string>
+    <string name="length_unit_format">Vahid uzunluq: %.2f m</string>
+    <string name="total_length_unit_format">\nÜmumi uzunluq: %.2f m</string>
+    <string name="unit_cost_format">\nVahid qiymət: %.2f rub</string>
+    <string name="total_unit_cost_format">\nÜmumi qiymət: %.2f rub</string>
+
+    <!-- Dialogs -->
+    <string name="gost_info_dialog_title">Bildiriş</string>
+    <string name="gost_info_dialog_message">Hörmətli istifadəçilər,\nHal-hazırda GOST standartları üzrə sadələşdirilmiş istinad kitabçasının hazırlanması davam edir.\nHazırda siz orijinal GOST mətnləri ilə tanış ola bilərsiniz.\nAnlayışınız üçün təşəkkür edirik!</string>
+
+    <!-- Errors -->
+    <string name="error_empty_fields">Bütün sahələri doldurun!</string>
+    <string name="error_negative_values">Dəyərlər > 0 olmalıdır</string>
+    <string name="error_no_material">Əvvəlcə material seçin</string>
+    <string name="error_empty_length">Armaturun uzunluğunu göstərin!</string>
+    <string name="error_negative_length">Uzunluq > 0 olmalıdır</string>
+    <string name="error_empty_mass">Armaturun çəkisini göstərin!</string>
+    <string name="error_negative_mass">Çəki > 0 olmalıdır</string>
+    <string name="error_no_diameter">Armaturun diametrini seçin!</string>
+    <string name="error_negative_quantity">Say > 0 olmalıdır</string>
+    <string name="error_number_format">Rəqəm formatında xəta</string>
+
+    <!-- Logs -->
+    <string name="log_init_error">Bir və ya bir neçə EditText sahəsi boşdur!</string>
+    <string name="log_density_error">Sıxlıq massivi üçün yanlış indeks</string>
+    <string name="log_parsing_error">Parsinq xətası: </string>
+
+    <!-- Analytics -->
+    <string name="analytics_type_weight">Çəki</string>
+    <string name="analytics_type_length">Uzunluq</string>
+    <string name="analytics_key_type">Növ</string>
+    <string name="analytics_key_template">Şablon</string>
+</resources>

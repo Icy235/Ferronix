@@ -12,7 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.calculate.ferronix.R;
 import com.calculate.ferronix.Sortament.gostPdf.Gost24045_94_pdf;
 import com.calculate.ferronix.Sortament.gostPdf.Gost26020_83_pdf;
-import com.calculate.ferronix.Sortament.gostPdf.Gost34028_2016;
+
+import com.calculate.ferronix.Sortament.gostPdf.Gost34028_2016_pdf;
 import com.calculate.ferronix.Sortament.gostPdf.Gost57837_2017_pdf;
 import com.calculate.ferronix.Sortament.gostPdf.Gost8240_97_pdf;
 import com.calculate.ferronix.Sortament.gostPdf.Gost8568_77_pdf;
@@ -55,7 +56,7 @@ public class GostsList extends AppCompatActivity {
 
 
     public void   btnGost34028_2016_pdf(View view) {
-        startActivity(new Intent(GostsList.this, Gost34028_2016.class));
+        startActivity(new Intent(GostsList.this, Gost34028_2016_pdf.class));
         finish(); // Закрываем текущую активность
     }
 }

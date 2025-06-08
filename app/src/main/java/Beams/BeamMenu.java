@@ -23,10 +23,7 @@ public class BeamMenu extends AppCompatActivity {
 
     }
 
-    public void btnSquareBeam(View view) {
-        startActivity(new Intent(BeamMenu.this, ProfileBeam.class));
-        finish(); // Закрываем текущую активность
-    }
+
 
     public void btnCircleBeam(View view) {
         startActivity(new Intent(BeamMenu.this, BeamMenu.class));
@@ -63,9 +60,9 @@ public class BeamMenu extends AppCompatActivity {
         finish(); // Закрываем текущую активность
     }
 
-    public void btnShestigrannik(View view) {
-        startActivity(new Intent(BeamMenu.this, BeamMenu.class));
-        finish(); // Закрываем текущую активность
-    }
+    //public void btnShestigrannik(View view) {
+    //    startActivity(new Intent(BeamMenu.this, BeamMenu.class));
+   //     finish(); // Закрываем текущую активность
+   // }
 
 }

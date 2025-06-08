@@ -4,7 +4,7 @@ import static com.calculate.ferronix.BuildConfig.API_KEY;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +19,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.UUID;
 
-import Beams.BeamMenu;
+
 import io.appmetrica.analytics.AppMetrica;
 import io.appmetrica.analytics.AppMetricaConfig;
 import io.appmetrica.analytics.profile.UserProfile;
@@ -28,6 +28,7 @@ import android.content.SharedPreferences;
 
 import com.calculate.ferronix.R;
 import com.calculate.ferronix.Sortament.SelectForm;
+import com.calculate.ferronix.Sortament.gostPdf.Gost5264_80_pdf;
 
 public class MainMenu extends AppCompatActivity {
     private String userId;
@@ -51,19 +52,13 @@ public class MainMenu extends AppCompatActivity {
         // Отправка уведомления о входе
         sendUserActionNotification("Вход в приложение");
 
-        // Инициализация профиля AppMetrica
+        // Инициализация профиля AppMetric
         UserProfile userProfile = UserProfile.newBuilder().build();
         AppMetrica.setUserProfileID(userId);
-        // Отправляем профиль пользователя в AppMetrica.
+        // Отправляем профиль пользователя в AppMetric.
         AppMetrica.reportUserProfile(userProfile);
     }
 
-    @Override
-    protected void onDestroy() {
-        // Отправка уведомления о выходе
-        sendUserActionNotification("Выход из приложения");
-        super.onDestroy();
-    }
 
     private void sendUserActionNotification(String action) {
         Map<String, String> data = new HashMap<>();
@@ -93,12 +88,9 @@ public class MainMenu extends AppCompatActivity {
         return userId;
     }
 
-    public void btnTelegram(View view) {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/Icy234"));
-        startActivity(browserIntent);
-    }
 
-    public void btnCalculateMetall(View view) {
+
+    public void btnCalculateMetal(View view) {
         Intent intent = new Intent(MainMenu.this, SelectForm.class);
         startActivity(intent);
 
@@ -112,9 +104,17 @@ public class MainMenu extends AppCompatActivity {
       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    public void btnBeamMenu(View view) {
-        Intent intent = new Intent(MainMenu.this, BeamMenu.class); // Исправлено на BeamMenu
+    public void btnWeldingSeams(View view){
+        Intent intent = new Intent(MainMenu.this, Gost5264_80_pdf.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
+
+
+    public void btnBeamMenu(View view) {
+        Intent intent = new Intent(MainMenu.this, MainMenu.class);
+       startActivity(intent);
+       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
 }

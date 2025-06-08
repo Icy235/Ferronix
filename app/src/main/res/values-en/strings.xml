@@ -1,0 +1,169 @@
+<resources>
+    <!-- App Info -->
+    <string name="app_name">FERRONIX</string>
+    <string name="version">v1.3.5</string>
+    <string name="inDevelop">In development</string>
+    <string name="submit_error">Report an error</string>
+
+    <!-- Main UI -->
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="New">New</string>
+    <string name="close">Close</string>
+    <string name="calculate">Calculate</string>
+    <string name="history">History</string>
+    <string name="ChoosingForm">Template selection</string>
+    <string name="calculateMetall">Rolled metal calculation</string>
+    <string name="calculateWeight">Mass calculation</string>
+    <string name="calculateLeght">Length calculation</string>
+    <string name="deflectionBeamCalculate">Beam deflection calculation</string>
+
+    <!-- Materials -->
+    <string name="material">Material</string>
+    <string name="mark">Grade</string>
+    <string name="black_metal">Ferrous metal</string>
+    <string name="material_black_metal">Ferrous metal</string>
+    <string name="stainless_steel">Stainless steel</string>
+    <string name="material_stainless_steel">Stainless steel</string>
+    <string name="aluminum">Aluminum</string>
+    <string name="material_aluminum">Aluminum</string>
+    <string name="steel_10">Steel 10</string>
+    <string name="steel_45">Steel 45</string>
+    <string name="grade_08Х17Т">08Х17Т</string>
+    <string name="grade_20Х13">20Х13</string>
+
+    <!-- Measurements -->
+    <string name="density">Density</string>
+    <string name="length">Length</string>
+    <string name="lengthL">Length L</string>
+    <string name="lengthA">Length A</string>
+    <string name="lengthB">Length B</string>
+    <string name="mass">Mass</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="heightH">Height h</string>
+    <string name="width">Width</string>
+    <string name="thickness">Thickness</string>
+    <string name="thicknessText">Thickness</string>
+    <string name="thicknessS">Thickness S</string>
+    <string name="sideA">Side A</string>
+    <string name="sideB">Side B</string>
+    <string name="squareA">Square side A</string>
+    <string name="Diametr">Diameter</string>
+    <string name="nominal_diametr">Nominal diameter</string>
+    <string name="wall">Wall thickness</string>
+    <string name="widthBase">Flange width b</string>
+    <string name="thicknessBase">Flange thickness</string>
+    <string name="shestigrannikTemp">Distance between faces S</string>
+    <string name="number">Number</string>
+    <string name="quanity">Quantity</string>
+    <string name="kolvo">Qty</string>
+
+    <!-- Product Types -->
+    <string name="circle">Rod</string>
+    <string name="analytics_template_rod">Rod</string>
+    <string name="squareProfile">Square profile</string>
+    <string name="priamiugolniy_profile">Rectangular profile</string>
+    <string name="Profile">Profile</string>
+    <string name="pipe">Pipe</string>
+    <string name="circlePipe">Round pipe</string>
+    <string name="analytics_template_pipe">Round pipe</string>
+    <string name="profilePipe">Profile pipe</string>
+    <string name="list">Sheet</string>
+    <string name="customList">Custom sheet</string>
+    <string name="listWithRombRifl">Sheet with diamond tread</string>
+    <string name="listWithChechevichRifl">Sheet with lentil tread</string>
+    <string name="ugolok">Angle</string>
+    <string name="analytics_template_corner">Angle</string>
+    <string name="corner">Angle</string>
+    <string name="dvutavr">I-beam</string>
+    <string name="shveller">Channel</string>
+    <string name="shestigrannik">Hexagon</string>
+    <string name="armatura">Rebar</string>
+    <string name="analytics_template">Rebar</string>
+    <string name="custom">Custom</string>
+    <string name="site">Side</string>
+
+    <!-- Patterns -->
+    <string name="chechevich_rifl">Lentil tread</string>
+    <string name="romb_rifl">Diamond tread</string>
+
+    <!-- Units -->
+    <string name="kgm3">kg/m³</string>
+    <string name="gsm3">g/cm³</string>
+    <string name="millimetre">mm</string>
+    <string name="unit_mm">mm</string>
+    <string name="meter">m</string>
+    <string name="unit_meter">m</string>
+    <string name="kg">kg.</string>
+    <string name="unit_kg">kg</string>
+    <string name="rub">RUB</string>
+
+    <!-- Cost -->
+    <string name="costPerKg">Cost per kg</string>
+    <string name="cost">Cost</string>
+
+    <!-- GOST Standards -->
+    <string name="gostList">GOST list</string>
+    <string name="usableGostsList">Used GOSTs list</string>
+    <string name="weldingSeams">Weld seams</string>
+    <string name="gost_24045_94">GOST 24045–94</string>
+    <string name="gost_8240_97">GOST 8240–97</string>
+    <string name="shveller_gost_8240_97">Channel GOST 8240–97</string>
+    <string name="gost_57837_2017">GOST 57837–2017</string>
+    <string name="dvutavr_gost_57837_2017">I-beam GOST 57837–2017</string>
+    <string name="dvutavr_gost_8239_89">I-beam GOST 8239–89</string>
+    <string name="gost_8239_89">GOST 8239–89</string>
+    <string name="dvutavr_gost_26020_83">I-beam GOST 26020–83</string>
+    <string name="gost_26020_83">GOST 26020–83</string>
+    <string name="gost_8568_77">GOST 8568–77</string>
+    <string name="gost_5264_80">GOST 5264–80</string>
+    <string name="gost_34028_2016">GOST 34028-2016</string>
+    <string name="gost_57836_2017">GOST 57837–2017</string>
+
+    <!-- GOST Descriptions -->
+    <string name="Gost26020_83_Name">Hot-rolled steel I-beams with parallel flange faces</string>
+    <string name="Gost8239_89_Name">Hot-rolled steel I-beams</string>
+    <string name="Gost8240_97_Name">Hot-rolled steel channels</string>
+    <string name="Gost57836_2017_Name">Hot-rolled steel I-beams with parallel flange faces</string>
+    <string name="Gost24045_94_Name">Cold-formed trapezoidal steel sheet profiles for construction</string>
+    <string name="Gost8568_77_Name">Steel sheets with diamond and lentil tread</string>
+    <string name="Gost34028_2016_Name">Reinforcement steel for reinforced concrete structures</string>
+
+    <!-- Calculation Results -->
+    <string name="mass_unit">Unit mass</string>
+    <string name="mass_unit_format">Unit mass: %.2f kg</string>
+    <string name="total_mass_unit_format">\nTotal mass: %.2f kg</string>
+    <string name="length_unit">Unit length</string>
+    <string name="length_unit_format">Unit length: %.2f m</string>
+    <string name="total_length_unit_format">\nTotal length: %.2f m</string>
+    <string name="unit_cost_format">\nUnit cost: %.2f RUB</string>
+    <string name="total_unit_cost_format">\nTotal cost: %.2f RUB</string>
+
+    <!-- Dialogs -->
+    <string name="gost_info_dialog_title">Notice</string>
+    <string name="gost_info_dialog_message">Dear users,\nWe are currently developing a simplified GOST\nweld seam standards guide.\nFor now, you can refer to the original GOST texts.\nThank you for your understanding!</string>
+
+    <!-- Errors -->
+    <string name="error_empty_fields">Please fill in all fields!</string>
+    <string name="error_negative_values">Values must be > 0</string>
+    <string name="error_no_material">Select a material first</string>
+    <string name="error_empty_length">Specify the length of rebar!</string>
+    <string name="error_negative_length">Length must be > 0</string>
+    <string name="error_empty_mass">Specify the mass of rebar!</string>
+    <string name="error_negative_mass">Mass must be > 0</string>
+    <string name="error_no_diameter">Select rebar diameter!</string>
+    <string name="error_negative_quantity">Quantity must be > 0</string>
+    <string name="error_number_format">Number format error</string>
+
+    <!-- Logs -->
+    <string name="log_init_error">One or more EditText fields are null!</string>
+    <string name="log_density_error">Invalid index for density array</string>
+    <string name="log_parsing_error">Parsing error: </string>
+
+    <!-- Analytics -->
+    <string name="analytics_type_weight">Weight</string>
+    <string name="analytics_type_length">Length</string>
+    <string name="analytics_key_type">Type</string>
+    <string name="analytics_key_template">Template</string>
+</resources>

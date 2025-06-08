@@ -63,7 +63,7 @@
         <Button
             android:id="@+id/btnSelectForm"
             style="@style/MainMenuButton"
-            android:onClick="btnCalculateMetall"
+            android:onClick="btnCalculateMetal"
             android:hapticFeedbackEnabled="true"
             android:text="@string/calculateMetall" />
 
@@ -92,6 +92,7 @@
             android:id="@+id/btnWeldingSeams"
             style="@style/MainMenuButtonInDevelop"
             android:layout_marginTop="10dp"
+            android:onClick="btnWeldingSeams"
             android:hapticFeedbackEnabled="true"
             android:text="@string/weldingSeams"
             tools:ignore="MissingConstraints" />

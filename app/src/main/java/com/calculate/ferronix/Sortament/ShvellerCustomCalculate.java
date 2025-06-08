@@ -34,25 +34,18 @@ public class ShvellerCustomCalculate extends AppCompatActivity {
 
     private String[] materials;
 
-    // Массивы для материалов
-    private final String[] aluminumGrades = {
-            "А5", "АД", "АД1", "АК4", "АК6", "АМг", "АМц", "В95", "Д1", "Д16"
-    };
+    // Массивы для материалов (будут инициализированы из строковых ресурсов в onCreate)
+    private String[] aluminumGrades;
     private final double[] aluminumDensities = {
             2.70, 2.70, 2.70, 2.68, 2.68, 1.74, 2.55, 2.60, 2.70, 2.80
     };
 
-    private final String[] stainlessSteelGrades = {
-            "08Х17Т", "20Х13", "30Х13", "40Х13", "08Х18Н10", "12Х18Н10Т", "10Х17Н13М2Т", "06ХН28МДТ", "20Х23Н18"
-    };
+    private String[] stainlessSteelGrades;
     private final double[] stainlessSteelDensities = {
             7.70, 7.75, 7.75, 7.75, 7.90, 7.90, 7.90, 7.95, 7.95
     };
 
-    private final String[] blackMetalGrades = {
-            "Сталь 3", "Сталь 10", "Сталь 20", "Сталь 40Х", "Сталь 45", "Сталь 65", "Сталь 65Г",
-            "09Г2С", "15Х5М", "10ХСНД", "12Х1МФ", "ШХ15", "Р6М5", "У7", "У8", "У8А", "У10", "У10А", "У12А"
-    };
+    private String[] blackMetalGrades;
     private final double[] blackMetalDensities = {
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85,
             7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85, 7.85
@@ -68,336 +61,479 @@ public class ShvellerCustomCalculate extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.shveller_custom_calculate);
 
-        // Инициализация массива materials
-        materials = new String[]{"Черный металл", "Нержавеющий металл", "Алюминий"};
+        // --- Инициализация массивов материалов и марок из строковых ресурсов ---
+        materials = new String[]{
+                getString(R.string.material_black_metal),
+                getString(R.string.material_stainless_steel),
+                getString(R.string.material_aluminum)
+        };
 
-        // Инициализация элементов интерфейса
+        aluminumGrades = new String[]{
+                getString(R.string.grade_A5), getString(R.string.grade_AD), getString(R.string.grade_AD1),
+                getString(R.string.grade_AK4), getString(R.string.grade_AK6), getString(R.string.grade_AMg),
+                getString(R.string.grade_AMc), getString(R.string.grade_V95), getString(R.string.grade_D1),
+                getString(R.string.grade_D16)
+        };
+
+        stainlessSteelGrades = new String[]{
+                getString(R.string.grade_08X17T), getString(R.string.grade_20X13), getString(R.string.grade_30X13),
+                getString(R.string.grade_40X13), getString(R.string.grade_08X18N10), getString(R.string.grade_12X18N10T),
+                getString(R.string.grade_10X17N13M2T), getString(R.string.grade_06XH28MDT), getString(R.string.grade_20X23N18)
+        };
+
+        blackMetalGrades = new String[]{
+                getString(R.string.steel_3), getString(R.string.steel_10), getString(R.string.steel_20),
+                getString(R.string.steel_40X), getString(R.string.steel_45), getString(R.string.steel_65),
+                getString(R.string.steel_65G), getString(R.string.grade_09G2S), getString(R.string.grade_15X5M),
+                getString(R.string.grade_10XCSND), getString(R.string.grade_12X1MF), getString(R.string.grade_SHX15),
+                getString(R.string.grade_R6M5), getString(R.string.grade_U7), getString(R.string.grade_U8),
+                getString(R.string.grade_U8A), getString(R.string.grade_U10), getString(R.string.grade_U10A),
+                getString(R.string.grade_U12A)
+        };
+        // --- Конец инициализации массивов ---
+
+        initializeViews(); // Инициализация всех элементов UI
+        setupListeners(); // Настройка слушателей событий для кнопок и полей ввода
+
+        // Устанавливаем активную кнопку при запуске (по умолчанию - расчет массы по длине)
+        textViewLength.setText(R.string.length); // Надпись "Длина" над полем ввода длины
+        textViewUnit.setText(R.string.unit_meter); // Единица измерения "м"
+        editTextLength.setHint(R.string.length); // Подсказка "Длина"
+        setActiveButton(btnGoWeight, btnGoLength); // Выделяем кнопку "Рассчитать Вес"
+    }
+
+    // Метод для инициализации всех элементов UI
+    private void initializeViews() {
         editTextDensity = findViewById(R.id.editTextDensity);
-        editTextLength = findViewById(R.id.editTextLength);
-        editTextHeightH = findViewById(R.id.editTextHeightH);
-        editTextWidthB = findViewById(R.id.editTextWidthB);
-        editTextThicknessS = findViewById(R.id.editTextThicknessS);
-        editTextThicknessT = findViewById(R.id.editTextThicknessT);
+        editTextLength = findViewById(R.id.editTextLength); // Это поле ввода будет использоваться либо для длины, либо для массы
+        editTextHeightH = findViewById(R.id.editTextHeightH); // Высота H
+        editTextWidthB = findViewById(R.id.editTextWidthB); // Ширина B
+        editTextThicknessS = findViewById(R.id.editTextThicknessS); // Толщина стенки S
+        editTextThicknessT = findViewById(R.id.editTextThicknessT); // Толщина полки T
         editTextPricePerKg = findViewById(R.id.editTextPricePerKg);
         editTextQuantity = findViewById(R.id.editTextQuantity);
-        total = findViewById(R.id.textViewWeightTotal);
-        textViewLength = findViewById(R.id.textViewLength);
-        textViewUnit = findViewById(R.id.textViewUnit);
+        total = findViewById(R.id.textViewWeightTotal); // Это TextView отображает общий результат
+        textViewLength = findViewById(R.id.textViewLength); // TextView для метки "Длина" или "Масса"
+        textViewUnit = findViewById(R.id.textViewUnit); // TextView для единицы измерения "м" или "кг"
         Button btnCalculate = findViewById(R.id.btnCalculate);
         btnMaterial = findViewById(R.id.btnMaterial);
         btnMark = findViewById(R.id.btnMark);
-        btnGoWeight = findViewById(R.id.btnGoWeight);
-        btnGoLength = findViewById(R.id.btnGoLength);
+        btnGoWeight = findViewById(R.id.btnGoWeight); // Кнопка для переключения в режим расчета массы
+        btnGoLength = findViewById(R.id.btnGoLength); // Кнопка для переключения в режим расчета длины
 
-        // Проверка на null
-        if (editTextDensity == null || editTextLength == null || editTextHeightH == null || editTextWidthB == null || editTextThicknessS == null || editTextThicknessT == null) {
-            Log.e("InitError", "One or more EditText fields are null!");
-            finish();
+        // Надежная проверка на null для всех критических элементов UI
+        if (editTextDensity == null || editTextLength == null || editTextHeightH == null ||
+                editTextWidthB == null || editTextThicknessS == null || editTextThicknessT == null ||
+                editTextPricePerKg == null || editTextQuantity == null || total == null ||
+                textViewLength == null || textViewUnit == null || btnCalculate == null ||
+                btnMaterial == null || btnMark == null || btnGoWeight == null || btnGoLength == null) {
+
+            Toast.makeText(this, R.string.log_init_error, Toast.LENGTH_LONG).show(); // Показ удобного для пользователя сообщения
+            finish(); // Закрываем активность, если критические элементы UI отсутствуют
         }
+    }
 
-        // Устанавливаем активную кнопку при запуске
-        setActiveButton(btnGoWeight, btnGoLength);
-
-        // Обработчики кликов
-        btnCalculate.setOnClickListener(v -> {
-            // Выполнение тактильной обратной связи
+    // Метод для настройки слушателей событий
+    private void setupListeners() {
+        // Слушатель для кнопки "Рассчитать"
+        findViewById(R.id.btnCalculate).setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-            if (textViewLength.getText().toString().equals("Масса")) {
-                calculateWeight();
+            // Определяем, какой расчет выполнить, исходя из текущей метки textViewLength
+            if (textViewLength.getText().toString().equals(getString(R.string.mass))) {
+                calculateLengthOutput(); // Пользователь вводит массу, рассчитываем длину
             } else {
-                calculateLength();
+                calculateWeightOutput(); // Пользователь вводит длину, рассчитываем массу
             }
         });
 
+        // Слушатель для кнопки "Материал"
         btnMaterial.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             showMaterialMenu();
         });
 
+        // Слушатель для кнопки "Марка"
         btnMark.setOnClickListener(v -> {
             v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
             handleMarkButtonClick();
         });
 
+        // Слушатель для кнопки переключения в режим "Рассчитать Массу"
         btnGoWeight.setOnClickListener(v -> {
-            // Переключаем на расчет массы
-            textViewLength.setText("Длина");
-            textViewUnit.setText("м");
-            editTextLength.setHint("Длина");
-
-            // Устанавливаем активную кнопку
-            setActiveButton(btnGoWeight, btnGoLength);
+            v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+            // Переключаемся в режим "Рассчитать Массу": пользователь вводит ДЛИНУ, получает МАССУ
+            textViewLength.setText(R.string.length); // Меняем метку на "Длина"
+            textViewUnit.setText(R.string.unit_meter); // Меняем единицу измерения на "м"
+            editTextLength.setHint(R.string.length); // Меняем подсказку на "Длина"
+            setActiveButton(btnGoWeight, btnGoLength); // Выделяем "Рассчитать Массу"
         });
 
+        // Слушатель для кнопки переключения в режим "Рассчитать Длину"
         btnGoLength.setOnClickListener(v -> {
-            // Переключаем на расчет длины
-            textViewLength.setText("Масса");
-            textViewUnit.setText("кг");
-            editTextLength.setHint("Масса");
-
-            // Устанавливаем активную кнопку
-            setActiveButton(btnGoLength, btnGoWeight);
+            v.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+            // Переключаемся в режим "Рассчитать Длину": пользователь вводит МАССУ, получает ДЛИНУ
+            textViewLength.setText(R.string.mass); // Меняем метку на "Масса"
+            textViewUnit.setText(R.string.unit_kg); // Меняем единицу измерения на "кг"
+            editTextLength.setHint(R.string.mass); // Меняем подсказку на "Масса"
+            setActiveButton(btnGoLength, btnGoWeight); // Выделяем "Рассчитать Длину"
         });
     }
 
-    @SuppressLint("ResourceAsColor")
+    // Метод для установки активного/неактивного состояния кнопок выбора режима расчета
+    @SuppressLint("ResourceAsColor") // Подавляем предупреждение, так как используется ContextCompat.getColor
     private void setActiveButton(Button activeButton, Button inactiveButton) {
         // Устанавливаем цвет фона и текста для активной кнопки
-        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))); // Белый фон
-        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black)); // Черный текст
+        activeButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white)));
+        activeButton.setTextColor(ContextCompat.getColor(this, R.color.black));
 
-        // Убираем подсветку и устанавливаем цвет текста для неактивной кнопки
-        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent))); // Прозрачный фон
-        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white)); // Белый текст
+        // Устанавливаем цвет фона и текста для неактивной кнопки
+        inactiveButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, android.R.color.transparent)));
+        inactiveButton.setTextColor(ContextCompat.getColor(this, R.color.white));
     }
 
+    // Обрабатывает нажатие на кнопку выбора "Марки" (сплава)
     private void handleMarkButtonClick() {
         String material = btnMaterial.getText().toString();
+        // Проверяем, выбран ли материал (не текст по умолчанию "Материал")
         if (material.equals(getString(R.string.material))) {
-            Toast.makeText(this, "Сначала выберите материал", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.error_no_material, Toast.LENGTH_SHORT).show();
         } else {
-            showGradeMenu(material);
+            showGradeMenu(material); // Показываем меню выбора марки для выбранного материала
         }
     }
 
+    // Отображает меню выбора материала
     private void showMaterialMenu() {
         PopupMenu popupMenu = new PopupMenu(this, btnMaterial);
         for (String material : materials) {
             popupMenu.getMenu().add(material);
         }
         popupMenu.setOnMenuItemClickListener(item -> {
-            btnMaterial.setText(item.getTitle());
-            btnMark.setText(R.string.mark);
-            editTextDensity.setText(""); // Сброс плотности при смене материала
+            btnMaterial.setText(item.getTitle()); // Устанавливаем выбранный материал
+            btnMark.setText(R.string.mark); // Сбрасываем марку на значение по умолчанию
+            editTextDensity.setText(""); // Очищаем поле плотности
             return true;
         });
         popupMenu.show();
     }
 
+    // Отображает меню выбора марки в зависимости от выбранного материала
     private void showGradeMenu(String material) {
         PopupMenu popupMenu = new PopupMenu(this, btnMark);
         String[] grades;
         double[] densities;
 
-        switch (material) {
-            case "Черный металл":
-                grades = blackMetalGrades;
-                densities = blackMetalDensities;
-                break;
-            case "Нержавеющий металл":
-                grades = stainlessSteelGrades;
-                densities = stainlessSteelDensities;
-                break;
-            case "Алюминий":
-                grades = aluminumGrades;
-                densities = aluminumDensities;
-                break;
-            default:
-                return;
+        // Определяем, какие массивы марок и плотностей использовать
+        if (material.equals(getString(R.string.material_black_metal))) {
+            grades = blackMetalGrades;
+            densities = blackMetalDensities;
+        } else if (material.equals(getString(R.string.material_stainless_steel))) {
+            grades = stainlessSteelGrades;
+            densities = stainlessSteelDensities;
+        } else if (material.equals(getString(R.string.material_aluminum))) {
+            grades = aluminumGrades;
+            densities = aluminumDensities;
+        } else {
+            // Этот случай в идеале не должен быть достигнут, если меню материалов работает корректно
+            Log.e("ShvellerCustom", getString(R.string.error_unknown_material) + ": " + material);
+            Toast.makeText(this, R.string.error_unknown_material, Toast.LENGTH_SHORT).show();
+            return;
         }
 
         for (String grade : grades) {
-            popupMenu.getMenu().add(grade);
+            popupMenu.getMenu().add(grade); // Добавляем марки в меню
         }
 
         popupMenu.setOnMenuItemClickListener(item -> {
             String grade = Objects.requireNonNull(item.getTitle()).toString();
-            btnMark.setText(grade);
+            btnMark.setText(grade); // Устанавливаем выбранную марку
 
+            // Находим индекс выбранной марки и устанавливаем соответствующую плотность
             int index = Arrays.asList(grades).indexOf(grade);
             if (index != -1 && index < densities.length) {
+                // Форматируем плотность до двух знаков после запятой, используя Locale.US для единообразия десятичной точки
                 String formattedDensity = String.format(Locale.US, "%.2f", densities[index]);
                 editTextDensity.setText(formattedDensity);
             } else {
-                Log.e("DensityError", "Invalid index for density array");
+                Log.e("ShvellerCustom", getString(R.string.log_density_error) + ": Grade=" + grade + ", Material=" + material);
+                Toast.makeText(this, R.string.log_density_error, Toast.LENGTH_SHORT).show();
             }
             return true;
         });
         popupMenu.show();
     }
 
-    private void calculateLength() {
-        try {
-            // Получаем и проверяем значения
-            String densityStr = editTextDensity.getText().toString().trim();
-            String lengthStr = editTextLength.getText().toString().trim();
-            String heightHStr = editTextHeightH.getText().toString().trim();
-            String widthBStr = editTextWidthB.getText().toString().trim();
-            String thicknessSStr = editTextThicknessS.getText().toString().trim();
-            String thicknessTStr = editTextThicknessT.getText().toString().trim();
-            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
-            String quantityStr = editTextQuantity.getText().toString().trim();
+    // Общий метод валидации ввода для размеров швеллера
+    private boolean validateInputs(String densityStr, String mainInputStr, String heightHStr, String widthBStr, String thicknessSStr, String thicknessTStr) {
+        // Проверка на пустые поля
+        if (densityStr.isEmpty() || mainInputStr.isEmpty() || heightHStr.isEmpty() || widthBStr.isEmpty() || thicknessSStr.isEmpty() || thicknessTStr.isEmpty()) {
+            total.setText(R.string.error_empty_fields);
+            return false;
+        }
 
-            if (densityStr.isEmpty() || lengthStr.isEmpty() || heightHStr.isEmpty() || widthBStr.isEmpty() || thicknessSStr.isEmpty() || thicknessTStr.isEmpty()) {
-                total.setText("Заполните все поля!");
-                return;
+        try {
+            double density = Double.parseDouble(densityStr);
+            double mainValue = Double.parseDouble(mainInputStr); // Это либо длина, либо масса
+            double heightH = Double.parseDouble(heightHStr);
+            double widthB = Double.parseDouble(widthBStr);
+            double thicknessS = Double.parseDouble(thicknessSStr);
+            double thicknessT = Double.parseDouble(thicknessTStr);
+
+            // Проверка на неотрицательные значения
+            if (density <= 0 || mainValue <= 0 || heightH <= 0 || widthB <= 0 || thicknessS <= 0 || thicknessT <= 0) {
+                total.setText(R.string.error_negative_values);
+                return false;
             }
 
-            // Парсим значения
+            // Специфическая валидация для швеллера: толщина стенки не должна быть больше высоты полки,
+            // и толщина полки не должна быть больше половины ширины полки.
+            // Также высота Н должна быть больше толщины полки Т.
+            if (thicknessS >= heightH || 2 * thicknessT >= widthB || thicknessT >= heightH) {
+                total.setText(R.string.error_shveller_dimensions_invalid); // Новое строковое значение
+                return false;
+            }
+
+            return true; // Валидация пройдена
+        } catch (NumberFormatException e) {
+            total.setText(R.string.error_number_format);
+            Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
+            return false; // Валидация не пройдена из-за формата числа
+        }
+    }
+
+    // Метод для расчета площади поперечного сечения швеллера в см²
+    private double calculateCrossSectionalAreaCm2(double heightH_MM, double widthB_MM, double thicknessS_MM, double thicknessT_MM) {
+        double heightHCm = heightH_MM * MM_TO_CM;
+        double widthBCm = widthB_MM * MM_TO_CM;
+        double thicknessSCm = thicknessS_MM * MM_TO_CM;
+        double thicknessTCm = thicknessT_MM * MM_TO_CM;
+
+        // Площадь стенки (H - 2T - если считать H как общую высоту)
+        // Для швеллера (П-образного) площадь считается как H*s + 2*(B-s)*t
+        // Или (H * s) + 2 * (B * t) - 2 * (t * s) если не вычитаем толщину стенки из ширины полки.
+        // Ваш оригинальный расчет: (heightHCm - thicknessTCm) * thicknessSCm + 2 * (widthBCm * thicknessTCm)
+        // Этот расчет предполагает, что H - это общая высота, S - толщина стенки, B - ширина полки, T - толщина полки.
+        // Площадь = (высота_полки_без_толщины_стенки * толщина_стенки) + (2 * ширина_полки * толщина_полки)
+        // Корректнее: Площадь = (H * s) + 2 * (B - s) * t -- это для швеллера, где толщина стенки вычитается из ширины полки.
+        // Или для простоты (без учета скруглений и внутренних углов):
+        // Площадь = (ширина_полки_B * толщина_полки_T * 2) + ( (высота_H - 2*толщина_полки_T) * толщина_стенки_S)
+        // Давайте придерживаться формулы для площади швеллера: A = (H*s) + 2*(B*t) - 2*(s*t) если это по центральным линиям,
+        // или (H*s) + 2*(B-s)*t для "чистых" прямоугольников.
+        // Исходя из вашего оригинального кода, который был (heightHCm - thicknessTCm) * thicknessSCm + 2 * (widthBCm * thicknessTCm),
+        // это похоже на: площадь стенки + площадь двух полок, где высота стенки уменьшена на толщину полки.
+        // Это может быть упрощенной моделью, но давайте переформулируем для ясности.
+        // Если H - это общая высота, B - общая ширина, S - толщина стенки, T - толщина полки:
+        double areaWeb = heightHCm * thicknessSCm; // Площадь прямоугольника, если бы это была просто пластина высотой H
+        double areaFlange = widthBCm * thicknessTCm; // Площадь одной полки
+
+        // Площадь поперечного сечения швеллера (прямоугольники):
+        // Две полки и одна стенка. Центральная часть стенки имеет высоту H - 2*T.
+        // Площадь = (толщина_стенки * (высота_H - 2*толщина_полки_T)) + (2 * (ширина_полки_B * толщина_полки_T))
+        return (thicknessSCm * (heightHCm - 2 * thicknessTCm)) + (2 * (widthBCm * thicknessTCm));
+    }
+
+
+    // Метод для расчета массы, когда пользователь вводит длину
+    private void calculateWeightOutput() {
+        // Получаем и обрезаем все входные строки
+        String densityStr = editTextDensity.getText().toString().trim();
+        String lengthInputStr = editTextLength.getText().toString().trim(); // Пользователь вводит длину (м)
+        String heightHStr = editTextHeightH.getText().toString().trim();
+        String widthBStr = editTextWidthB.getText().toString().trim();
+        String thicknessSStr = editTextThicknessS.getText().toString().trim();
+        String thicknessTStr = editTextThicknessT.getText().toString().trim();
+        String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+        String quantityStr = editTextQuantity.getText().toString().trim();
+
+        // Валидация ввода
+        if (!validateInputs(densityStr, lengthInputStr, heightHStr, widthBStr, thicknessSStr, thicknessTStr)) {
+            return; // Выходим, если валидация не пройдена
+        }
+
+        try {
+            // Парсим значения в double
             double density = Double.parseDouble(densityStr); // г/см³
-            double length = Double.parseDouble(lengthStr); // мм
+            double lengthInputMeters = Double.parseDouble(lengthInputStr); // метры
             double heightH = Double.parseDouble(heightHStr); // мм
             double widthB = Double.parseDouble(widthBStr); // мм
             double thicknessS = Double.parseDouble(thicknessSStr); // мм
             double thicknessT = Double.parseDouble(thicknessTStr); // мм
 
-            // Проверка положительных значений
-            if (density <= 0 || length <= 0 || heightH <= 0 || widthB <= 0 || thicknessS <= 0 || thicknessT <= 0) {
-                total.setText("Значения должны быть > 0");
-                return;
-            }
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // Конвертируем плотность в кг/см³
 
-            // Конвертация единиц
-            double heightHCm = heightH * MM_TO_CM; // мм -> см
-            double widthBCm = widthB * MM_TO_CM; // мм -> см
-            double thicknessSCm = thicknessS * MM_TO_CM; // мм -> см
-            double thicknessTCm = thicknessT * MM_TO_CM; // мм -> см
-            double lengthCm = length * MM_TO_CM; // мм -> см
-            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+            // Рассчитываем площадь поперечного сечения материала в см²
+            double materialAreaCm2 = calculateCrossSectionalAreaCm2(heightH, widthB, thicknessS, thicknessT);
 
-            // Рассчитываем объем стенки и полок швеллера
-            double volumeWeb = (heightHCm - thicknessTCm) * thicknessSCm * lengthCm; // объем стенки
-            double volumeFlanges = 2 * (widthBCm * thicknessTCm * lengthCm); // объем двух полок
+            // Рассчитываем общий объем для одной единицы (см³)
+            double volumeCm3 = materialAreaCm2 * (lengthInputMeters * 100); // Длина из метров в см
 
-            // Общий объем материала
-            double volume = volumeWeb + volumeFlanges; // объем в см³
+            // Рассчитываем вес одной единицы (кг)
+            double weightPerPiece = volumeCm3 * densityKgPerCm3;
 
-            // Вес швеллера
-            double weight = volume * densityKgPerCm3; // вес в кг
+            StringBuilder result = new StringBuilder();
+            result.append(String.format(Locale.getDefault(), getString(R.string.mass_unit_format), weightPerPiece));
 
-            // Форматируем итоговый текст
-            StringBuilder resultText = new StringBuilder();
+            double totalQuantity = 1.0;
+            boolean isQuantityProvided = !quantityStr.isEmpty();
 
-            // Проверяем, введено ли количество
-            if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Масса: %.2f кг", weight));
-            } else {
-                double quantity = Double.parseDouble(quantityStr);
-                // Проверка положительных значений
-                if (quantity <= 0) {
-                    total.setText("Количество должно быть > 0");
+            if (isQuantityProvided) {
+                try {
+                    totalQuantity = Double.parseDouble(quantityStr);
+                    if (totalQuantity <= 0) {
+                        total.setText(R.string.error_negative_quantity);
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    total.setText(R.string.error_number_format);
+                    Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
                     return;
                 }
-                double totalValue = weight * quantity; // общая масса
+            }
 
-                resultText.append(String.format(Locale.US, "Масса еденицы: %.2f кг", weight));
-                resultText.append(String.format(Locale.US, "\nОбщая масса: %.2f руб", totalValue));
-                // Если цена за кг указана, добавляем стоимость
-                if (!pricePerKgStr.isEmpty()) {
+            // Отображаем общую массу, если количество указано
+            if (isQuantityProvided) {
+                double totalWeightValue = weightPerPiece * totalQuantity;
+                result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.total_mass_unit_format), totalWeightValue));
+            }
+
+            // Рассчитываем и отображаем стоимость, если цена за кг указана
+            if (!pricePerKgStr.isEmpty()) {
+                try {
                     double pricePerKg = Double.parseDouble(pricePerKgStr);
-                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
-                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+                    if (pricePerKg < 0) {
+                        total.setText(R.string.error_negative_price);
+                        return;
+                    }
 
-                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                    double pricePerUnit = pricePerKg * weightPerPiece; // Стоимость одной единицы
+                    result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerUnit));
+
+                    // Отображаем общую стоимость только если количество указано
+                    if (isQuantityProvided) {
+                        double totalCost = pricePerKg * weightPerPiece * totalQuantity;
+                        result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
+                    }
+                } catch (NumberFormatException e) {
+                    total.setText(R.string.error_number_format);
+                    Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
                 }
             }
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Длина");
-            analytics.put("Шаблон", "Швеллер Пользовательский");
-            NetworkHelper.sendCalculationData(this, analytics);
-            // Выводим результат
-            total.setText(resultText.toString());
+
+            sendAnalytics(getString(R.string.analytics_type_weight)); // Отправляем аналитику для расчета массы
+            total.setText(result.toString()); // Отображаем конечный результат
 
         } catch (NumberFormatException e) {
-            total.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            total.setText(R.string.error_number_format);
+            Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
         }
     }
 
-    private void calculateWeight() {
+    // Метод для расчета длины, когда пользователь вводит массу
+    private void calculateLengthOutput() {
+        // Получаем и обрезаем все входные строки
+        String densityStr = editTextDensity.getText().toString().trim();
+        String weightInputStr = editTextLength.getText().toString().trim(); // Пользователь вводит массу (кг)
+        String heightHStr = editTextHeightH.getText().toString().trim();
+        String widthBStr = editTextWidthB.getText().toString().trim();
+        String thicknessSStr = editTextThicknessS.getText().toString().trim();
+        String thicknessTStr = editTextThicknessT.getText().toString().trim();
+        String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
+        String quantityStr = editTextQuantity.getText().toString().trim();
+
+        // Валидация ввода
+        if (!validateInputs(densityStr, weightInputStr, heightHStr, widthBStr, thicknessSStr, thicknessTStr)) {
+            return; // Выходим, если валидация не пройдена
+        }
+
         try {
-            // Получаем и проверяем значения
-            String densityStr = editTextDensity.getText().toString().trim();
-            String weightStr = editTextLength.getText().toString().trim();
-            String heightHStr = editTextHeightH.getText().toString().trim();
-            String widthBStr = editTextWidthB.getText().toString().trim();
-            String thicknessSStr = editTextThicknessS.getText().toString().trim();
-            String thicknessTStr = editTextThicknessT.getText().toString().trim();
-            String pricePerKgStr = editTextPricePerKg.getText().toString().trim();
-            String quantityStr = editTextQuantity.getText().toString().trim();
-
-            if (densityStr.isEmpty() || weightStr.isEmpty() || heightHStr.isEmpty() || widthBStr.isEmpty() || thicknessSStr.isEmpty() || thicknessTStr.isEmpty()) {
-                total.setText("Заполните все поля!");
-                return;
-            }
-
-            // Парсим значения
+            // Парсим значения в double
             double density = Double.parseDouble(densityStr); // г/см³
-            double weight = Double.parseDouble(weightStr); // кг
+            double weightInputKg = Double.parseDouble(weightInputStr); // кг
             double heightH = Double.parseDouble(heightHStr); // мм
             double widthB = Double.parseDouble(widthBStr); // мм
             double thicknessS = Double.parseDouble(thicknessSStr); // мм
             double thicknessT = Double.parseDouble(thicknessTStr); // мм
 
-            // Проверка положительных значений
-            if (density <= 0 || weight <= 0 || heightH <= 0 || widthB <= 0 || thicknessS <= 0 || thicknessT <= 0) {
-                total.setText("Значения должны быть > 0");
-                return;
-            }
+            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // Конвертируем плотность в кг/см³
 
-            // Конвертация единиц
-            double heightHCm = heightH * MM_TO_CM; // мм -> см
-            double widthBCm = widthB * MM_TO_CM; // мм -> см
-            double thicknessSCm = thicknessS * MM_TO_CM; // мм -> см
-            double thicknessTCm = thicknessT * MM_TO_CM; // мм -> см
-            double densityKgPerCm3 = density * G_PER_CM3_TO_KG_PER_CM3; // г/см³ -> кг/см³
+            // Рассчитываем площадь поперечного сечения материала в см²
+            double materialAreaCm2 = calculateCrossSectionalAreaCm2(heightH, widthB, thicknessS, thicknessT);
 
-            // Рассчитываем объем стенки и полок швеллера
-            double volumeWeb = (heightHCm - thicknessTCm) * thicknessSCm; // объем стенки на 1 метр длины
-            double volumeFlanges = 2 * (widthBCm * thicknessTCm); // объем двух полок на 1 метр длины
+            // Рассчитываем общий объем из введенной массы (см³)
+            double volumeCm3 = weightInputKg / densityKgPerCm3;
 
-            // Общий объем материала на 1 метр длины
-            double volumePerMeter = volumeWeb + volumeFlanges; // объем в см³ на 1 метр длины
+            // Рассчитываем длину одной единицы (метры)
+            double lengthPerPieceMeters = volumeCm3 / materialAreaCm2 / 100; // Конвертируем см в метры
 
-            // Длина швеллера
-            double length = weight / (volumePerMeter * densityKgPerCm3); // длина в метрах
+            StringBuilder result = new StringBuilder();
+            result.append(String.format(Locale.getDefault(), getString(R.string.length_unit_format), lengthPerPieceMeters));
 
-            // Форматируем итоговый текст
-            StringBuilder resultText = new StringBuilder();
+            double totalQuantity = 1.0;
+            boolean isQuantityProvided = !quantityStr.isEmpty();
 
-            // Проверяем, введено ли количество
-            if (quantityStr.isEmpty()) {
-                resultText.append(String.format(Locale.US, "Длина: %.2f м", length));
-            } else {
-                double quantity = Double.parseDouble(quantityStr);
-                // Проверка положительных значений
-                if (quantity <= 0) {
-                    total.setText("Количество должно быть > 0");
+            if (isQuantityProvided) {
+                try {
+                    totalQuantity = Double.parseDouble(quantityStr);
+                    if (totalQuantity <= 0) {
+                        total.setText(R.string.error_negative_quantity);
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    total.setText(R.string.error_number_format);
+                    Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
                     return;
                 }
+            }
 
-                double totalLengthValue = length * quantity; // общая длина
-                resultText.append(String.format(Locale.US, "Длина единицы: %.2f м", length));
-                resultText.append(String.format(Locale.US, "\nОбщая длина: %.2f м", totalLengthValue));
+            // Отображаем общую длину, если количество указано
+            if (isQuantityProvided) {
+                double totalLengthValueMeters = lengthPerPieceMeters * totalQuantity;
+                result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.total_length_unit_format), totalLengthValueMeters));
+            }
 
-                // Если цена за кг указана, добавляем стоимость
-                if (!pricePerKgStr.isEmpty()) {
+            // Рассчитываем и отображаем стоимость, если цена за кг указана
+            if (!pricePerKgStr.isEmpty()) {
+                try {
                     double pricePerKg = Double.parseDouble(pricePerKgStr);
-                    double totalCost = pricePerKg * weight * quantity; // общая стоимость
-                    double pricePerUnit = totalCost / quantity; // цена за одну штуку
+                    if (pricePerKg < 0) {
+                        total.setText(R.string.error_negative_price);
+                        return;
+                    }
 
-                    resultText.append(String.format(Locale.US, "\nСтоимость единицы: %.2f руб", pricePerUnit));
-                    resultText.append(String.format(Locale.US, "\nОбщая стоимость: %.2f руб", totalCost));
+                    double pricePerUnit = pricePerKg * weightInputKg; // Стоимость одной единицы
+                    result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.unit_cost_format), pricePerUnit));
+
+                    // Отображаем общую стоимость только если количество указано
+                    if (isQuantityProvided) {
+                        double totalCost = pricePerKg * weightInputKg * totalQuantity;
+                        result.append("\n").append(String.format(Locale.getDefault(), getString(R.string.total_unit_cost_format), totalCost));
+                    }
+                } catch (NumberFormatException e) {
+                    total.setText(R.string.error_number_format);
+                    Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
                 }
             }
-            Map<String, String> analytics = new HashMap<>();
-            analytics.put("Тип", "Вес");
-            analytics.put("Шаблон", "Швеллер Пользовательский");
-            NetworkHelper.sendCalculationData(this, analytics);
-            // Выводим результат
-            total.setText(resultText.toString());
+
+            sendAnalytics(getString(R.string.analytics_type_length)); // Отправляем аналитику для расчета длины
+            total.setText(result.toString()); // Отображаем конечный результат
 
         } catch (NumberFormatException e) {
-            total.setText("Ошибка в формате чисел");
-            Log.e("CalcError", "Parsing error: " + e.getMessage());
+            total.setText(R.string.error_number_format);
+            Log.e("ShvellerCustom", getString(R.string.log_parsing_error) + e.getMessage());
         }
     }
 
+    // Метод для отправки аналитических данных
+    private void sendAnalytics(String calculationType) {
+        Map<String, String> analytics = new HashMap<>();
+        analytics.put(getString(R.string.analytics_key_type), calculationType);
+        analytics.put(getString(R.string.analytics_key_template), getString(R.string.analytics_template_shveller_custom)); // Используем новый строковый ресурс
+        NetworkHelper.sendCalculationData(this, analytics);
+    }
+
+    // Обрабатывает нажатие кнопки "Назад", переходя к активности SelectForm
     public void btnBack(View view) {
         startActivity(new Intent(this, SelectForm.class));
         finish();
     }
-
-
 }

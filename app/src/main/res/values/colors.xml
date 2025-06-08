@@ -10,5 +10,5 @@
     <color name="MainElementWhite">#FFFFFF</color>
     <color name="hintColor">#ABABAB</color>
     <color name="Disabled">#DCDCDC</color>
-
+    <color name="selected_language_bg">#1A673AB7</color>
 </resources>

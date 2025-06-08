@@ -13,8 +13,8 @@ android {
         applicationId = "com.calculate.ferronix"
         minSdk = 24
         targetSdk = 35
-        versionCode = 15
-        versionName = "1.3.5"
+        versionCode = 16
+        versionName = "1.3.6"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -78,6 +78,8 @@ dependencies {
     implementation("com.github.DImuthuUpe:AndroidPdfViewer:3.1.0-beta.1")
     implementation(libs.firebase.storage)
     implementation(libs.okhttp)
+
+
 
    //Точки для листания
     implementation("com.github.tommybuonomo:dotsindicator:3.0.3")

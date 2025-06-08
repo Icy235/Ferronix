@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FERRONIX</string>
+    <string name="version">v1.3.6</string>
+    <string name="inDevelop">开发中</string>
+    <string name="submit_error">报告错误</string>
+
+    <string name="back">返回</string>
+    <string name="save">保存</string>
+    <string name="New">新建</string>
+    <string name="close">关闭</string>
+    <string name="calculate">计算</string>
+    <string name="history">历史记录</string>
+    <string name="ChoosingForm">选择模板</string>
+    <string name="calculateMetall">计算金属</string>
+    <string name="calculateWeight">计算重量</string>
+    <string name="calculateLeght">计算长度</string>
+    <string name="deflectionBeamCalculate">计算梁的挠度</string>
+    <string name="list_of_standarts">标准列表</string>
+    <string name="usableGostsList">适用GOST列表</string>
+    <string name="weldingSeams">焊缝</string>
+
+    <string name="material">材料</string>
+    <string name="mark">牌号</string>
+    <string name="black_metal">黑色金属</string>
+    <string name="stainless_steel">不锈钢</string>
+    <string name="aluminum">铝</string>
+
+    <string name="steel_10">钢 10</string>
+    <string name="steel_45">钢 45</string>
+    <string name="steel_3">钢 3</string>
+    <string name="steel_20">钢 20</string>
+    <string name="steel_40X">钢 40X</string>
+    <string name="steel_65">钢 65</string>
+    <string name="steel_65G">钢 65G</string>
+    <string name="grade_09G2S">09G2S</string>
+    <string name="grade_15X5M">15X5M</string>
+    <string name="grade_10XCSND">10XCSND</string>
+    <string name="grade_12X1MF">12X1MF</string>
+    <string name="grade_SHX15">SHX15</string>
+    <string name="grade_R6M5">R6M5</string>
+    <string name="grade_U7">U7</string>
+    <string name="grade_U8">U8</string>
+    <string name="grade_U8A">U8A</string>
+    <string name="grade_U10">U10</string>
+    <string name="grade_U10A">U10A</string>
+    <string name="grade_U12A">U12A</string>
+
+    <string name="grade_08X17T">08X17T</string>
+    <string name="grade_20X13">20X13</string>
+    <string name="grade_30X13">30X13</string>
+    <string name="grade_40X13">40X13</string>
+    <string name="grade_08X18N10">08X18N10</string>
+    <string name="grade_12X18N10T">12X18N10T</string>
+    <string name="grade_10X17N13M2T">10X17N13M2T</string>
+    <string name="grade_06XH28MDT">06XH28MDT</string>
+    <string name="grade_20X23N18">20X23N18</string>
+
+    <string name="grade_A5">A5</string>
+    <string name="grade_AD">AD</string>
+    <string name="grade_AD1">AD1</string>
+    <string name="grade_AK4">AK4</string>
+    <string name="grade_AK6">AK6</string>
+    <string name="grade_AMg">AMg</string>
+    <string name="grade_AMc">AMc</string>
+    <string name="grade_V95">V95</string>
+    <string name="grade_D1">D1</string>
+    <string name="grade_D16">D16</string>
+
+    <string name="density">密度</string>
+    <string name="length">长度</string>
+    <string name="lengthL">长度 L</string>
+    <string name="lengthA">长度 A</string>
+    <string name="lengthB">长度 B</string>
+    <string name="mass">质量</string>
+    <string name="weight">重量</string>
+    <string name="height">高度</string>
+    <string name="heightH">高度 h</string>
+    <string name="width">宽度</string>
+    <string name="thickness">厚度</string>
+    <string name="thicknessS">厚度 S</string>
+    <string name="sideA">边 A</string>
+    <string name="sideB">边 B</string>
+    <string name="squareA">正方形边长 A</string>
+    <string name="Diametr">直径</string>
+    <string name="nominal_diametr">公称直径</string>
+    <string name="wall">壁厚</string>
+    <string name="widthBase">翼缘宽度 b</string>
+    <string name="thicknessBase">翼缘厚度</string>
+    <string name="shestigrannikTemp">面间距离 S</string>
+    <string name="number">编号</string>
+    <string name="quanity">数量</string>
+    <string name="site">边</string>
+
+    <string name="circle">圆棒</string>
+    <string name="squareProfile">方型材</string>
+    <string name="priamiugolniy_profile">矩形型材</string>
+    <string name="Profile">型材</string>
+    <string name="pipe">管</string>
+    <string name="circlePipe">圆管</string>
+    <string name="profilePipe">型材管</string>
+    <string name="list">板材</string>
+    <string name="customList">自定义板材</string>
+    <string name="listWithRombRifl">菱形花纹板</string>
+    <string name="listWithChechevichRifl">扁豆形花纹板</string>
+    <string name="ugolok">角钢</string>
+    <string name="corner">角钢</string>
+    <string name="dvutavr">工字钢</string>
+    <string name="shveller">槽钢</string>
+    <string name="shestigrannik">六角钢</string>
+    <string name="armatura">钢筋</string>
+    <string name="custom">自定义</string>
+
+    <string name="chechevich_rifl">扁豆形花纹</string>
+    <string name="romb_rifl">菱形花纹</string>
+
+    <string name="kgm3">公斤/立方米</string>
+    <string name="gsm3">克/立方厘米</string>
+    <string name="millimetre">毫米</string>
+    <string name="unit_mm">毫米</string>
+    <string name="meter">米</string>
+    <string name="unit_meter">米</string>
+    <string name="kg">公斤</string>
+    <string name="unit_kg">公斤</string>
+    <string name="rub">卢布</string>
+
+    <string name="costPerKg">每公斤价格</string>
+    <string name="cost">价格</string>
+
+    <string name="gost_24045_94">GOST 24045–94</string>
+    <string name="gost_8240_97">GOST 8240–97</string>
+    <string name="shveller_gost_8240_97">槽钢 GOST 8240–97</string>
+    <string name="gost_57837_2017">GOST 57837–2017</string>
+    <string name="dvutavr_gost_57837_2017">工字钢 GOST 57837–2017</string>
+    <string name="dvutavr_gost_8239_89">工字钢 GOST 8239–89</string>
+    <string name="gost_8239_89">GOST 8239–89</string>
+    <string name="dvutavr_gost_26020_83">工字钢 GOST 26020–83</string>
+    <string name="gost_26020_83">GOST 26020–83</string>
+    <string name="gost_8568_77">GOST 8568–77</string>
+    <string name="gost_5264_80">GOST 5264-80</string>
+    <string name="gost_34028_2016">GOST 34028-2016</string>
+    <string name="gost_57836_2017">GOST 57837–2017</string>
+
+    <string name="Gost26020_83_Name">热轧钢平行翼缘工字钢</string>
+    <string name="Gost8239_89_Name">热轧钢工字钢</string>
+    <string name="Gost8240_97_Name">热轧钢槽钢</string>
+    <string name="Gost57836_2017_Name">热轧钢平行翼缘工字钢</string>
+    <string name="Gost24045_94_Name">建筑用梯形波纹弯曲钢板型材</string>
+    <string name="Gost8568_77_Name">菱形和扁豆形花纹钢板</string>
+    <string name="Gost34028_2016_Name">钢筋混凝土结构用钢筋</string>
+
+    <string name="mass_unit">单位质量</string>
+    <string name="mass_unit_format">单位质量: %.2f 公斤</string>
+    <string name="total_mass_unit_format">\n总质量: %.2f 公斤</string>
+    <string name="length_unit">单位长度</string>
+    <string name="length_unit_format">单位长度: %.2f 米</string>
+    <string name="total_length_unit_format">\n总长度: %.2f 米</string>
+    <string name="unit_cost_format">\n单位成本: %.2f 卢布</string>
+    <string name="total_unit_cost_format">\n总成本: %.2f 卢布</string>
+
+    <string name="gost_info_dialog_title">通知</string>
+    <string name="gost_info_dialog_message">尊敬的用户,\n目前正在开发焊接缝GOST标准的简化参考指南。\n目前您可以查阅GOST的原文。\n感谢您的理解！</string>
+
+    <string name="error_number_format">数字格式错误。请使用点作为小数点。</string>
+    <string name="error_unknown_material">内部错误：未知材料。</string>
+    <string name="error_density_fetch">获取牌号密度错误。</string>
+    <string name="error_init_ui">UI元素初始化错误。请重启应用程序。</string>
+    <string name="error_parsing_numbers">解析数字错误：</string>
+    <string name="error_negative_price">每公斤价格不能为负数。</string>
+    <string name="error_ui_elements_missing">未通过ID找到一个或多个必需的UI元素。</string>
+    <string name="error_empty_fields">请填写所有字段！</string>
+    <string name="error_positive_values">值必须 > 0</string>
+    <string name="error_no_material">请先选择材料</string>
+    <string name="error_negative_quantity">数量必须 > 0</string>
+    <string name="error_empty_quantity_general">请输入数量！</string>
+    <string name="error_empty_price_general">请输入每公斤价格！</string>
+    <string name="log_no_mass_for_mark">未找到所选牌号的质量。</string>
+
+    <string name="error_empty_length">请指定钢筋长度！</string>
+    <string name="error_negative_length">长度必须 > 0</string>
+    <string name="error_empty_mass">请指定钢筋质量！</string>
+    <string name="error_negative_mass">质量必须 > 0</string>
+    <string name="error_no_diameter">请选择钢筋直径！</string>
+    <string name="choose_diameter_label">选择直径</string>
+
+    <string name="error_empty_length_dvutavr">请指定长度！</string>
+    <string name="error_positive_length_dvutavr">长度必须为正数！</string>
+    <string name="error_empty_mass_dvutavr">请指定质量！</string>
+    <string name="error_positive_mass_dvutavr">质量必须为正数！</string>
+    <string name="error_no_dvutavr_number">请选择工字钢编号！</string>
+
+    <string name="error_invalid_wall_thickness">壁厚不能大于或等于直径的一半。</string>
+    <string name="error_wall_thickness_too_large">壁厚不能大于或等于最小外尺寸的一半。</string>
+    <string name="error_flange_thickness_too_large">翼缘总厚度不能大于或等于高度。</string>
+    <string name="error_web_thickness_too_large">腹板厚度不能大于或等于翼缘宽度。</string>
+    <string name="error_web_thickness_height_relation">腹板厚度不能大于或等于高度。</string>
+    <string name="error_shveller_dimensions_invalid">槽钢尺寸无效。请检查高度、宽度和厚度比。</string>
+    <string name="error_wall_thickness_too_large_corner">错误：壁厚不应大于或等于边长</string>
+
+    <string name="analytics_key_type">类型</string>
+    <string name="analytics_key_template">模板</string>
+
+    <string name="analytics_type_length">长度</string>
+    <string name="analytics_type_weight">重量</string>
+
+    <string name="analytics_template_rod">圆棒</string>
+    <string name="analytics_template_pipe">圆管</string>
+    <string name="analytics_template_armatura">钢筋</string>
+    <string name="analytics_template_square_profile">方型材</string>
+    <string name="analytics_template_rectangular_profile">矩形型材</string>
+    <string name="analytics_template_dvutavr">工字钢</string>
+    <string name="analytics_template_profile_pipe">型材管</string>
+    <string name="analytics_template_list">板材</string>
+    <string name="analytics_template_corner">角钢</string>
+    <string name="analytics_template_shestigrannik">六角钢</string>
+    <string name="analytics_template_shveller_custom">自定义槽钢</string>
+
+    <string name="analytics_type_length_calc">计算长度_钢筋</string>
+    <string name="analytics_type_weight_calc">计算重量_钢筋</string>
+    <string name="analytics_type_weight_list">计算重量_板材</string>
+    <string name="dvutavr_gost_8239_89_template_name">工字钢 GOST 8239-89</string>
+    <string name="kolvo">数量</string>
+    <string name="thicknessText">厚度</string>
+    <string name="material_black_metal">黑色金属</string>
+    <string name="material_stainless_steel">不锈钢</string>
+    <string name="material_aluminum">铝</string>
+    <string name="error_negative_values"><![CDATA[值必须 > 0]]></string>
+    <string name="log_parsing_error">数字格式错误</string>
+    <string name="log_init_error">应用程序错误</string>
+    <string name="log_density_error">"错误 "</string>
+    <string name="select_language">选择语言\n</string>
+    <string name="language">语言</string>
+    <string name="report_error">报告错误</string>
+</resources>

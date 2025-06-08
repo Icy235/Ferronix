@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FERRONIX</string>
+    <string name="version">v1.3.6</string>
+    <string name="inDevelop">Ishlab chiqilmoqda</string>
+    <string name="submit_error">Xato haqida xabar bering</string>
+
+    <string name="back">Orqaga</string>
+    <string name="save">Saqlash</string>
+    <string name="New">Yangi</string>
+    <string name="close">Yopish</string>
+    <string name="calculate">Hisoblash</string>
+    <string name="history">Tarix</string>
+    <string name="ChoosingForm">Shablon tanlash</string>
+    <string name="calculateMetall">Metallni hisoblash</string>
+    <string name="calculateWeight">Og‘irlikni hisoblash</string>
+    <string name="calculateLeght">Uzunlikni hisoblash</string>
+    <string name="deflectionBeamCalculate">Balka egilishini hisoblash</string>
+    <string name="list_of_standarts">Standartlar ro‘yxati</string>
+    <string name="usableGostsList">Ishlatilgan GOSTlar ro‘yxati</string>
+    <string name="weldingSeams">Payvand choklari</string>
+
+    <string name="material">Material</string>
+    <string name="mark">Marka</string>
+    <string name="black_metal">Qora metall</string>
+    <string name="stainless_steel">Zanglamaydigan po‘lat</string>
+    <string name="aluminum">Alyuminiy</string>
+
+    <string name="steel_10">Po‘lat 10</string>
+    <string name="steel_45">Po‘lat 45</string>
+    <string name="steel_3">Po‘lat 3</string>
+    <string name="steel_20">Po‘lat 20</string>
+    <string name="steel_40X">Po‘lat 40X</string>
+    <string name="steel_65">Po‘lat 65</string>
+    <string name="steel_65G">Po‘lat 65G</string>
+    <string name="grade_09G2S">09G2S</string>
+    <string name="grade_15X5M">15X5M</string>
+    <string name="grade_10XCSND">10XCSND</string>
+    <string name="grade_12X1MF">12X1MF</string>
+    <string name="grade_SHX15">SHX15</string>
+    <string name="grade_R6M5">R6M5</string>
+    <string name="grade_U7">U7</string>
+    <string name="grade_U8">U8</string>
+    <string name="grade_U8A">U8A</string>
+    <string name="grade_U10">U10</string>
+    <string name="grade_U10A">U10A</string>
+    <string name="grade_U12A">U12A</string>
+
+    <string name="grade_08X17T">08X17T</string>
+    <string name="grade_20X13">20X13</string>
+    <string name="grade_30X13">30X13</string>
+    <string name="grade_40X13">40X13</string>
+    <string name="grade_08X18N10">08X18N10</string>
+    <string name="grade_12X18N10T">12X18N10T</string>
+    <string name="grade_10X17N13M2T">10X17N13M2T</string>
+    <string name="grade_06XH28MDT">06XH28MDT</string>
+    <string name="grade_20X23N18">20X23N18</string>
+
+    <string name="grade_A5">A5</string>
+    <string name="grade_AD">AD</string>
+    <string name="grade_AD1">AD1</string>
+    <string name="grade_AK4">AK4</string>
+    <string name="grade_AK6">AK6</string>
+    <string name="grade_AMg">AMg</string>
+    <string name="grade_AMc">AMc</string>
+    <string name="grade_V95">V95</string>
+    <string name="grade_D1">D1</string>
+    <string name="grade_D16">D16</string>
+
+    <string name="density">Zichlik</string>
+    <string name="length">Uzunlik</string>
+    <string name="lengthL">Uzunlik L</string>
+    <string name="lengthA">Uzunlik A</string>
+    <string name="lengthB">Uzunlik B</string>
+    <string name="mass">Massa</string>
+    <string name="weight">Vazn</string>
+    <string name="height">Balandlik</string>
+    <string name="heightH">Balandlik h</string>
+    <string name="width">Kenglik</string>
+    <string name="thickness">Qalinlik</string>
+    <string name="thicknessS">Qalinlik S</string>
+    <string name="sideA">Tomon A</string>
+    <string name="sideB">Tomon B</string>
+    <string name="squareA">Kvadrat tomoni A</string>
+    <string name="Diametr">Diametr</string>
+    <string name="nominal_diametr">Nominal diametr</string>
+    <string name="wall">Devor qalinligi</string>
+    <string name="widthBase">Raf kengligi b</string>
+    <string name="thicknessBase">Raf qalinligi</string>
+    <string name="shestigrannikTemp">Qirralar orasidagi masofa S</string>
+    <string name="number">Raqam</string>
+    <string name="quanity">Miqdor</string>
+    <string name="site">Tomon</string>
+
+    <string name="circle">Doira yaltiroq</string>
+    <string name="squareProfile">Kvadrat profil</string>
+    <string name="priamiugolniy_profile">To‘g‘ri burchakli profil</string>
+    <string name="Profile">Profil</string>
+    <string name="pipe">Quvur</string>
+    <string name="circlePipe">Dumaloq quvur</string>
+    <string name="profilePipe">Profil quvur</string>
+    <string name="list">List</string>
+    <string name="customList">Ixtiyoriy list</string>
+    <string name="listWithRombRifl">Rombik naqshli list</string>
+    <string name="listWithChechevichRifl">Yasmiq naqshli list</string>
+    <string name="ugolok">Burchak</string>
+    <string name="corner">Burchak</string>
+    <string name="dvutavr">I-balka</string>
+    <string name="shveller">U-balka</string>
+    <string name="shestigrannik">Oltiburchak</string>
+    <string name="armatura">Armatura</string>
+    <string name="custom">Maxsus</string>
+
+    <string name="chechevich_rifl">Yasmiq naqsh</string>
+    <string name="romb_rifl">Rombik naqsh</string>
+
+    <string name="kgm3">kg/m³</string>
+    <string name="gsm3">gr/sm³</string>
+    <string name="millimetre">mm</string>
+    <string name="unit_mm">mm</string>
+    <string name="meter">m</string>
+    <string name="unit_meter">m</string>
+    <string name="kg">kg.</string>
+    <string name="unit_kg">kg</string>
+    <string name="rub">so‘m</string>
+
+    <string name="costPerKg">Kg uchun narx</string>
+    <string name="cost">Narx</string>
+
+    <string name="gost_24045_94">GOST 24045–94</string>
+    <string name="gost_8240_97">GOST 8240–97</string>
+    <string name="shveller_gost_8240_97">U-balka GOST 8240–97</string>
+    <string name="gost_57837_2017">GOST 57837–2017</string>
+    <string name="dvutavr_gost_57837_2017">I-balka GOST 57837–2017</string>
+    <string name="dvutavr_gost_8239_89">I-balka GOST 8239–89</string>
+    <string name="gost_8239_89">GOST 8239–89</string>
+    <string name="dvutavr_gost_26020_83">I-balka GOST 26020–83</string>
+    <string name="gost_26020_83">GOST 26020–83</string>
+    <string name="gost_8568_77">GOST 8568–77</string>
+    <string name="gost_5264_80">GOST 5264-80</string>
+    <string name="gost_34028_2016">GOST 34028-2016</string>
+    <string name="gost_57836_2017">GOST 57837–2017</string>
+
+    <string name="Gost26020_83_Name">Parallel qirrali issiq prokatlangan po‘lat I-balkalar</string>
+    <string name="Gost8239_89_Name">Issiq prokatlangan po‘lat I-balkalar</string>
+    <string name="Gost8240_97_Name">Issiq prokatlangan po‘lat U-balkalar</string>
+    <string name="Gost57836_2017_Name">Parallel qirrali issiq prokatlangan po‘lat I-balkalar</string>
+    <string name="Gost24045_94_Name">Qurilish uchun trapezoidli gofrali buralgan po‘lat list profillari</string>
+    <string name="Gost8568_77_Name">Rombik va yasmiq naqshli po‘lat listlar</string>
+    <string name="Gost34028_2016_Name">Temir-beton konstruksiyalari uchun armatura prokat</string>
+
+    <string name="mass_unit">Birlik massasi</string>
+    <string name="mass_unit_format">Birlik massasi: %.2f kg</string>
+    <string name="total_mass_unit_format">\nUmumiy massa: %.2f kg</string>
+    <string name="length_unit">Birlik uzunligi</string>
+    <string name="length_unit_format">Birlik uzunligi: %.2f m</string>
+    <string name="total_length_unit_format">\nUmumiy uzunlik: %.2f m</string>
+    <string name="unit_cost_format">\nBirlik narxi: %.2f so‘m</string>
+    <string name="total_unit_cost_format">\nUmumiy narx: %.2f so‘m</string>
+
+    <string name="gost_info_dialog_title">Bildirishnoma</string>
+    <string name="gost_info_dialog_message">Hurmatli foydalanuvchilar,\nAyni paytda payvand choklari uchun GOST standartlari bo‘yicha soddalashtirilgan ma’lumotnoma ishlab chiqilmoqda.\nAyni damda siz GOSTning asl matni bilan tanishishingiz mumkin.\nTushunganligingiz uchun rahmat!</string>
+
+    <string name="error_number_format">Raqam formatida xato. O‘nli kasrlar uchun nuqtadan foydalaning.</string>
+    <string name="error_unknown_material">Ichki xato: Noma’lum material.</string>
+    <string name="error_density_fetch">Marka uchun zichlikni olishda xato.</string>
+    <string name="error_init_ui">UI elementlarini ishga tushirishda xato. Ilovani qayta ishga tushiring.</string>
+    <string name="error_parsing_numbers">Raqamlarni ajratishda xato: </string>
+    <string name="error_negative_price">Kg uchun narx manfiy bo‘lishi mumkin emas.</string>
+    <string name="error_ui_elements_missing">Bir yoki bir nechta majburiy UI elementi ID bo‘yicha topilmadi.</string>
+    <string name="error_empty_fields">Barcha maydonlarni to‘ldiring!</string>
+    <string name="error_positive_values">Qiymatlar > 0 bo‘lishi kerak</string>
+    <string name="error_no_material">Avval materialni tanlang</string>
+    <string name="error_negative_quantity">Miqdor > 0 bo‘lishi kerak</string>
+    <string name="error_empty_quantity_general">Miqdorni kiriting!</string>
+    <string name="error_empty_price_general">Kg uchun narxni kiriting!</string>
+    <string name="log_no_mass_for_mark">Tanlangan marka uchun massa topilmadi.</string>
+
+    <string name="error_empty_length">Armatura uzunligini ko‘rsating!</string>
+    <string name="error_negative_length">Uzunlik > 0 bo‘lishi kerak</string>
+    <string name="error_empty_mass">Armatura massasini ko‘rsating!</string>
+    <string name="error_negative_mass">Massa > 0 bo‘lishi kerak</string>
+    <string name="error_no_diameter">Armatura diametrini tanlang!</string>
+    <string name="choose_diameter_label">Diametrni tanlang</string>
+
+    <string name="error_empty_length_dvutavr">Uzunlikni ko‘rsating!</string>
+    <string name="error_positive_length_dvutavr">Uzunlik musbat bo‘lishi kerak!</string>
+    <string name="error_empty_mass_dvutavr">Massani ko‘rsating!</string>
+    <string name="error_positive_mass_dvutavr">Massa musbat bo‘lishi kerak!</string>
+    <string name="error_no_dvutavr_number">I-balka raqamini tanlang!</string>
+
+    <string name="error_invalid_wall_thickness">Devor qalinligi diametrning yarmidan katta yoki teng bo‘lishi mumkin emas.</string>
+    <string name="error_wall_thickness_too_large">Devor qalinligi eng kichik tashqi o‘lchamning yarmidan katta yoki teng bo‘lishi mumkin emas.</string>
+    <string name="error_flange_thickness_too_large">Raf qalinliklarining umumiy miqdori balandlikdan katta yoki teng bo‘lishi mumkin emas.</string>
+    <string name="error_web_thickness_too_large">Devor qalinligi raf kengligidan katta yoki teng bo‘lishi mumkin emas.</string>
+    <string name="error_web_thickness_height_relation">Devor qalinligi balandlikdan katta yoki teng bo‘lishi mumkin emas.</string>
+    <string name="error_shveller_dimensions_invalid">Noto‘g‘ri U-balka o‘lchamlari. Balandlik, kenglik va qalinliklar nisbatini tekshiring.</string>
+    <string name="error_wall_thickness_too_large_corner">Xato: devor qalinligi tomonlardan katta yoki teng bo‘lmasligi kerak</string>
+
+    <string name="analytics_key_type">Turi</string>
+    <string name="analytics_key_template">Shablon</string>
+
+    <string name="analytics_type_length">Uzunlik</string>
+    <string name="analytics_type_weight">Og‘irlik</string>
+
+    <string name="analytics_template_rod">Doira yaltiroq</string>
+    <string name="analytics_template_pipe">Dumaloq quvur</string>
+    <string name="analytics_template_armatura">Armatura</string>
+    <string name="analytics_template_square_profile">kvadrat_profil</string>
+    <string name="analytics_template_rectangular_profile">to_g_ri_burchakli_profil</string>
+    <string name="analytics_template_dvutavr">i_balka</string>
+    <string name="analytics_template_profile_pipe">profil_quvur</string>
+    <string name="analytics_template_list">list</string>
+    <string name="analytics_template_corner">Burchak</string>
+    <string name="analytics_template_shestigrannik">oltiburchak</string>
+    <string name="analytics_template_shveller_custom">u_balka_maxsus</string>
+
+    <string name="analytics_type_length_calc">uzunlik_hisoblash_armatura</string>
+    <string name="analytics_type_weight_calc">og_irlik_hisoblash_armatura</string>
+    <string name="analytics_type_weight_list">og_irlik_hisoblash_list</string>
+    <string name="dvutavr_gost_8239_89_template_name">I-balka GOST 8239-89</string>
+    <string name="kolvo">Miqdori</string>
+    <string name="thicknessText">Qalinligi</string>
+    <string name="material_black_metal">Qora metall</string>
+    <string name="material_stainless_steel">Zanglamaydigan po‘lat</string>
+    <string name="material_aluminum">Alyuminiy</string>
+    <string name="error_negative_values"><![CDATA[Qiymatlar > 0 bo‘lishi kerak]]></string>
+    <string name="log_parsing_error">Raqam formatida xato</string>
+    <string name="log_init_error">Ilova xatosi</string>
+    <string name="log_density_error">"Xato "</string>
+    <string name="select_language">Tilni tanlash\n</string>
+    <string name="language">Til</string>
+    <string name="report_error">Xato haqida xabar bering</string>
+</resources>

@@ -229,7 +229,7 @@
                 <TextView
                     android:id="@+id/textViewUnit"
                     style="@style/Unit"
-                    android:text="@string/meter" />
+                    android:text="@string/millimetre" />
             </LinearLayout>
         </LinearLayout>
 
